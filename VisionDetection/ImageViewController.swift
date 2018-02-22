@@ -28,6 +28,7 @@ class ImageViewController: UIViewController {
     var choosedImage: UIImage?
     
     var testImg = [Face]()
+    
     var faceIdBestResult : String?
     
     @IBOutlet weak var mainImage: UIImageView!
@@ -77,13 +78,24 @@ class ImageViewController: UIViewController {
             let result = try contex.fetch(request)
             for i in result as! [Person] {
                 //print(data.value(forKey: "username") as! String)
-                print(i.id)
+                print(" Core Data - \(i.id ?? "nothing")")
             }
 
         } catch {
 
             print("Failed")
         }
+        
+        
+        FaceAPI.getList("mixoft") { (a, _, _) in
+            if let ss = a {
+                for i in ss {
+                    
+                    print("Microsoft - \(i)")
+                }
+            }
+        }
+        
 //
         
     }
@@ -143,21 +155,29 @@ class ImageViewController: UIViewController {
         
         FaceAPI.detectFaces(facesPhoto: mainImage.image!) { (a, _, _)  in
             if let faceId = a?[0].faceId {
-                
-                FaceAPI.findSimilar(faceId: faceId, faceListId: "moisey_1", completion: { (a,_,_) in
+
+                FaceAPI.findSimilar(faceId: faceId, faceListId: "mixoft", completion: { (a,_,_) in
                     print(a ?? "Nothing here :(")
                     
-                    if let fff = a?.sortedByValue.last {
-                        self.faceIdBestResult = fff.0
-                    }
-                    
                     DispatchQueue.main.async {
-                        self.animation(willStart: false)
-                        self.performSegue(withIdentifier: "toDetection", sender: self)
+                        if let fff = a?.sortedByValue.last {
+                            self.faceIdBestResult = fff.0
+                            
+                            print(">>>>>>>>\(fff.0)")
+                            print("\(self.faceIdBestResult)<<<<<<<<<")
+
+                            //! нужно разабраться с памятью или сделать instantiate
+                            self.performSegue(withIdentifier: "toDetection", sender: self)
+                            self.animation(willStart: false)
+
+                        }
                     }
                 })
             }
         }
+
+        
+        
         
         
 //        FaceAPI.createFaceList(withName: "moisey_1") { (a, b, c) in

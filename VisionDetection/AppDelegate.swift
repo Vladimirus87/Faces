@@ -68,10 +68,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         
-        
         if isNewLevel {
             isNewLevel = false
-            saveToAll(arrPersons: myTempData, fileList: "moisey_1")
+            saveToAll(arrPersons: myTempData, fileList: "mixoft")
         }
         
         
@@ -89,17 +88,18 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                 
                 if let idForData = id {
                     DispatchQueue.main.async {
+                        print("image - \(per.image.description)")
                         
                         let pers = Person()
                         pers.id = idForData
                         pers.positive = per.positive
                         pers.negative = per.negative
                         
-                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-                        let contex = appDelegate.persistentContainer.viewContext
+//                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//                        let contex = appDelegate.persistentContainer.viewContext
                         
                         do {
-                            try contex.save()
+                            try self.persistentContainer.viewContext.save()
                             print("saved")
                         } catch {
                             print("error")
