@@ -54,7 +54,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 
                 DispatchQueue.main.async {
                     self.takePhoto = false
-                    self.showHideWarning(willShow: true, withText: "В кадре нет лиц")
+                    self.showHideWarning(willShow: true, withText: "В КАДРЕ НЕТ ЛИЦ")
                     
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                         self.showHideWarning(willShow: false, withText: nil)

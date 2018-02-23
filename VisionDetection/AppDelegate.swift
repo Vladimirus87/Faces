@@ -48,6 +48,8 @@ let myTempData : [PersonModel] = [
 
 
 
+
+
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
     
@@ -64,14 +66,29 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         TWTRTwitter.sharedInstance().start(withConsumerKey:"sKRPTlhnCc1nFhrfcxHhW3Szn", consumerSecret:"86rsCUUfm7m8Xnjdm8SfnFnduPDLLVcB1z44cTYN3P310MoCxQ")
-        //Twitter.sharedInstance().start(withConsumerKey:"wc5j0VRZnAFfdg84XcFz3nGfG", consumerSecret:"G6BrvNKbSQnjmD7C3yeqfMdCCjdS9nlQrosUyaCF1Kk3MgV0ST")
-        
         
         
         if isNewLevel {
             isNewLevel = false
-            saveToAll(arrPersons: myTempData, fileList: "mixoft")
+           
+            let pswdChars = Array("abcdefghijklmnopqrstuvwxyz")
+            let rndPswd = String((0..<8).map{ _ in pswdChars[Int(arc4random_uniform(UInt32(pswdChars.count)))]})
+            UserDefaults.standard.set(rndPswd, forKey: "FileListName")
+            
+            print(rndPswd)
+            // UserDefaults.standard.string(forKey: "FileListName")
+            
+            FaceAPI.createFaceList(withName: rndPswd) { (a) in
+        
+                print(a)
+            }
+            
+            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {//, execute: <#T##() -> Void#>) {
+                self.saveToAll(arrPersons: myTempData, fileList: rndPswd)
+            }
         }
+            
+        
         
         
         return true

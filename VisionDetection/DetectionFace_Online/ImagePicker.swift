@@ -8,12 +8,9 @@
 
 import UIKit
 
-
 extension ViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
-    
-
-    
+ 
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage

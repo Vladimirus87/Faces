@@ -50,24 +50,7 @@ class ResultViewController: UIViewController, UIDocumentInteractionControllerDel
         
         titleOfResult.text = titleText ?? ""
         
-        VKSdk.initialize(withAppId: "6381010")
         
-        VKSdk.wakeUpSession([VK_PER_WALL, VK_PER_PHOTOS, VK_PER_OFFLINE]) { state, error in
-            if (state == .authorized) {
-                print("Authorized")
-                
-            } else if error != nil {
-                print(error?.localizedDescription ?? "_UnknownError_")
-            } else {
-                print("NotAuthorized")
-                let scopePermissions = ["email", "friends", "wall", "offline", "photos", "notes"]
-                if VKSdk.vkAppMayExists() == true {
-                    VKSdk.authorize(scopePermissions, with: .unlimitedToken)
-                } else {
-                    VKSdk.authorize(scopePermissions, with: [.disableSafariController, .unlimitedToken])
-                }
-            }
-        }
         
     }
     
@@ -146,12 +129,34 @@ class ResultViewController: UIViewController, UIDocumentInteractionControllerDel
     
     @IBAction func vkontakte(_ sender: UIButton) {
         
+        
+        
+        VKSdk.initialize(withAppId: "6381010")
+        
+        VKSdk.wakeUpSession([VK_PER_WALL, VK_PER_PHOTOS, VK_PER_OFFLINE]) { state, error in
+            if (state == .authorized) {
+                print("Authorized")
+                
+            } else if error != nil {
+                print(error?.localizedDescription ?? "_UnknownError_")
+            } else {
+                print("NotAuthorized")
+                let scopePermissions = ["email", "friends", "wall", "offline", "photos", "notes"]
+                if VKSdk.vkAppMayExists() == true {
+                    VKSdk.authorize(scopePermissions, with: .unlimitedToken)
+                } else {
+                    VKSdk.authorize(scopePermissions, with: [.disableSafariController, .unlimitedToken])
+                }
+            }
+        }
+        
+        
         let shareDialog = VKShareDialogController()
         //1
         shareDialog.text = "This post created using #vksdk #ios"
         //2
         
-        let img = VKUploadImage(image: textToImage(drawText: getString(arr: dataArray), inImage: UIImage(named: isPositive ? "positive" : "negative")!, atPoint: CGPoint(x: 50, y: 250)), andParams: nil)
+        let img = VKUploadImage(image: self.textToImage(drawText: self.getString(arr: self.dataArray), inImage: UIImage(named: self.isPositive ? "positive" : "negative")!, atPoint: CGPoint(x: 50, y: 250)), andParams: nil)
         shareDialog.uploadImages = [img as Any]
         //3
         shareDialog.shareLink = VKShareLink(title: "Super puper link, but nobody knows", link: NSURL(string: "https://vk.com/dev/ios_sdk")! as URL!)

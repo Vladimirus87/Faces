@@ -87,7 +87,7 @@ class ImageViewController: UIViewController {
         }
         
         
-        FaceAPI.getList("mixoft") { (a, _, _) in
+        FaceAPI.getList(UserDefaults.standard.string(forKey: "FileListName")!) { (a, _, _) in
             if let ss = a {
                 for i in ss {
                     
@@ -156,13 +156,13 @@ class ImageViewController: UIViewController {
         FaceAPI.detectFaces(facesPhoto: mainImage.image!) { (a, _, _)  in
             if let faceId = a?[0].faceId {
 
-                FaceAPI.findSimilar(faceId: faceId, faceListId: "mixoft", completion: { (a,_,_) in
+                FaceAPI.findSimilar(faceId: faceId, faceListId: UserDefaults.standard.string(forKey: "FileListName")!, completion: { (a,_,_) in
                     print(a ?? "Nothing here :(")
-                    
+
                     DispatchQueue.main.async {
                         if let fff = a?.sortedByValue.last {
                             self.faceIdBestResult = fff.0
-                            
+
                             print(">>>>>>>>\(fff.0)")
                             print("\(self.faceIdBestResult)<<<<<<<<<")
 
@@ -180,8 +180,8 @@ class ImageViewController: UIViewController {
         
         
         
-//        FaceAPI.createFaceList(withName: "moisey_1") { (a, b, c) in
-//            print(a, b, c)
+//        FaceAPI.createFaceList(withName: "mixoft_1") { (a) in
+//            print(a)
 //        }
         
         

@@ -92,12 +92,6 @@
                                                     <action selector="flashLightOnOff:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xc2-pO-cA1"/>
                                                 </connections>
                                             </button>
-                                            <label hidden="YES" opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В кадре больше одного лица" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEQ-4Z-Man">
-                                                <rect key="frame" x="8" y="5" width="359" height="31"/>
-                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
-                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
-                                                <nil key="highlightedColor"/>
-                                            </label>
                                             <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallLogo" translatesAutoresizingMaskIntoConstraints="NO" id="u1e-0g-h1n">
                                                 <rect key="frame" x="157" y="5" width="60" height="30"/>
                                                 <constraints>
@@ -108,18 +102,46 @@
                                         </subviews>
                                         <constraints>
                                             <constraint firstAttribute="trailing" secondItem="CXc-ER-PYs" secondAttribute="trailing" constant="16" id="97H-sL-Y96"/>
-                                            <constraint firstAttribute="bottom" secondItem="SEQ-4Z-Man" secondAttribute="bottom" constant="5" id="B7a-Mo-HgN"/>
                                             <constraint firstItem="u1e-0g-h1n" firstAttribute="centerY" secondItem="ZFU-lP-YhA" secondAttribute="centerY" id="FeF-KY-NZ4"/>
-                                            <constraint firstAttribute="trailing" secondItem="SEQ-4Z-Man" secondAttribute="trailing" constant="8" id="Ftg-q0-dDV"/>
                                             <constraint firstItem="CXc-ER-PYs" firstAttribute="centerY" secondItem="ZFU-lP-YhA" secondAttribute="centerY" id="Rgr-YI-g0R"/>
                                             <constraint firstAttribute="bottom" secondItem="Y2g-va-hYd" secondAttribute="bottom" id="ThX-co-UcE"/>
                                             <constraint firstItem="Y2g-va-hYd" firstAttribute="top" secondItem="ZFU-lP-YhA" secondAttribute="top" id="dp2-I1-18Q"/>
-                                            <constraint firstItem="SEQ-4Z-Man" firstAttribute="top" secondItem="ZFU-lP-YhA" secondAttribute="top" constant="5" id="gYn-8C-iSu"/>
                                             <constraint firstItem="u1e-0g-h1n" firstAttribute="centerX" secondItem="ZFU-lP-YhA" secondAttribute="centerX" id="hD7-n6-Xrm"/>
                                             <constraint firstAttribute="height" constant="41" id="hGU-hZ-MDw"/>
                                             <constraint firstItem="Y2g-va-hYd" firstAttribute="leading" secondItem="ZFU-lP-YhA" secondAttribute="leading" id="mmj-x8-V80"/>
-                                            <constraint firstItem="SEQ-4Z-Man" firstAttribute="leading" secondItem="ZFU-lP-YhA" secondAttribute="leading" constant="8" id="pT6-Iz-ZRX"/>
                                             <constraint firstAttribute="trailing" secondItem="Y2g-va-hYd" secondAttribute="trailing" id="rUC-R0-uXU"/>
+                                        </constraints>
+                                    </view>
+                                    <view hidden="YES" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="qju-0e-Kc9">
+                                        <rect key="frame" x="62" y="314" width="251" height="38"/>
+                                        <subviews>
+                                            <view alpha="0.5" contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="rQn-rk-9fR">
+                                                <rect key="frame" x="0.0" y="0.0" width="251" height="38"/>
+                                                <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                                        <integer key="value" value="4"/>
+                                                    </userDefinedRuntimeAttribute>
+                                                </userDefinedRuntimeAttributes>
+                                            </view>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="В кадре больше одного лица" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontForContentSizeCategory="YES" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="SEQ-4Z-Man">
+                                                <rect key="frame" x="0.0" y="0.0" width="251" height="38"/>
+                                                <fontDescription key="fontDescription" type="system" pointSize="19"/>
+                                                <color key="textColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
+                                        </subviews>
+                                        <constraints>
+                                            <constraint firstAttribute="trailing" secondItem="rQn-rk-9fR" secondAttribute="trailing" id="2dF-vN-8sY"/>
+                                            <constraint firstAttribute="trailing" secondItem="SEQ-4Z-Man" secondAttribute="trailing" id="7Yn-YS-iYe"/>
+                                            <constraint firstAttribute="bottom" secondItem="rQn-rk-9fR" secondAttribute="bottom" id="Jmy-uA-cDX"/>
+                                            <constraint firstItem="SEQ-4Z-Man" firstAttribute="leading" secondItem="qju-0e-Kc9" secondAttribute="leading" id="Q9P-j5-KG1"/>
+                                            <constraint firstItem="rQn-rk-9fR" firstAttribute="leading" secondItem="qju-0e-Kc9" secondAttribute="leading" id="bl6-VU-FJM"/>
+                                            <constraint firstAttribute="height" constant="38" id="d4V-hc-O32"/>
+                                            <constraint firstItem="SEQ-4Z-Man" firstAttribute="top" secondItem="qju-0e-Kc9" secondAttribute="top" id="eOX-6H-BRy"/>
+                                            <constraint firstAttribute="bottom" secondItem="SEQ-4Z-Man" secondAttribute="bottom" id="fQR-wW-sg1"/>
+                                            <constraint firstAttribute="width" constant="251" id="p1m-Lc-hXl"/>
+                                            <constraint firstItem="rQn-rk-9fR" firstAttribute="top" secondItem="qju-0e-Kc9" secondAttribute="top" id="zXK-GN-HmR"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -133,10 +155,12 @@
                                     <constraint firstAttribute="bottom" secondItem="a1U-gD-hIZ" secondAttribute="bottom" id="KLB-ab-DGW"/>
                                     <constraint firstAttribute="trailing" secondItem="ZFU-lP-YhA" secondAttribute="trailing" id="LVq-cZ-W9R"/>
                                     <constraint firstItem="a1U-gD-hIZ" firstAttribute="leading" secondItem="DJU-kI-TMg" secondAttribute="leading" id="SAN-6j-weA"/>
+                                    <constraint firstItem="qju-0e-Kc9" firstAttribute="centerX" secondItem="DJU-kI-TMg" secondAttribute="centerX" id="U7j-FP-NOP"/>
                                     <constraint firstAttribute="trailing" secondItem="1Uc-XI-9QU" secondAttribute="trailing" constant="32" id="Uky-Q1-0Vm"/>
                                     <constraint firstAttribute="bottom" secondItem="1Uc-XI-9QU" secondAttribute="bottom" constant="8" id="VDJ-J8-w9N"/>
                                     <constraint firstAttribute="trailing" secondItem="a1U-gD-hIZ" secondAttribute="trailing" id="cvp-RD-Wyw"/>
                                     <constraint firstItem="ZFU-lP-YhA" firstAttribute="top" secondItem="DJU-kI-TMg" secondAttribute="top" id="ghW-te-sTp"/>
+                                    <constraint firstItem="qju-0e-Kc9" firstAttribute="centerY" secondItem="DJU-kI-TMg" secondAttribute="centerY" id="nEU-Xa-GyU"/>
                                     <constraint firstItem="gme-vL-lCV" firstAttribute="centerX" secondItem="DJU-kI-TMg" secondAttribute="centerX" id="teq-QV-rZl"/>
                                     <constraint firstAttribute="bottom" secondItem="QiR-OJ-0jC" secondAttribute="bottom" constant="8" id="zOd-Vc-jt5"/>
                                 </constraints>
@@ -158,6 +182,7 @@
                         <outlet property="rotate" destination="1Uc-XI-9QU" id="g5n-gT-CrW"/>
                         <outlet property="shoot" destination="gme-vL-lCV" id="sdD-6b-W2t"/>
                         <outlet property="smallLogo" destination="u1e-0g-h1n" id="mP1-8t-ozr"/>
+                        <outlet property="warningView" destination="qju-0e-Kc9" id="5Xl-Xn-peh"/>
                         <segue destination="Afb-zO-12M" kind="presentation" identifier="toImageVC" id="46c-Bd-9Js"/>
                     </connections>
                 </viewController>

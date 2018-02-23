@@ -33,7 +33,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var manyFacesWarning: UILabel!
     @IBOutlet weak var flashLight: UIButton!
     @IBOutlet weak var smallLogo: UIImageView!
-    
+    @IBOutlet weak var warningView: UIView!
     
     
     override func viewDidLoad() {
@@ -434,18 +434,20 @@ class ViewController: UIViewController {
         
         if willShow {
             
+            self.warningView.isHidden = false
             self.manyFacesWarning.text = withText ?? ""
-            self.manyFacesWarning.isHidden = false
-            self.flashLight.isHidden = true
-            self.smallLogo.isHidden = true
+            //            self.manyFacesWarning.isHidden = false
+            //            self.flashLight.isHidden = true
+            //            self.smallLogo.isHidden = true
             self.shoot.isEnabled = false
             self.shoot.alpha = 0.5
             
         } else {
             
-            self.manyFacesWarning.isHidden = true
-            self.flashLight.isHidden = false
-            self.smallLogo.isHidden = false
+            self.warningView.isHidden = true
+            //            self.manyFacesWarning.isHidden = true
+            //            self.flashLight.isHidden = false
+            //            self.smallLogo.isHidden = false
             self.shoot.isEnabled = true
             self.shoot.alpha = 1
         }
@@ -491,7 +493,7 @@ class ViewController: UIViewController {
                 if results.count > 1 {
                     
                     if self.isManyFaces == false {
-                        self.showHideWarning(willShow: true, withText: "В кадре больше одного лица")
+                        self.showHideWarning(willShow: true, withText: "НЕ БОЛЕЕ ОДНОГО ЛИЦА")
                         self.isManyFaces = true
                     }
                 
@@ -500,7 +502,6 @@ class ViewController: UIViewController {
                     if self.isManyFaces {
                         self.showHideWarning(willShow: false, withText: nil)
                         self.isManyFaces = false
-                        
                     }
                 }
             }

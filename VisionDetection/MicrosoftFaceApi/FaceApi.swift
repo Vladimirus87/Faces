@@ -230,7 +230,7 @@ import UIKit
         
         request.addValue("48de3b2fb4514f14a2aaa5129e313f80", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
         
-        let pngRepresentation = UIImageJPEGRepresentation(facesPhoto, 0.1)//UIImagePNGRepresentation(facesPhoto)
+        let pngRepresentation = UIImageJPEGRepresentation(facesPhoto, 0.2)//UIImagePNGRepresentation(facesPhoto)
         
         let task = URLSession.shared.uploadTask(with: request, from: pngRepresentation) { (data, response, error) in
             
@@ -337,7 +337,7 @@ import UIKit
             
             request.addValue("48de3b2fb4514f14a2aaa5129e313f80", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
             
-            let pngRepresentation = UIImageJPEGRepresentation(image, 0.1)
+            let pngRepresentation = UIImageJPEGRepresentation(image, 0.2)
             
             let task = URLSession.shared.uploadTask(with: request, from: pngRepresentation) { (data, response, error) in
                 
