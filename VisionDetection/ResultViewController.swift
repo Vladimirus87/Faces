@@ -203,6 +203,24 @@ class ResultViewController: UIViewController, UIDocumentInteractionControllerDel
 
         postImageToInstagram(image: textToImage(drawText: getString(arr: dataArray), inImage: UIImage(named: isPositive ? "positive" : "negative")!, atPoint: CGPoint(x: 50, y: 250)))
     }
+    
+    
+    
+    @IBAction func sharePressed(_ sender: UIButton) {
+        
+        
+        // set up activity view controller
+        let imageToShare = [ textToImage(drawText: getString(arr: dataArray), inImage: UIImage(named: isPositive ? "positive" : "negative")!, atPoint: CGPoint(x: 50, y: 250)) ]
+        let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
+        activityViewController.popoverPresentationController?.sourceView = self.view // so that iPads won't crash
+        
+        // exclude some activity types from the list (optional)
+        activityViewController.excludedActivityTypes = [ .postToFacebook, .postToTwitter]
+        
+        // present the view controller
+        self.present(activityViewController, animated: true, completion: nil)
+    }
+    
 
 }
 

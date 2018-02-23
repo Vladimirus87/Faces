@@ -233,9 +233,10 @@ class ViewController: UIViewController {
             return
         }
         
+        
         session.beginConfiguration()
         session.sessionPreset = .high
-        
+        //here>>>>>>>>
         // Add video input.
         do {
             var defaultVideoDevice: AVCaptureDevice?
@@ -395,20 +396,33 @@ class ViewController: UIViewController {
             })
         }
     }
+    
+    
 
     
+    
+  
+    
     @IBAction func flashLightOnOff(_ sender: UIButton) {
+        
         if devicePosition == .back {
             
-//            if cameraController.flashMode == .on {
-//                cameraController.flashMode = .off
-//                flashLight.setImage(#imageLiteral(resourceName: "Flash Off Icon"), for: .normal)
-//            }
-//
-//            else {
-//                cameraController.flashMode = .on
-//                flashLight.setImage(#imageLiteral(resourceName: "Flash On Icon"), for: .normal)
-//            }
+            guard let device = AVCaptureDevice.default(for: AVMediaType.video)
+                else {return}
+            
+            if device.hasTorch {
+                do {
+                    try device.lockForConfiguration()
+                    
+                    device.torchMode = device.torchMode == .off ? .on : .off
+                    
+                    device.unlockForConfiguration()
+                } catch {
+                    print("Torch could not be used")
+                }
+            } else {
+                print("Torch is not available")
+            }
         }
     }
     
@@ -422,6 +436,7 @@ class ViewController: UIViewController {
         
         let newCameraDevice = currentInput?.device.position == .back ? getCamera(with: .front) : getCamera(with: .back)
         devicePosition = currentInput?.device.position == .back ? .front : .back
+        flashLight.isHidden = devicePosition == .back ? false : true
         
         let newVideoInput = try? AVCaptureDeviceInput(device: newCameraDevice!)
         session.addInput(newVideoInput!)
@@ -436,18 +451,12 @@ class ViewController: UIViewController {
             
             self.warningView.isHidden = false
             self.manyFacesWarning.text = withText ?? ""
-            //            self.manyFacesWarning.isHidden = false
-            //            self.flashLight.isHidden = true
-            //            self.smallLogo.isHidden = true
             self.shoot.isEnabled = false
             self.shoot.alpha = 0.5
             
         } else {
             
             self.warningView.isHidden = true
-            //            self.manyFacesWarning.isHidden = true
-            //            self.flashLight.isHidden = false
-            //            self.smallLogo.isHidden = false
             self.shoot.isEnabled = true
             self.shoot.alpha = 1
         }

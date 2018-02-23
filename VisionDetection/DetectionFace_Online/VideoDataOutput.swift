@@ -12,12 +12,14 @@ import Vision
 
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
+    
+    
     // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer),
             let exifOrientation = CGImagePropertyOrientation(rawValue: exifOrientationFromDeviceOrientation()) else { return }
         
-        
+
         self.exifOrientation = exifOrientation
         
         var requestOptions: [VNImageOption : Any] = [:]
@@ -66,7 +68,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     
     
-    
     func getImageFromSampleBuffer(sampleBuffer: CMSampleBuffer) ->UIImage? {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer) else {
             return nil
@@ -88,5 +89,4 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         CVPixelBufferUnlockBaseAddress(pixelBuffer, .readOnly)
         return image
     }
-    
 }
