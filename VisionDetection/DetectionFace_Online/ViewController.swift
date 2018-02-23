@@ -98,44 +98,45 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-        
        
+//       print("++++viewWillAppear+++++")
+//        if image == nil {
         
-        if image == nil {
-        print("viewWillDisappear")
-        sessionQueue.async { [unowned self] in
-            switch self.setupResult {
-            case .success:
-                // Only setup observers and start the session running if setup succeeded.
-                self.addObservers()
-                self.session.startRunning()
-                self.isSessionRunning = self.session.isRunning
-                
-            case .notAuthorized:
-                DispatchQueue.main.async { [unowned self] in
-                    let message = NSLocalizedString("AVCamBarcode doesn't have permission to use the camera, please change privacy settings", comment: "Alert message when the user has denied access to the camera")
-                    let    alertController = UIAlertController(title: "AppleFaceDetection", message: message, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"), style: .cancel, handler: nil))
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: "Alert button to open Settings"), style: .`default`, handler: { action in
-                        UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
-                    }))
+//            print("######---viewWillAppear---######")
+        
+            sessionQueue.async { [unowned self] in
+                switch self.setupResult {
+                case .success:
+                    // Only setup observers and start the session running if setup succeeded.
+                    self.addObservers()
+                    self.session.startRunning()
+                    self.isSessionRunning = self.session.isRunning
                     
-                    self.present(alertController, animated: true, completion: nil)
-                }
-                
-            case .configurationFailed:
-                DispatchQueue.main.async { [unowned self] in
-                    let message = NSLocalizedString("Unable to capture media", comment: "Alert message when something goes wrong during capture session configuration")
-                    let alertController = UIAlertController(title: "AppleFaceDetection", message: message, preferredStyle: .alert)
-                    alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"), style: .cancel, handler: nil))
+                case .notAuthorized:
+                    DispatchQueue.main.async { [unowned self] in
+                        let message = NSLocalizedString("AVCamBarcode doesn't have permission to use the camera, please change privacy settings", comment: "Alert message when the user has denied access to the camera")
+                        let    alertController = UIAlertController(title: "AppleFaceDetection", message: message, preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"), style: .cancel, handler: nil))
+                        alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: "Alert button to open Settings"), style: .`default`, handler: { action in
+                            UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
+                        }))
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                    }
                     
-                    self.present(alertController, animated: true, completion: nil)
-                    
+                case .configurationFailed:
+                    DispatchQueue.main.async { [unowned self] in
+                        let message = NSLocalizedString("Unable to capture media", comment: "Alert message when something goes wrong during capture session configuration")
+                        let alertController = UIAlertController(title: "AppleFaceDetection", message: message, preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"), style: .cancel, handler: nil))
+                        
+                        self.present(alertController, animated: true, completion: nil)
+                        
+                    }
                 }
             }
-        }
             
-        }
+//        }
     }
     
     
@@ -152,8 +153,12 @@ class ViewController: UIViewController {
     override func viewWillDisappear(_ animated: Bool) {
         
         
-        if image == nil {
-            print("viewWillDisappear")
+//        print("-----viewWillDisappear-----")
+
+//        if image == nil {
+        
+//           print("######---viewWillDisappear---######")
+        
             sessionQueue.async { [unowned self] in
                 if self.setupResult == .success {
                     self.session.stopRunning()
@@ -163,7 +168,7 @@ class ViewController: UIViewController {
             }
             
             super.viewWillDisappear(animated)
-        }
+//        }
     }
     
     
@@ -425,10 +430,11 @@ class ViewController: UIViewController {
     
     
     
-    func showHideWarning(willShow: Bool) {
+    func showHideWarning(willShow: Bool, withText: String?) {
         
         if willShow {
             
+            self.manyFacesWarning.text = withText ?? ""
             self.manyFacesWarning.isHidden = false
             self.flashLight.isHidden = true
             self.smallLogo.isHidden = true
@@ -485,14 +491,14 @@ class ViewController: UIViewController {
                 if results.count > 1 {
                     
                     if self.isManyFaces == false {
-                        self.showHideWarning(willShow: true)
+                        self.showHideWarning(willShow: true, withText: "В кадре больше одного лица")
                         self.isManyFaces = true
                     }
                 
                 } else {
                     
                     if self.isManyFaces {
-                        self.showHideWarning(willShow: false)
+                        self.showHideWarning(willShow: false, withText: nil)
                         self.isManyFaces = false
                         
                     }

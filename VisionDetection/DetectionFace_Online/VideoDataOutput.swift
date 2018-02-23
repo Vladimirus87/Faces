@@ -38,16 +38,29 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         if takePhoto {
             guard let outputImage = getImageFromSampleBuffer(sampleBuffer: sampleBuffer) else { return }
             print(outputImage.size)
-            ///bug without photo
-            self.newFacebounds = previewView.facebounds
             
-            DispatchQueue.main.async {
-                self.image = outputImage
+            if let _facebounds = previewView.facebounds {
+                self.newFacebounds = _facebounds
                 
+                DispatchQueue.main.async {
+                    self.image = outputImage
+                    
+                }
+                takePhoto = false
+                
+                self.performSegue(withIdentifier: "toImageVC", sender: self)
+                
+            } else {
+                
+                DispatchQueue.main.async {
+                    self.takePhoto = false
+                    self.showHideWarning(willShow: true, withText: "В кадре нет лиц")
+                    
+                    DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+                        self.showHideWarning(willShow: false, withText: nil)
+                    }
+                }
             }
-            takePhoto = false
-            
-            self.performSegue(withIdentifier: "toImageVC", sender: self)
         }
     }
     

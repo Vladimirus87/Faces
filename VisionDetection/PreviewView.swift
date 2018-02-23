@@ -14,7 +14,6 @@ import AVFoundation
 
 protocol ChangesWithDistanceToHead {
     func changeColor(toColor: UIColor)
-    //func showWarning(withText: String)
 }
 
 
@@ -25,7 +24,7 @@ class PreviewView: UIView {
     
     private var maskLayer = [CAShapeLayer]()
     
-    var facebounds: CGRect!
+    var facebounds: CGRect?
     
     
     // MARK: AV capture properties
@@ -57,14 +56,11 @@ class PreviewView: UIView {
     
     
     
-    
-    
     override class var layerClass: AnyClass {
         return AVCaptureVideoPreviewLayer.self
     }
     
-    
-    
+   
     
     // Create a new layer drawing the bounding box
     private func createLayer(in rect: CGRect) -> CAShapeLayer {
@@ -73,7 +69,7 @@ class PreviewView: UIView {
         mask.frame = rect
         mask.cornerRadius = 10
         mask.opacity = 0.75
-        mask.borderColor = UIColor.red.cgColor 
+        mask.borderColor = UIColor.white.cgColor
         mask.borderWidth = 1.0
         
         maskLayer.append(mask)
@@ -82,7 +78,6 @@ class PreviewView: UIView {
         
         return mask
     }
-    
     
     
     
@@ -95,10 +90,10 @@ class PreviewView: UIView {
         // The coordinates are normalized to the dimensions of the processed image, with the origin at the image's lower-left corner.
         facebounds = face.boundingBox.applying(translate).applying(transform)
         
-        _ = createLayer(in: facebounds)
+        _ = createLayer(in: facebounds!)
         
         
-        if (facebounds.width < sizeOfFace && facebounds.width > (sizeOfFace - 100)) && facebounds.midY > ((UIScreen.main.bounds.height / 2) - permiceForPhoto) && facebounds.midY < ((UIScreen.main.bounds.height / 2) + permiceForPhoto) {
+        if ((facebounds?.width)! < sizeOfFace && (facebounds?.width)! > (sizeOfFace - 100)) && (facebounds?.midY)! > ((UIScreen.main.bounds.height / 2) - permiceForPhoto) && (facebounds?.midY)! < ((UIScreen.main.bounds.height / 2) + permiceForPhoto) {
             color = .red
         } else {
             color = .white
@@ -106,15 +101,15 @@ class PreviewView: UIView {
     }
     
   
-    
  
     func removeMask() {
         for mask in maskLayer {
             mask.removeFromSuperlayer()
         }
+        
         maskLayer.removeAll()
+        facebounds = nil
     }
-    
 }
 
 
