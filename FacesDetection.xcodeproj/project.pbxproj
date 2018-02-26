@@ -18,6 +18,7 @@
 		9417AE13202AF046008C11E2 /* Orientation.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9417AE12202AF046008C11E2 /* Orientation.swift */; };
 		942F49EC203C68FD0020ACF1 /* Person+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942F49EA203C68FC0020ACF1 /* Person+CoreDataProperties.swift */; };
 		942F49ED203C68FD0020ACF1 /* Person+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = 942F49EB203C68FC0020ACF1 /* Person+CoreDataClass.swift */; };
+		943C95AD204461B4004342C8 /* AJProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943C95AC204461B3004342C8 /* AJProgressView.swift */; };
 		9460F757203EB20800AB3280 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9460F756203EB20800AB3280 /* PersonModel.swift */; };
 		9464CAC6203B1B7D0071E9B7 /* Persons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9464CAC4203B1B7D0071E9B7 /* Persons.xcdatamodeld */; };
 		94ABFAF8202B2C3B00951FF5 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94ABFAF7202B2C3B00951FF5 /* ImageViewController.swift */; };
@@ -49,6 +50,7 @@
 		9417AE12202AF046008C11E2 /* Orientation.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Orientation.swift; sourceTree = "<group>"; };
 		942F49EA203C68FC0020ACF1 /* Person+CoreDataProperties.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataProperties.swift"; sourceTree = "<group>"; };
 		942F49EB203C68FC0020ACF1 /* Person+CoreDataClass.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "Person+CoreDataClass.swift"; sourceTree = "<group>"; };
+		943C95AC204461B3004342C8 /* AJProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AJProgressView.swift; sourceTree = "<group>"; };
 		9460F756203EB20800AB3280 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		9464CAC5203B1B7D0071E9B7 /* Persons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Persons.xcdatamodel; sourceTree = "<group>"; };
 		94ABFAF7202B2C3B00951FF5 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
@@ -106,6 +108,7 @@
 				94B2592C203AD05800ECEFEE /* ResultViewController.swift */,
 				94DD1A902035BDBB00705DA6 /* ImageVC_Alert.swift */,
 				9460F756203EB20800AB3280 /* PersonModel.swift */,
+				943C95AC204461B3004342C8 /* AJProgressView.swift */,
 				94DD1A942035D99400705DA6 /* NS.swift */,
 				02611D971EEA5317009714B8 /* Main.storyboard */,
 				02611D9A1EEA5317009714B8 /* Assets.xcassets */,
@@ -312,6 +315,7 @@
 			files = (
 				94DD1A952035D99400705DA6 /* NS.swift in Sources */,
 				94CF06C4203580D000F8E0E4 /* AppConstans.swift in Sources */,
+				943C95AD204461B4004342C8 /* AJProgressView.swift in Sources */,
 				02611D961EEA5317009714B8 /* ViewController.swift in Sources */,
 				9417AE11202AF010008C11E2 /* VideoDataOutput.swift in Sources */,
 				94CF06C6203594ED00F8E0E4 /* FaceApi.swift in Sources */,

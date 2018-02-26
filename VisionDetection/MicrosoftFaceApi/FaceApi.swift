@@ -220,7 +220,7 @@ import UIKit
     // Detect faces
     static func detectFaces(facesPhoto: UIImage, completion: @escaping ([Face]?, JSONDictionary?, Error?) -> Void) {
         
-        let url = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false"
+        let url = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/detect?returnFaceId=true&returnFaceLandmarks=false"
         
         var request = URLRequest(url: URL(string: url)!)
         
@@ -228,7 +228,7 @@ import UIKit
         
         request.addValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
         
-        request.addValue("48de3b2fb4514f14a2aaa5129e313f80", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
+        request.addValue("e54dfdcd23a048d18bc3d1910c266cfa", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
         
         let pngRepresentation = UIImageJPEGRepresentation(facesPhoto, 0.2)//UIImagePNGRepresentation(facesPhoto)
         
@@ -284,7 +284,7 @@ import UIKit
     
     static func createFaceList(withName name: String, completion: @escaping (JSONDictionary?) -> Void) {
         
-        let url = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/facelists/\(name)"
+        let url = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/facelists/\(name)"
         
         var request = URLRequest(url: URL(string: url)!)
         
@@ -292,7 +292,7 @@ import UIKit
         
         request.addValue("application/json", forHTTPHeaderField: "Content-Type")
         
-        request.addValue("48de3b2fb4514f14a2aaa5129e313f80", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
+        request.addValue("e54dfdcd23a048d18bc3d1910c266cfa", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
         
         let upload: [String : String] = [
             "name":name,
@@ -327,7 +327,7 @@ import UIKit
         
         static func addFaceToFaceList(image: UIImage, toFileList: String, completion: @escaping (String?) -> Void) {
 
-            let url = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/facelists/\(toFileList)/persistedFaces"
+            let url = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/facelists/\(toFileList)/persistedFaces"
             
             var request = URLRequest(url: URL(string: url)!)
             
@@ -335,7 +335,7 @@ import UIKit
             
             request.addValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
             
-            request.addValue("48de3b2fb4514f14a2aaa5129e313f80", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
+            request.addValue("e54dfdcd23a048d18bc3d1910c266cfa", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
             
             let pngRepresentation = UIImageJPEGRepresentation(image, 0.2)
             
@@ -378,7 +378,7 @@ import UIKit
         
         static func getList(_ name: String, completion: @escaping ([String]?, JSONDictionary?, Error?) -> Void) {
             
-            let url = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/facelists/\(name)"
+            let url = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/facelists/\(name)"
             
             var request = URLRequest(url: URL(string: url)!)
             
@@ -386,7 +386,7 @@ import UIKit
             
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            request.addValue("48de3b2fb4514f14a2aaa5129e313f80", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
+            request.addValue("e54dfdcd23a048d18bc3d1910c266cfa", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
             
             
             
@@ -428,7 +428,7 @@ import UIKit
         
         static func findSimilar(faceId: String, faceListId: String, completion: @escaping ([String : Double]?, JSONDictionary?, Error?) -> Void) {
             
-            let url = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/findsimilars"
+            let url = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/findsimilars"
             
             var request = URLRequest(url: URL(string: url)!)
             
@@ -436,7 +436,7 @@ import UIKit
             
             request.addValue("application/json", forHTTPHeaderField: "Content-Type")
             
-            request.addValue("48de3b2fb4514f14a2aaa5129e313f80", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
+            request.addValue("e54dfdcd23a048d18bc3d1910c266cfa", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
             
             
             
@@ -500,13 +500,13 @@ import UIKit
 
         static func delete(face: String, fromFileList: String, completion: @escaping (JSONDictionary?) -> Void) {
             
-            let url = "https://westcentralus.api.cognitive.microsoft.com/face/v1.0/facelists/\(fromFileList)/persistedFaces/\(face)"
+            let url = "https://northeurope.api.cognitive.microsoft.com/face/v1.0/facelists/\(fromFileList)/persistedFaces/\(face)"
             
             var request = URLRequest(url: URL(string: url)!)
             
             request.httpMethod = "DELETE"
             
-            request.addValue("48de3b2fb4514f14a2aaa5129e313f80", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
+            request.addValue("e54dfdcd23a048d18bc3d1910c266cfa", forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
             
             
             let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
@@ -530,11 +530,11 @@ import UIKit
             task.resume()
         }
     
+//    https://northeurope.api.cognitive.microsoft.com/face/v1.0/
     
     
-    
-    
-    
+//    48de3b2fb4514f14a2aaa5129e313f80
+//    https://westcentralus.api.cognitive.microsoft.com/face/v1.0
     
     
 //    // Identify faces in people group

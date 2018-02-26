@@ -238,9 +238,6 @@
                                     <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smile" translatesAutoresizingMaskIntoConstraints="NO" id="fZ1-Wv-g3V">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                                     </imageView>
-                                    <activityIndicatorView hidden="YES" opaque="NO" contentMode="scaleToFill" horizontalHuggingPriority="750" verticalHuggingPriority="750" style="whiteLarge" translatesAutoresizingMaskIntoConstraints="NO" id="e7v-u4-ESe">
-                                        <rect key="frame" x="169" y="315" width="37" height="37"/>
-                                    </activityIndicatorView>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="bY5-3H-abn">
                                         <rect key="frame" x="0.0" y="582" width="375" height="85"/>
                                         <subviews>
@@ -277,11 +274,9 @@
                                 </subviews>
                                 <color key="backgroundColor" cocoaTouchSystemColor="viewFlipsideBackgroundColor"/>
                                 <constraints>
-                                    <constraint firstItem="e7v-u4-ESe" firstAttribute="centerY" secondItem="UJ2-zk-Vf2" secondAttribute="centerY" id="8Yc-oS-JUO"/>
                                     <constraint firstItem="fZ1-Wv-g3V" firstAttribute="leading" secondItem="UJ2-zk-Vf2" secondAttribute="leading" id="BEe-aw-tsJ"/>
                                     <constraint firstAttribute="trailing" secondItem="bY5-3H-abn" secondAttribute="trailing" id="C32-sf-0VD"/>
                                     <constraint firstAttribute="bottom" secondItem="bY5-3H-abn" secondAttribute="bottom" id="EEQ-CN-oI7"/>
-                                    <constraint firstItem="e7v-u4-ESe" firstAttribute="centerX" secondItem="UJ2-zk-Vf2" secondAttribute="centerX" id="bFd-mV-wWe"/>
                                     <constraint firstItem="bY5-3H-abn" firstAttribute="leading" secondItem="UJ2-zk-Vf2" secondAttribute="leading" id="buj-lg-P0R"/>
                                     <constraint firstItem="fZ1-Wv-g3V" firstAttribute="top" secondItem="UJ2-zk-Vf2" secondAttribute="top" id="oOy-8b-UZa"/>
                                     <constraint firstAttribute="bottom" secondItem="fZ1-Wv-g3V" secondAttribute="bottom" id="pmV-dZ-yL3"/>
@@ -354,7 +349,6 @@
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="animation" destination="e7v-u4-ESe" id="eFG-t3-WaT"/>
                         <outlet property="mainImage" destination="fZ1-Wv-g3V" id="QBf-th-1UO"/>
                         <segue destination="zqS-JI-cY3" kind="presentation" identifier="toDetection" id="b7d-sp-oDH"/>
                     </connections>

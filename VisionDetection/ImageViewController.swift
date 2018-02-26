@@ -33,13 +33,18 @@ class ImageViewController: UIViewController {
     
     @IBOutlet weak var mainImage: UIImageView!
     @IBOutlet weak var cancelBtn: UIButton!
-    @IBOutlet weak var animation: UIActivityIndicatorView!
+//    @IBOutlet weak var animation: UIActivityIndicatorView!
+    var progressView: AJProgressView!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        animation.isHidden = true
+        progressView = AJProgressView()
+        //progressView.imgLogo = UIImage(named: "smallLogo")!
+        
+        //progressView.hide()
+//        animation.isHidden = true
         
         if let myImage = image {
             mainImage.image = myImage
@@ -139,11 +144,13 @@ class ImageViewController: UIViewController {
     func animation(willStart: Bool) {
         
         if willStart {
-            self.animation.isHidden = false
-            self.animation.startAnimating()
+//            self.animation.isHidden = false
+//            self.animation.startAnimating()
+            progressView.show()
         } else {
-            self.animation.isHidden = true
-            self.animation.stopAnimating()
+//            self.animation.isHidden = true
+//            self.animation.stopAnimating()
+            progressView.hide()
         }
     }
     

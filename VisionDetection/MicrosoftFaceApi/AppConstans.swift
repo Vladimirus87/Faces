@@ -19,7 +19,7 @@ struct ApplicationConstants {
 //                           "offline_access"]
     
     // Cognitive services information
-    static let ocpApimSubscriptionKey = "48de3b2fb4514f14a2aaa5129e313f80"
+    static let ocpApimSubscriptionKey = "e54dfdcd23a048d18bc3d1910c266cfa"
 }
 
 enum NetworkError: Error {
