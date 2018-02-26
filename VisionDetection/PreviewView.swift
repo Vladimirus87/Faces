@@ -12,15 +12,15 @@ import AVFoundation
 
 
 
-protocol ChangesWithDistanceToHead {
-    func changeColor(toColor: UIColor)
-}
+//protocol ChangesWithDistanceToHead {
+//    func changeColor(toColor: UIColor)
+//}
 
 
 
 class PreviewView: UIView {
 
-    var delegate: ChangesWithDistanceToHead?
+//    var delegate: ChangesWithDistanceToHead?
     
     private var maskLayer = [CAShapeLayer]()
     
@@ -46,13 +46,21 @@ class PreviewView: UIView {
     }
     
     
-    var color: UIColor = .white {
-        willSet (newValue) {
-            if newValue != color {
-                delegate?.changeColor(toColor: newValue)
-            }
-        }
-    }
+//    var color: UIColor = .white {
+//        willSet (newValue) {
+//            if newValue != color {
+//                delegate?.changeColor(toColor: newValue)
+//            }
+//        }
+//    }
+    
+//    var imageForButton: UIImage = UIImage(named: "shootWhite")! {
+//        willSet (newValue) {
+//            if newValue != imageForButton {
+//                delegate?.changeColor(toColor: newValue)
+//            }
+//        }
+//    }
     
     
     
@@ -93,11 +101,11 @@ class PreviewView: UIView {
         _ = createLayer(in: facebounds!)
         
         
-        if ((facebounds?.width)! < sizeOfFace && (facebounds?.width)! > (sizeOfFace - 100)) && (facebounds?.midY)! > ((UIScreen.main.bounds.height / 2) - permiceForPhoto) && (facebounds?.midY)! < ((UIScreen.main.bounds.height / 2) + permiceForPhoto) {
-            color = .red
-        } else {
-            color = .white
-        }
+//        if ((facebounds?.width)! < sizeOfFace && (facebounds?.width)! > (sizeOfFace - 100)) && (facebounds?.midY)! > ((UIScreen.main.bounds.height / 2) - permiceForPhoto) && (facebounds?.midY)! < ((UIScreen.main.bounds.height / 2) + permiceForPhoto) {
+//            color = .red
+//        } else {
+//            color = .white
+//        }
     }
     
   

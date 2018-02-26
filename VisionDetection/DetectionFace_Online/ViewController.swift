@@ -11,6 +11,26 @@ import AVFoundation
 import Vision
 
 
+@IBDesignable class CustomButton: UIButton {
+    
+    @IBInspectable var borderColor: UIColor = UIColor.white {
+        didSet {
+            layer.borderColor = borderColor.cgColor
+        }
+    }
+    
+    @IBInspectable var borderWidth: CGFloat = 2.0 {
+        didSet {
+            layer.borderWidth = borderWidth
+        }
+    }
+    
+    override public func layoutSubviews() {
+        super.layoutSubviews()
+        clipsToBounds = true
+    }
+}
+
 
 
 class ViewController: UIViewController {
@@ -41,7 +61,7 @@ class ViewController: UIViewController {
         
         // Set up the video preview view.
         previewView.session = session
-        previewView.delegate = self
+//        previewView.delegate = self
         
         // Set up Vision Request
         faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handleFaces) // Default
@@ -539,14 +559,14 @@ class ViewController: UIViewController {
 
 
 
-extension ViewController: ChangesWithDistanceToHead {
-    
-    
-    func changeColor(toColor: UIColor) {
-        shoot.backgroundColor = toColor
-    }
-    
-}
+//extension ViewController: ChangesWithDistanceToHead {
+//
+//
+//    func changeColor(toColor: UIColor) {
+//        shoot.backgroundColor = toColor
+//    }
+//
+//}
 
 
 

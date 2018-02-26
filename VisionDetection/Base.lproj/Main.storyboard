@@ -36,44 +36,74 @@
                                             <constraint firstAttribute="height" constant="85" id="gom-wW-9WX"/>
                                         </constraints>
                                     </view>
-                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gme-vL-lCV">
-                                        <rect key="frame" x="152" y="589" width="70" height="70"/>
-                                        <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="gme-vL-lCV">
+                                        <rect key="frame" x="152.5" y="589" width="70" height="70"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="70" id="gQP-cD-vMn"/>
                                             <constraint firstAttribute="height" constant="70" id="x4N-di-Qm3"/>
                                         </constraints>
-                                        <userDefinedRuntimeAttributes>
-                                            <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
-                                                <integer key="value" value="35"/>
-                                            </userDefinedRuntimeAttribute>
-                                        </userDefinedRuntimeAttributes>
+                                        <state key="normal" image="shootWhite"/>
+                                        <state key="highlighted" image="shootRed"/>
                                         <connections>
                                             <action selector="Shoot:" destination="BYZ-38-t0r" eventType="touchUpInside" id="zcO-CZ-Fkv"/>
                                         </connections>
                                     </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Uc-XI-9QU">
-                                        <rect key="frame" x="230" y="589" width="113" height="70"/>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="EdL-ID-Lg7">
+                                        <rect key="frame" x="230.5" y="589" width="112.5" height="70"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="photoRotate" translatesAutoresizingMaskIntoConstraints="NO" id="4OJ-fb-WEm">
+                                                <rect key="frame" x="38" y="16.5" width="37" height="37"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="37" id="E1u-DO-TRc"/>
+                                                    <constraint firstAttribute="height" constant="37" id="FtX-rr-sZB"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="1Uc-XI-9QU">
+                                                <rect key="frame" x="-0.5" y="0.0" width="112.5" height="70"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="switchCameras:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xZQ-5K-StY"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="cRj-lB-9nR"/>
+                                            <constraint firstItem="4OJ-fb-WEm" firstAttribute="centerX" secondItem="EdL-ID-Lg7" secondAttribute="centerX" id="0yZ-yB-aqW"/>
+                                            <constraint firstItem="1Uc-XI-9QU" firstAttribute="top" secondItem="EdL-ID-Lg7" secondAttribute="top" id="39B-7M-dec"/>
+                                            <constraint firstAttribute="bottom" secondItem="1Uc-XI-9QU" secondAttribute="bottom" id="GHU-as-1kb"/>
+                                            <constraint firstItem="4OJ-fb-WEm" firstAttribute="centerY" secondItem="EdL-ID-Lg7" secondAttribute="centerY" id="Iir-N4-eBE"/>
+                                            <constraint firstAttribute="height" constant="70" id="QTd-Ez-ehN"/>
+                                            <constraint firstAttribute="trailing" secondItem="1Uc-XI-9QU" secondAttribute="trailing" id="V6i-8F-RCR"/>
+                                            <constraint firstItem="1Uc-XI-9QU" firstAttribute="leading" secondItem="EdL-ID-Lg7" secondAttribute="leading" id="ip0-yb-bYb"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="photoRotate"/>
-                                        <connections>
-                                            <action selector="switchCameras:" destination="BYZ-38-t0r" eventType="touchUpInside" id="xZQ-5K-StY"/>
-                                        </connections>
-                                    </button>
-                                    <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QiR-OJ-0jC">
-                                        <rect key="frame" x="32" y="589" width="112" height="70"/>
+                                    </view>
+                                    <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="kwe-dY-ZKW">
+                                        <rect key="frame" x="32" y="589" width="112.5" height="70"/>
+                                        <subviews>
+                                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gallery" translatesAutoresizingMaskIntoConstraints="NO" id="WY1-n2-AH0">
+                                                <rect key="frame" x="38.5" y="17.5" width="35" height="35"/>
+                                                <constraints>
+                                                    <constraint firstAttribute="width" constant="35" id="DEv-1f-IhH"/>
+                                                    <constraint firstAttribute="height" constant="35" id="R30-wm-DPY"/>
+                                                </constraints>
+                                            </imageView>
+                                            <button opaque="NO" contentMode="scaleAspectFit" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="QiR-OJ-0jC">
+                                                <rect key="frame" x="0.0" y="0.0" width="112.5" height="70"/>
+                                                <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                                <connections>
+                                                    <action selector="openGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3yU-Vv-7Qi"/>
+                                                </connections>
+                                            </button>
+                                        </subviews>
                                         <constraints>
-                                            <constraint firstAttribute="height" constant="70" id="9BG-wr-Zoa"/>
+                                            <constraint firstAttribute="trailing" secondItem="QiR-OJ-0jC" secondAttribute="trailing" id="2sD-Iw-oi5"/>
+                                            <constraint firstItem="WY1-n2-AH0" firstAttribute="centerY" secondItem="kwe-dY-ZKW" secondAttribute="centerY" id="Aua-Y0-9Ti"/>
+                                            <constraint firstAttribute="bottom" secondItem="QiR-OJ-0jC" secondAttribute="bottom" id="PEE-J3-ytZ"/>
+                                            <constraint firstAttribute="height" constant="70" id="dZb-va-JxT"/>
+                                            <constraint firstItem="WY1-n2-AH0" firstAttribute="centerX" secondItem="kwe-dY-ZKW" secondAttribute="centerX" id="eVZ-j8-6zP"/>
+                                            <constraint firstItem="QiR-OJ-0jC" firstAttribute="top" secondItem="kwe-dY-ZKW" secondAttribute="top" id="wSn-3K-nyn"/>
+                                            <constraint firstItem="QiR-OJ-0jC" firstAttribute="leading" secondItem="kwe-dY-ZKW" secondAttribute="leading" id="yhU-ek-nsR"/>
                                         </constraints>
-                                        <color key="tintColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
-                                        <state key="normal" image="gallery"/>
-                                        <connections>
-                                            <action selector="openGallery:" destination="BYZ-38-t0r" eventType="touchUpInside" id="3yU-Vv-7Qi"/>
-                                        </connections>
-                                    </button>
+                                    </view>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="ZFU-lP-YhA">
                                         <rect key="frame" x="0.0" y="0.0" width="375" height="41"/>
                                         <subviews>
@@ -147,22 +177,22 @@
                                 </subviews>
                                 <color key="backgroundColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <constraints>
-                                    <constraint firstItem="gme-vL-lCV" firstAttribute="leading" secondItem="QiR-OJ-0jC" secondAttribute="trailing" constant="8" id="2Om-BH-yee"/>
-                                    <constraint firstItem="1Uc-XI-9QU" firstAttribute="leading" secondItem="gme-vL-lCV" secondAttribute="trailing" constant="8" id="2YD-CW-MgZ"/>
                                     <constraint firstItem="ZFU-lP-YhA" firstAttribute="leading" secondItem="DJU-kI-TMg" secondAttribute="leading" id="6cT-Bh-gQ0"/>
                                     <constraint firstAttribute="bottom" secondItem="gme-vL-lCV" secondAttribute="bottom" constant="8" id="9kJ-fU-67i"/>
-                                    <constraint firstItem="QiR-OJ-0jC" firstAttribute="leading" secondItem="DJU-kI-TMg" secondAttribute="leading" constant="32" id="EqF-5L-FW6"/>
+                                    <constraint firstItem="kwe-dY-ZKW" firstAttribute="leading" secondItem="DJU-kI-TMg" secondAttribute="leading" constant="32" id="9tB-Yh-mNp"/>
                                     <constraint firstAttribute="bottom" secondItem="a1U-gD-hIZ" secondAttribute="bottom" id="KLB-ab-DGW"/>
                                     <constraint firstAttribute="trailing" secondItem="ZFU-lP-YhA" secondAttribute="trailing" id="LVq-cZ-W9R"/>
+                                    <constraint firstAttribute="bottom" secondItem="kwe-dY-ZKW" secondAttribute="bottom" constant="8" id="NAY-dl-5Uc"/>
                                     <constraint firstItem="a1U-gD-hIZ" firstAttribute="leading" secondItem="DJU-kI-TMg" secondAttribute="leading" id="SAN-6j-weA"/>
+                                    <constraint firstItem="EdL-ID-Lg7" firstAttribute="leading" secondItem="gme-vL-lCV" secondAttribute="trailing" constant="8" id="THd-VH-cwt"/>
                                     <constraint firstItem="qju-0e-Kc9" firstAttribute="centerX" secondItem="DJU-kI-TMg" secondAttribute="centerX" id="U7j-FP-NOP"/>
-                                    <constraint firstAttribute="trailing" secondItem="1Uc-XI-9QU" secondAttribute="trailing" constant="32" id="Uky-Q1-0Vm"/>
-                                    <constraint firstAttribute="bottom" secondItem="1Uc-XI-9QU" secondAttribute="bottom" constant="8" id="VDJ-J8-w9N"/>
                                     <constraint firstAttribute="trailing" secondItem="a1U-gD-hIZ" secondAttribute="trailing" id="cvp-RD-Wyw"/>
                                     <constraint firstItem="ZFU-lP-YhA" firstAttribute="top" secondItem="DJU-kI-TMg" secondAttribute="top" id="ghW-te-sTp"/>
                                     <constraint firstItem="qju-0e-Kc9" firstAttribute="centerY" secondItem="DJU-kI-TMg" secondAttribute="centerY" id="nEU-Xa-GyU"/>
+                                    <constraint firstAttribute="bottom" secondItem="EdL-ID-Lg7" secondAttribute="bottom" constant="8" id="pBM-8v-0FH"/>
+                                    <constraint firstItem="gme-vL-lCV" firstAttribute="leading" secondItem="kwe-dY-ZKW" secondAttribute="trailing" constant="8" id="sx9-AN-pbf"/>
                                     <constraint firstItem="gme-vL-lCV" firstAttribute="centerX" secondItem="DJU-kI-TMg" secondAttribute="centerX" id="teq-QV-rZl"/>
-                                    <constraint firstAttribute="bottom" secondItem="QiR-OJ-0jC" secondAttribute="bottom" constant="8" id="zOd-Vc-jt5"/>
+                                    <constraint firstAttribute="trailing" secondItem="EdL-ID-Lg7" secondAttribute="trailing" constant="32" id="uFW-ar-p6z"/>
                                 </constraints>
                             </view>
                         </subviews>
@@ -562,7 +592,7 @@
                                 </constraints>
                             </view>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="ПОЗИТИВНЫЕ КАЧЕСТВА" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="pw9-ZK-8Em">
-                                <rect key="frame" x="71" y="71" width="232" height="20.5"/>
+                                <rect key="frame" x="71.5" y="71" width="232" height="20.5"/>
                                 <fontDescription key="fontDescription" name="Arial-BoldMT" family="Arial" pointSize="18"/>
                                 <nil key="textColor"/>
                                 <nil key="highlightedColor"/>
@@ -672,6 +702,8 @@
         <image name="light" width="11" height="28"/>
         <image name="photoRotate" width="47" height="36"/>
         <image name="share" width="47" height="60"/>
+        <image name="shootRed" width="67" height="67"/>
+        <image name="shootWhite" width="67" height="67"/>
         <image name="smallLogo" width="43" height="28"/>
         <image name="smile" width="652" height="869"/>
         <image name="twitt" width="51" height="51"/>
