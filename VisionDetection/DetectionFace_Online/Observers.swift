@@ -13,10 +13,7 @@ import AVFoundation
 extension ViewController {
     
     func addObservers() {
-        /*
-         
-         
-         
+        /*  
          sadasdasd
          Observe the previewView's regionOfInterest to update the AVCaptureMetadataOutput's
          rectOfInterest when the user finishes resizing the region of interest.

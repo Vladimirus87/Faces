@@ -68,7 +68,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         TWTRTwitter.sharedInstance().start(withConsumerKey:"sKRPTlhnCc1nFhrfcxHhW3Szn", consumerSecret:"86rsCUUfm7m8Xnjdm8SfnFnduPDLLVcB1z44cTYN3P310MoCxQ")
-//        FBSDKApplicationDelegate.sharedInstance().application(application, didFinishLaunchingWithOptions: launchOptions)
         
         if isNewLevel {
             isNewLevel = false
@@ -76,24 +75,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
             let pswdChars = Array("abcdefghijklmnopqrstuvwxyz")
             let rndPswd = String((0..<8).map{ _ in pswdChars[Int(arc4random_uniform(UInt32(pswdChars.count)))]})
             UserDefaults.standard.set(rndPswd, forKey: "FileListName")
-            
             print("rndPswd - *\(rndPswd)*")
-            // UserDefaults.standard.string(forKey: "FileListName")
-            
             FaceAPI.createFaceList(withName: rndPswd) { (a) in
-        
-                print(a)
-                ///нужно обработать ошибку, если нет интернета
+                print(a ?? "no JSONDictionary")
+                //нужно обработать ошибку, если нет интернета
             }
             
             DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
                 self.saveToAll(arrPersons: myTempData, fileList: rndPswd)
             }
         }
-            
-        
-        
-        
+
         return true
     }
     
@@ -115,9 +107,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
                         pers.positive = per.positive
                         pers.negative = per.negative
                         
-//                        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//                        let contex = appDelegate.persistentContainer.viewContext
-                        
                         do {
                             try self.persistentContainer.viewContext.save()
                             print("saved")
@@ -137,10 +126,9 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ app: UIApplication, open url: URL, options: [UIApplicationOpenURLOptionsKey : Any] = [:]) -> Bool {
 
         let appId = FBSDKSettings.appID()
-        if url.scheme != nil && url.scheme!.hasPrefix("fb\(String(describing: appId))") {//&& url.host ==  "authorize" { // facebook
-           // if #available(iOS 9.0, *) {
-                return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
-//         ?   
+        if url.scheme != nil && url.scheme!.hasPrefix("fb\(String(describing: appId))") {//&& url.host ==  "authorize"
+// if #available(iOS 9.0, *) {
+            return FBSDKApplicationDelegate.sharedInstance().application(app, open: url, options: options)
         } else {
             return TWTRTwitter.sharedInstance().application(app, open: url, options: options)
         }
@@ -150,7 +138,7 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     
     func application(_ application: UIApplication, open url: URL, sourceApplication: String?, annotation: Any) -> Bool {
-        
+
         VKSdk.processOpen(url, fromApplication: sourceApplication)
         
         return true

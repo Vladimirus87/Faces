@@ -14,6 +14,25 @@ extension Dictionary where Value:Comparable {
 }
 
 extension UIImage {
+    // MARK: - UIImage+Resize
+    
+    func scaleImageWithAspectToWidth(toWidth:CGFloat) -> UIImage? {
+        let oldWidth:CGFloat = size.width
+        let scaleFactor:CGFloat = toWidth / oldWidth
+        
+        let newHeight = self.size.height * scaleFactor
+        let newWidth = oldWidth * scaleFactor;
+        
+        UIGraphicsBeginImageContext(CGSize(width: newWidth, height: newHeight))
+        draw(in: CGRect(x: 0, y: 0, width: newWidth, height: newHeight))
+        let newImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        return newImage
+    }
+}
+
+
+extension UIImage {
     func resizeImage(_ dimension: CGFloat, opaque: Bool, contentMode: UIViewContentMode = .scaleAspectFit) -> UIImage {
         var width: CGFloat
         var height: CGFloat
@@ -55,62 +74,4 @@ extension UIImage {
     }
 }
 
-
-
-
-//extension UIImage {
-//    
-//    func resize(toTargetSize targetSize: CGSize, rect1: CGRect) -> UIImage {
-//        
-//        let newScale = self.scale // change this if you want the output image to have a different scale
-//        let originalSize = self.size
-//        
-//        let widthRatio = targetSize.width / originalSize.width
-//        let heightRatio = targetSize.height / originalSize.height
-//        
-//        // Figure out what our orientation is, and use that to form the rectangle
-//        let newSize: CGSize
-//        if widthRatio > heightRatio {
-//            newSize = CGSize(width: floor(originalSize.width * heightRatio), height: floor(originalSize.height * heightRatio))
-//        } else {
-//            newSize = CGSize(width: floor(originalSize.width * widthRatio), height: floor(originalSize.height * widthRatio))
-//        }
-//        
-//        
-//        // This is the rect that we've calculated out and this is what is actually used below
-//        let rect = CGRect(origin: CGPoint(x: rect1.origin.x, y: rect1.origin.y), size: newSize)
-//        
-//        // Actually do the resizing to the rect using the ImageContext stuff
-//        let format = UIGraphicsImageRendererFormat()
-//        format.scale = newScale
-//        format.opaque = true
-//        let newImage = UIGraphicsImageRenderer(bounds: rect, format: format).image() { _ in
-//            self.draw(in: rect)
-//        }
-//        
-//        return newImage
-//    }
-//}
-//
-//
-//extension UIImage {
-//    
-//    func cropping(to quality: CGInterpolationQuality, rect: CGRect) -> UIImage {
-//        UIGraphicsBeginImageContextWithOptions(rect.size, false, self.scale)
-//        
-//        let context = UIGraphicsGetCurrentContext()! as CGContext
-//        context.interpolationQuality = quality
-//        
-//        let drawRect : CGRect = CGRect(x: -rect.origin.x, y: -rect.origin.y, width: self.size.width, height: self.size.height)
-//        
-//        context.clip(to: CGRect(x:0, y:0, width: rect.size.width, height: rect.size.height))
-//        
-//        self.draw(in: drawRect)
-//        
-//        let croppedImage = UIGraphicsGetImageFromCurrentImageContext()!
-//        UIGraphicsEndImageContext()
-//        
-//        return croppedImage
-//    }
-//}
 

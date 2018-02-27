@@ -22,14 +22,7 @@ class CheckViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        if let myImage = imageSent {
-            image.image = myImage
-        } else {
-            image.image = UIImage(named: "smile")
-        }
-        
-        
-        print("\(faceId)--------------")
+        image.image = imageSent ?? UIImage(named: "smile")
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate
         let contex = appDelegate.persistentContainer.viewContext
@@ -41,16 +34,11 @@ class CheckViewController: UIViewController {
             let result = try contex.fetch(request)
             
             for data in result as! [Person] {
-                print("+\(data.id)")
                 self.data.append(data)
             }
-            
         } catch {
-            
-            print("Failed")
+            print(error.localizedDescription)
         }
-        
-        print("-----------\(data.first?.id)")
     }
     
     

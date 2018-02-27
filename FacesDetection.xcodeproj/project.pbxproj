@@ -98,7 +98,6 @@
 				02611D931EEA5317009714B8 /* AppDelegate.swift */,
 				94CF06C22035809500F8E0E4 /* MicrosoftFaceApi */,
 				9417AE16202AF1F5008C11E2 /* DetectionFace_Online */,
-				02611DA51EEA5683009714B8 /* PreviewView.swift */,
 				94ABFAF7202B2C3B00951FF5 /* ImageViewController.swift */,
 				94B2592A203AD04300ECEFEE /* CheckViewController.swift */,
 				94B2592C203AD05800ECEFEE /* ResultViewController.swift */,
@@ -122,6 +121,7 @@
 				9417AE10202AF010008C11E2 /* VideoDataOutput.swift */,
 				9417AE12202AF046008C11E2 /* Orientation.swift */,
 				94DDAA5820343DD100460137 /* ImagePicker.swift */,
+				02611DA51EEA5683009714B8 /* PreviewView.swift */,
 			);
 			path = DetectionFace_Online;
 			sourceTree = "<group>";

@@ -19,7 +19,7 @@ class FaceAPI: NSObject {
     
     
     /// Detect faces
-    static func detectFaces(facesPhoto: UIImage, completion: @escaping ([Face]?, JSONDictionary?, Error?) -> Void) {
+    static func detectFaces(facesPhoto: UIImage, completion: @escaping (Data?, Int?, Error?) -> Void) {
         
         let url = "\(ApplicationConstants.location)/detect?returnFaceId=true&returnFaceLandmarks=false"
         
@@ -35,44 +35,14 @@ class FaceAPI: NSObject {
         
         let task = URLSession.shared.uploadTask(with: request, from: pngRepresentation) { (data, response, error) in
             
-            if let nsError = error {
-                completion(nil, nil, nsError)
+            if let error = error {
+                completion(nil, nil, error)
                 
-            } else {
-                
-                let httpResponse = response as! HTTPURLResponse
-                let statusCode = httpResponse.statusCode
-                
-                do {
-                    let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments)
-                    
-                    
-                    if statusCode == 200 {
-                        
-                        var faces = [Face]()
-                        if let object = json as? JSONArray {
-                            for face in object {
-                                guard let faceId = face["faceId"] as? String else { return completion(nil, nil, nil) }
-                                if let faceRectangle = face["faceRectangle"] as? [String : Int] {
-                                    
-                                    guard let height = faceRectangle["height"],
-                                        let left = faceRectangle["left"],
-                                        let top = faceRectangle["top"],
-                                        let width = faceRectangle["width"] else { return completion(nil, nil, nil) }
-                                    
-                                    let jsFace = Face(faceId: faceId, height: height, width: width, top: top, left: left)
-                                    faces.append(jsFace)
-                                }
-                            }
-                            completion(faces, nil, nil)
-                        }
-                        
-                    } else {
-                        completion(nil, json as? JSONDictionary, nil)
-                    }
-                } catch {
-                    completion(nil, nil, nil)
-                }
+            }
+            
+            if let data = data, let resp = (response as? HTTPURLResponse)?.statusCode {
+                completion(data, resp, nil)
+                print(data)
             }
         }
         task.resume()

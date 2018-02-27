@@ -10,8 +10,6 @@ import UIKit
 import Vision
 import AVFoundation
 
-
-
 //protocol ChangesWithDistanceToHead {
 //    func changeColor(toColor: UIColor)
 //}
@@ -21,7 +19,6 @@ import AVFoundation
 class PreviewView: UIView {
 
 //    var delegate: ChangesWithDistanceToHead?
-    
     private var maskLayer = [CAShapeLayer]()
     
     var facebounds: CGRect?

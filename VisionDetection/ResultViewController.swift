@@ -7,7 +7,6 @@
 //
 
 import UIKit
-import FacebookShare
 import FBSDKShareKit
 import Photos
 import TwitterKit
@@ -18,6 +17,7 @@ class ResultViewController: UIViewController, UIDocumentInteractionControllerDel
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleOfResult: UILabel!
     
+    var documentController: UIDocumentInteractionController!
     var dataArray = [String]()
     var titleText : String?
     var isPositive: Bool = true
@@ -220,10 +220,48 @@ extension ResultViewController {
 //MARK: Instagram
 extension ResultViewController {
     
+    
+   
+    
     func postImageToInstagram(image: UIImage) {
         
-        UIImageWriteToSavedPhotosAlbum(image, self, #selector(self.image(image:didFinishSavingWithError:contextInfo:)), nil)
+        //(image, self, #selector(self.image(image:didFinishSavingWithError:contextInfo:)), nil)
+        postImage(image: image)
+
     }
+
+    
+    
+    func postImage(image: UIImage, result:((Bool)->Void)? = nil) {
+        guard let instagramURL = URL(string: "instagram://app") else {
+            if let result = result {
+                result(false)
+            }
+            return
+        }
+        
+        guard let image = image.scaleImageWithAspectToWidth(toWidth: 640) else { return }
+        
+        do {
+            try PHPhotoLibrary.shared().performChangesAndWait {
+                let request = PHAssetChangeRequest.creationRequestForAsset(from: image)
+                
+                let assetID = request.placeholderForCreatedAsset?.localIdentifier ?? ""
+                let shareURL = "instagram://library?LocalIdentifier=" + assetID
+                
+                if UIApplication.shared.canOpenURL(instagramURL) {
+                    if let urlForRedirect = URL(string: shareURL) {
+                        UIApplication.shared.open(urlForRedirect)
+                    }
+                }
+            }
+        } catch {
+            if let result = result {
+                result(false)
+            }
+        }
+    }
+    
     
     
     @objc func image(image: UIImage, didFinishSavingWithError error: NSError?, contextInfo: UnsafeRawPointer) {
@@ -235,28 +273,31 @@ extension ResultViewController {
         let fetchOptions = PHFetchOptions()
         fetchOptions.sortDescriptors = [NSSortDescriptor(key: "creationDate", ascending: false)]
         let fetchResult = PHAsset.fetchAssets(with: .image, options: fetchOptions)
+        
         if let lastAsset = fetchResult.firstObject {
             let localIdentifier = lastAsset.localIdentifier
             let u = "instagram://library?LocalIdentifier=" + localIdentifier
             let url = NSURL(string: u)!
+            
+            
             if UIApplication.shared.canOpenURL(url as URL) {
                 UIApplication.shared.open(URL(string: u)!)
+
             } else {
+                
                 let alert = UIAlertController(title: nil, message: "instagram not installed", preferredStyle: .alert)
                 let install = UIAlertAction(title: "Установить", style: .default) { _ in
                     UIApplication.shared.open(URL(string: "https://itunes.apple.com/in/app/instagram/id389801252?m")!)
                 }
-                let cancel = UIAlertAction(title: "Отмена", style: .default, handler: nil)
                 
+                let cancel = UIAlertAction(title: "Отмена", style: .default, handler: nil)
                 alert.addAction(install)
                 alert.addAction(cancel)
                 
                 present(alert, animated: true, completion: nil)
-                
             }
         }
     }
-    
 }
 
 
@@ -286,6 +327,7 @@ extension ResultViewController : FBSDKSharingDelegate {
     func sharerDidCancel(_ sharer: FBSDKSharing!) {
     }
 }
+
 
 
 

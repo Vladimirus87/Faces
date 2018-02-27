@@ -11,26 +11,6 @@ import AVFoundation
 import Vision
 
 
-@IBDesignable class CustomButton: UIButton {
-    
-    @IBInspectable var borderColor: UIColor = UIColor.white {
-        didSet {
-            layer.borderColor = borderColor.cgColor
-        }
-    }
-    
-    @IBInspectable var borderWidth: CGFloat = 2.0 {
-        didSet {
-            layer.borderWidth = borderWidth
-        }
-    }
-    
-    override public func layoutSubviews() {
-        super.layoutSubviews()
-        clipsToBounds = true
-    }
-}
-
 
 
 class ViewController: UIViewController {
@@ -118,11 +98,6 @@ class ViewController: UIViewController {
     override func viewWillAppear(_ animated: Bool) {
         super.viewWillAppear(animated)
         
-       
-//       print("++++viewWillAppear+++++")
-//        if image == nil {
-        
-//            print("######---viewWillAppear---######")
         
             sessionQueue.async { [unowned self] in
                 switch self.setupResult {
@@ -155,29 +130,13 @@ class ViewController: UIViewController {
                     }
                 }
             }
-            
-//        }
     }
     
-    
-    
-//    override func viewDidAppear(_ animated: Bool) {
-//        super.viewDidAppear(animated)
-//        
-//        faceDetectionRequest = VNDetectFaceLandmarksRequest(completionHandler: handleFaceLandmarks)
-//        setupVision()
-//    }
-    
-    
+
     
     override func viewWillDisappear(_ animated: Bool) {
         
-        
-//        print("-----viewWillDisappear-----")
 
-//        if image == nil {
-        
-//           print("######---viewWillDisappear---######")
         
             sessionQueue.async { [unowned self] in
                 if self.setupResult == .success {
@@ -188,15 +147,12 @@ class ViewController: UIViewController {
             }
             
             super.viewWillDisappear(animated)
-//        }
     }
     
     
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         super.viewWillTransition(to: size, with: coordinator)
         
-        
-        print("viewWillTransition")
         if let videoPreviewLayerConnection = previewView.videoPreviewLayer.connection {
             let deviceOrientation = UIDevice.current.orientation
             guard let newVideoOrientation = deviceOrientation.videoOrientation, deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
@@ -207,19 +163,12 @@ class ViewController: UIViewController {
             
         }
     }
-    //
-    //    @IBAction func UpdateDetectionType(_ sender: UISegmentedControl) {
-    //        // use segmentedControl to switch over VNRequest
-    //        faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: handleFaces)//sender.selectedSegmentIndex == 0 ? VNDetectFaceRectanglesRequest(completionHandler: handleFaces) : VNDetectFaceLandmarksRequest(completionHandler: handleFaceLandmarks)
-    //
-    //        setupVision()
-    //    }
+
     
     
     @IBOutlet weak var previewView: PreviewView!
     
     // MARK: Session Management
-    
     enum SessionSetupResult {
         case success
         case notAuthorized
@@ -256,8 +205,7 @@ class ViewController: UIViewController {
         
         session.beginConfiguration()
         session.sessionPreset = .high
-        //here>>>>>>>>
-        // Add video input.
+
         do {
             var defaultVideoDevice: AVCaptureDevice?
             
@@ -545,11 +493,9 @@ class ViewController: UIViewController {
         if segue.identifier == "toImageVC" {
             let destVC = segue.destination as! ImageViewController
             destVC.image = self.image
-            //destVC.orientation = self.exifOrientation
             destVC.completion = { [weak self] image in
                 self?.image = image
             }
-            //destVC.isFrontCamera = devicePosition == .front ? false : true
         }
     }
     
