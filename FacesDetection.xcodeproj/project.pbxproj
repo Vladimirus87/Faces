@@ -26,9 +26,7 @@
 		94B2592D203AD05800ECEFEE /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2592C203AD05800ECEFEE /* ResultViewController.swift */; };
 		94CF06C4203580D000F8E0E4 /* AppConstans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CF06C3203580D000F8E0E4 /* AppConstans.swift */; };
 		94CF06C6203594ED00F8E0E4 /* FaceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CF06C5203594ED00F8E0E4 /* FaceApi.swift */; };
-		94DD1A912035BDBB00705DA6 /* ImageVC_Alert.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DD1A902035BDBB00705DA6 /* ImageVC_Alert.swift */; };
 		94DD1A932035BEAC00705DA6 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DD1A922035BEAC00705DA6 /* Extentions.swift */; };
-		94DD1A952035D99400705DA6 /* NS.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DD1A942035D99400705DA6 /* NS.swift */; };
 		94DDAA5920343DD100460137 /* ImagePicker.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DDAA5820343DD100460137 /* ImagePicker.swift */; };
 		C9811A0EF828871693E864F5 /* Pods_FacesDetection.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 93F41CB515836F6B17A8F7D0 /* Pods_FacesDetection.framework */; };
 /* End PBXBuildFile section */
@@ -58,9 +56,7 @@
 		94B2592C203AD05800ECEFEE /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
 		94CF06C3203580D000F8E0E4 /* AppConstans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstans.swift; sourceTree = "<group>"; };
 		94CF06C5203594ED00F8E0E4 /* FaceApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceApi.swift; sourceTree = "<group>"; };
-		94DD1A902035BDBB00705DA6 /* ImageVC_Alert.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageVC_Alert.swift; sourceTree = "<group>"; };
 		94DD1A922035BEAC00705DA6 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
-		94DD1A942035D99400705DA6 /* NS.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NS.swift; sourceTree = "<group>"; };
 		94DDAA5820343DD100460137 /* ImagePicker.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ImagePicker.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -106,10 +102,8 @@
 				94ABFAF7202B2C3B00951FF5 /* ImageViewController.swift */,
 				94B2592A203AD04300ECEFEE /* CheckViewController.swift */,
 				94B2592C203AD05800ECEFEE /* ResultViewController.swift */,
-				94DD1A902035BDBB00705DA6 /* ImageVC_Alert.swift */,
 				9460F756203EB20800AB3280 /* PersonModel.swift */,
 				943C95AC204461B3004342C8 /* AJProgressView.swift */,
-				94DD1A942035D99400705DA6 /* NS.swift */,
 				02611D971EEA5317009714B8 /* Main.storyboard */,
 				02611D9A1EEA5317009714B8 /* Assets.xcassets */,
 				02611D9C1EEA5317009714B8 /* LaunchScreen.storyboard */,
@@ -313,7 +307,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				94DD1A952035D99400705DA6 /* NS.swift in Sources */,
 				94CF06C4203580D000F8E0E4 /* AppConstans.swift in Sources */,
 				943C95AD204461B4004342C8 /* AJProgressView.swift in Sources */,
 				02611D961EEA5317009714B8 /* ViewController.swift in Sources */,
@@ -325,7 +318,6 @@
 				9417AE0F202AEF84008C11E2 /* Observers.swift in Sources */,
 				94DDAA5920343DD100460137 /* ImagePicker.swift in Sources */,
 				02611D941EEA5317009714B8 /* AppDelegate.swift in Sources */,
-				94DD1A912035BDBB00705DA6 /* ImageVC_Alert.swift in Sources */,
 				94DD1A932035BEAC00705DA6 /* Extentions.swift in Sources */,
 				9417AE13202AF046008C11E2 /* Orientation.swift in Sources */,
 				942F49ED203C68FD0020ACF1 /* Person+CoreDataClass.swift in Sources */,

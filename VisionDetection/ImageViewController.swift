@@ -25,83 +25,19 @@ class ImageViewController: UIViewController {
     var image: UIImage? = nil
     var completion: ((UIImage?)->())?
     var imagesFromFaces: [UIImage]?
-    var choosedImage: UIImage?
-    
-    var testImg = [Face]()
-    
     var faceIdBestResult : String?
+    var progressView: AJProgressView!
     
     @IBOutlet weak var mainImage: UIImageView!
-    @IBOutlet weak var cancelBtn: UIButton!
-//    @IBOutlet weak var animation: UIActivityIndicatorView!
-    var progressView: AJProgressView!
+    
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        mainImage.image = image ?? UIImage(named: "smile")
         progressView = AJProgressView()
-        //progressView.imgLogo = UIImage(named: "smallLogo")!
         
-        //progressView.hide()
-//        animation.isHidden = true
-        
-        if let myImage = image {
-            mainImage.image = myImage
-        } else {
-            mainImage.image = UIImage(named: "smile")
-        }
-        
-//        let person1 = Person()
-//        person1.id = "9ff1b77f-5b0f-44ec-a459-6e1f41868f4e"
-//        person1.positive = ["доброта", "ум"]
-//        person1.negative = ["рассеяность"]
-//        
-
-
-        
-        
-//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-//        let contex = appDelegate.persistentContainer.viewContext
-//
-//        do {
-//            try contex.save()
-//        } catch {
-//            print("error")
-//        }
-        
-        
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let contex = appDelegate.persistentContainer.viewContext
-
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-
-        //request.returnsObjectsAsFaults = false
-
-        do {
-            let result = try contex.fetch(request)
-            for i in result as! [Person] {
-                //print(data.value(forKey: "username") as! String)
-                print(" Core Data - \(i.id ?? "nothing")")
-            }
-
-        } catch {
-
-            print("Failed")
-        }
-        
-        
-        FaceAPI.getList(UserDefaults.standard.string(forKey: "FileListName")!) { (a, _, _) in
-            if let ss = a {
-                for i in ss {
-                    
-                    print("Microsoft - \(i)")
-                }
-            }
-        }
-        
-//
         
     }
     
@@ -129,6 +65,7 @@ class ImageViewController: UIViewController {
     
     
     
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toDetection",
             let destVC = segue.destination as? CheckViewController {
@@ -136,47 +73,116 @@ class ImageViewController: UIViewController {
             destVC.imageSent = mainImage.image
         }
     }
+
     
     
-    
-    
-    
-    func animation(willStart: Bool) {
+    func parseSuccess(data: Data?) {
         
-        if willStart {
-//            self.animation.isHidden = false
-//            self.animation.startAnimating()
-            progressView.show()
-        } else {
-//            self.animation.isHidden = true
-//            self.animation.stopAnimating()
-            progressView.hide()
+        do {
+            let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments)
+            
+            if let object = json as? JSONArray {
+                var dict = [String : Double]()
+                for i in object {
+                    if let temp = i as? JSONDictionary {
+                        guard let key = temp["persistedFaceId"] as? String,
+                            let value = temp["confidence"] as? Double else { return }
+                        dict[key] = value
+                    }
+                }
+                
+                
+                DispatchQueue.main.async {
+                    if let maxSimilar = dict.sortedByValue.last {
+                        self.faceIdBestResult = maxSimilar.0
+                        self.performSegue(withIdentifier: "toDetection", sender: self)
+                        self.progressView.hide()
+                    }
+                }
+            }
+            
+        } catch {
+            print(error.localizedDescription)
         }
+
     }
     
-
     
+    
+    func parseError(data: Data?) {
+        
+        do {
+            let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments)
+            
+            if let object = json as? JSONDictionary {
+                
+                if let dict = object["error"] as? [String : String] {
+                    
+                    if let key = dict["code"], let value = dict["message"] {
+                        let alert = UIAlertController(title: key, message: value, preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                        })
+                        alert.addAction(ok)
+                        self.present(alert, animated: true, completion: {
+                            self.progressView.hide()
+                        })
+                        
+                    } else if let key = dict["statusCode"], let value = dict["message"] {
+                        let alert = UIAlertController(title: key, message: value, preferredStyle: .alert)
+                        let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+                            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+                        })
+                        alert.addAction(ok)
+                        self.progressView.hide()
+                        self.present(alert, animated: true, completion: {
+                            self.progressView.hide()
+                        })
+                    }
+                }
+            }
+        } catch {
+            print(error.localizedDescription)
+            
+        }
+        
+    }
+    
+    
+    func errorAlert() {
+        let alert = UIAlertController(title: "Упс...", message: "Произошла ошибка", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: {
+            self.progressView.hide()
+        })
+    }
     
     @IBAction func Detect(_ sender: UIButton) {
-        animation(willStart: true)
+        progressView.show()
         
-        FaceAPI.detectFaces(facesPhoto: mainImage.image!) { (a, _, _)  in
-            if let faceId = a?[0].faceId {
+        FaceAPI.detectFaces(facesPhoto: mainImage.image!) { (data, response, error)  in
+            if let faceId = data?[0].faceId {
+                
+                if error != nil {
+                    self.errorAlert()
+                }
+                
+ 
 
-                FaceAPI.findSimilar(faceId: faceId, faceListId: UserDefaults.standard.string(forKey: "FileListName")!, completion: { (a,_,_) in
-                    print(a ?? "Nothing here :(")
+                FaceAPI.findSimilar(faceId: faceId, faceListId: UserDefaults.standard.string(forKey: "FileListName")!, completion: { (data, response, error) in
+                    
+                    if error != nil {
+                        self.errorAlert()
+                    }
 
-                    DispatchQueue.main.async {
-                        if let fff = a?.sortedByValue.last {
-                            self.faceIdBestResult = fff.0
-
-                            print(">>>>>>>>\(fff.0)")
-                            print("\(self.faceIdBestResult)<<<<<<<<<")
-
-                            //! нужно разабраться с памятью или сделать instantiate
-                            self.performSegue(withIdentifier: "toDetection", sender: self)
-                            self.animation(willStart: false)
-
+                    if let statusCode = response {
+                        if statusCode == 200 {
+                            self.parseSuccess(data: data)
+                        } else {
+                            self.parseError(data: data)
                         }
                     }
                 })
@@ -229,6 +235,35 @@ class ImageViewController: UIViewController {
         
         completion?(nil)
         self.dismiss(animated: true, completion: nil)
+    }
+    
+    
+    
+    
+    /// in future will delete
+    func testForApiAndData() {
+        
+        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+        let contex = appDelegate.persistentContainer.viewContext
+        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+        
+        do {
+            let result = try contex.fetch(request)
+            for i in result as! [Person] {
+                print(" Core Data - \(i.id ?? "nothing")")
+            }
+        } catch {
+            print("Failed")
+        }
+        
+        FaceAPI.getList(UserDefaults.standard.string(forKey: "FileListName")!) { (a, _, _) in
+            if let ss = a {
+                for i in ss {
+                    
+                    print("Microsoft - \(i)")
+                }
+            }
+        }
     }
 }
 

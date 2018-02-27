@@ -6,20 +6,18 @@
 //  Copyright © 2018 Willjay. All rights reserved.
 //
 
-import Foundation
+
+//old constants
+//    "48de3b2fb4514f14a2aaa5129e313f80"
+//    "https://westcentralus.api.cognitive.microsoft.com/face/v1.0"
 
 
 import Foundation
 
 struct ApplicationConstants {
     
-//    // Graph information
-//    static let clientId = "ENTER_CLIENT_ID"
-//    static let scopes   = ["User.ReadBasic.All",
-//                           "offline_access"]
-    
-    // Cognitive services information
-    static let ocpApimSubscriptionKey = "e54dfdcd23a048d18bc3d1910c266cfa"
+    static let location = "https://northeurope.api.cognitive.microsoft.com/face/v1.0"
+    static let subscriptionKey = "e54dfdcd23a048d18bc3d1910c266cfa"
 }
 
 enum NetworkError: Error {
