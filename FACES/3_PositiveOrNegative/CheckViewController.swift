@@ -18,10 +18,15 @@ class CheckViewController: UIViewController {
     
     
     @IBOutlet weak var image: UIImageView!
+    @IBOutlet weak var topBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomBarHeight: NSLayoutConstraint!
+    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        topBarHeight.constant = LayHelper.shared.topHeight
+        bottomBarHeight.constant = LayHelper.shared.bottomBarHeight
         image.image = imageSent ?? UIImage(named: "smile")
         
         let appDelegate = UIApplication.shared.delegate as! AppDelegate

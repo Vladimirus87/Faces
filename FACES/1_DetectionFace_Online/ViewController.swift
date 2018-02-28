@@ -32,11 +32,14 @@ class ViewController: UIViewController {
     @IBOutlet weak var flashLight: UIButton!
     @IBOutlet weak var smallLogo: UIImageView!
     @IBOutlet weak var warningView: UIView!
-    
+    @IBOutlet weak var topBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomBarHeight: NSLayoutConstraint!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        topBarHeight.constant = LayHelper.shared.topHeight
+        bottomBarHeight.constant = LayHelper.shared.bottomBarHeight
         // Set up the video preview view.
         previewView.session = session
 //        previewView.delegate = self

@@ -67,6 +67,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
+        
+        
+        if UIDevice().userInterfaceIdiom == .phone {
+            if UIScreen.main.nativeBounds.height == 2436 {
+                LayHelper.shared.bottomHeight = 34
+                LayHelper.shared.bottomBarHeight = 105
+                LayHelper.shared.topHeight = 71
+            }
+        }
+        
+        
         TWTRTwitter.sharedInstance().start(withConsumerKey:"sKRPTlhnCc1nFhrfcxHhW3Szn", consumerSecret:"86rsCUUfm7m8Xnjdm8SfnFnduPDLLVcB1z44cTYN3P310MoCxQ")
         
         if isNewLevel {

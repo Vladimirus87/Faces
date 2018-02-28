@@ -13,6 +13,9 @@ class ResultViewController: UIViewController, UIDocumentInteractionControllerDel
     
     @IBOutlet weak var tableView: UITableView!
     @IBOutlet weak var titleOfResult: UILabel!
+    @IBOutlet weak var topBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomBarHeight: NSLayoutConstraint!
+    
     
     var documentController: UIDocumentInteractionController!
     var dataArray = [String]()
@@ -24,6 +27,8 @@ class ResultViewController: UIViewController, UIDocumentInteractionControllerDel
     override func viewDidLoad() {
         super.viewDidLoad()
 
+        topBarHeight.constant = LayHelper.shared.topHeight
+        bottomBarHeight.constant = LayHelper.shared.bottomBarHeight
         tableView.delegate = self
         tableView.dataSource = self
         

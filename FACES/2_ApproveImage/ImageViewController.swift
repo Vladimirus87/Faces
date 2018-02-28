@@ -28,12 +28,15 @@ class ImageViewController: UIViewController {
     var progressView: AJProgressView!
     
     @IBOutlet weak var mainImage: UIImageView!
-    
+    @IBOutlet weak var topBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomBarHeight: NSLayoutConstraint!
     
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
+        topBarHeight.constant = LayHelper.shared.topHeight
+        bottomBarHeight.constant = LayHelper.shared.bottomBarHeight
         mainImage.image = image ?? UIImage(named: "smile")
         progressView = AJProgressView()
     }
