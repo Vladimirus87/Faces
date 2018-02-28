@@ -10,23 +10,6 @@ import UIKit
 import FaceCropper
 import CoreData
 
-extension Data {
-    func sizeString(units: ByteCountFormatter.Units = [.useAll], countStyle: ByteCountFormatter.CountStyle = .file) -> String {
-        let bcf = ByteCountFormatter()
-        bcf.allowedUnits = units
-        bcf.countStyle = .file
-        
-        return bcf.string(fromByteCount: Int64(count))
-    }}
-
-
-struct Face {
-    let faceId: String
-    let height: Int
-    let width: Int
-    let top: Int
-    let left: Int
-}
 
 class ImageViewController: UIViewController {
 

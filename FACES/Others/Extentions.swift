@@ -9,9 +9,27 @@
 import UIKit
 
 
+
 extension Dictionary where Value:Comparable {
     var sortedByValue:[(Key,Value)] {return Array(self).sorted{$0.1 < $1.1}}
 }
+
+
+
+
+extension Data {
+    func sizeString(units: ByteCountFormatter.Units = [.useAll], countStyle: ByteCountFormatter.CountStyle = .file) -> String {
+        let bcf = ByteCountFormatter()
+        bcf.allowedUnits = units
+        bcf.countStyle = .file
+        
+        return bcf.string(fromByteCount: Int64(count))
+    }
+}
+
+
+
+
 
 extension UIImage {
     // MARK: - UIImage+Resize
@@ -30,6 +48,9 @@ extension UIImage {
         return newImage
     }
 }
+
+
+
 
 
 extension UIImage {

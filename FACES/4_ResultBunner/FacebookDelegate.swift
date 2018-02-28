@@ -12,8 +12,6 @@ import FBSDKShareKit
 
 extension ResultViewController : FBSDKSharingDelegate {
     
-    func sharer(_ sharer: FBSDKSharing!, didCompleteWithResults results: [AnyHashable : Any]!) {}
-    
     
     func sharer(_ sharer: FBSDKSharing!, didFailWithError error: Error!) {
         
@@ -30,5 +28,6 @@ extension ResultViewController : FBSDKSharingDelegate {
     }
     
     
+    func sharer(_ sharer: FBSDKSharing!, didCompleteWithResults results: [AnyHashable : Any]!) {}
     func sharerDidCancel(_ sharer: FBSDKSharing!) {}
 }

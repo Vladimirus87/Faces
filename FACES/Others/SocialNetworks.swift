@@ -15,11 +15,9 @@ import VK_ios_sdk
 class SocialNetworks {
     
     static let shared = SocialNetworks()
+    private var url = URL(string: "http://facesapp.me")
     
-    private init() {
-        
-    }
-    
+    private init() {}
     
     func postImageToInstagram(image: UIImage, vc: UIViewController) {
         guard let instagramURL = URL(string: "instagram://app") else { return }
@@ -38,6 +36,7 @@ class SocialNetworks {
                         UIApplication.shared.open(urlForRedirect)
                     }
                 }
+                
             } catch {
                 print(error.localizedDescription)
             }
@@ -61,7 +60,7 @@ class SocialNetworks {
     func postImageToTwitter(image: UIImage, vc: UIViewController) {
         
         let composer = TWTRComposer()
-        composer.setText("Hello World.")
+        composer.setURL(url)
         composer.setImage(image)
         composer.show(from: vc) { result in
             if (result == .done) {
@@ -89,6 +88,7 @@ class SocialNetworks {
         photo.isUserGenerated = true
         let content = FBSDKSharePhotoContent()
         content.photos = [photo]
+        //content.ref = url
         let dialog = FBSDKShareDialog()
         dialog.fromViewController = vc
         dialog.delegate = vc as! FBSDKSharingDelegate
@@ -122,11 +122,10 @@ class SocialNetworks {
         
         
         let shareDialog = VKShareDialogController()
-        shareDialog.text = "This post created using #vksdk #ios"
-        
+        shareDialog.text = "Faces"
         let img = VKUploadImage(image: image, andParams: nil)
         shareDialog.uploadImages = [img as Any]
-        shareDialog.shareLink = VKShareLink(title: "Super puper link, but nobody knows", link: NSURL(string: "https://vk.com/dev/ios_sdk")! as URL!)
+        shareDialog.shareLink = VKShareLink(title: "Посетите наш сайт", link: url)
         shareDialog.completionHandler = { VKShareDialogController, result in
             vc.dismiss(animated: true, completion: nil)
         }
