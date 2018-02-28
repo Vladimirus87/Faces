@@ -9,9 +9,7 @@
 import UIKit
 import AVFoundation
 import Vision
-
-
-
+import Photos
 
 class ViewController: UIViewController {
 
@@ -337,7 +335,9 @@ class ViewController: UIViewController {
     
     
     @IBAction func Shoot(_ sender: UIButton) {
+        
         takePhoto = true
+
     }
     
     

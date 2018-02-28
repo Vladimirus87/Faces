@@ -21,6 +21,12 @@
 		943C95AD204461B4004342C8 /* AJProgressView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 943C95AC204461B3004342C8 /* AJProgressView.swift */; };
 		9460F757203EB20800AB3280 /* PersonModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9460F756203EB20800AB3280 /* PersonModel.swift */; };
 		9464CAC6203B1B7D0071E9B7 /* Persons.xcdatamodeld in Sources */ = {isa = PBXBuildFile; fileRef = 9464CAC4203B1B7D0071E9B7 /* Persons.xcdatamodeld */; };
+		94765CAF2046AC290035C598 /* SocialNetworks.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CAE2046AC290035C598 /* SocialNetworks.swift */; };
+		94765CB32046BA410035C598 /* ImageViewController_Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CB22046BA410035C598 /* ImageViewController_Parser.swift */; };
+		94765CB82046BB690035C598 /* FacebookDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CB72046BB690035C598 /* FacebookDelegate.swift */; };
+		94765CBA2046BBB40035C598 /* TableViewDelegateDatasourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CB92046BBB40035C598 /* TableViewDelegateDatasourse.swift */; };
+		94765CBC2046BC040035C598 /* DrawOnBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CBB2046BC040035C598 /* DrawOnBanner.swift */; };
+		94765CC02046BE7C0035C598 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94765CBF2046BE7C0035C598 /* Default-568h@2x.png */; };
 		94ABFAF8202B2C3B00951FF5 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94ABFAF7202B2C3B00951FF5 /* ImageViewController.swift */; };
 		94B2592B203AD04300ECEFEE /* CheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2592A203AD04300ECEFEE /* CheckViewController.swift */; };
 		94B2592D203AD05800ECEFEE /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2592C203AD05800ECEFEE /* ResultViewController.swift */; };
@@ -51,6 +57,12 @@
 		943C95AC204461B3004342C8 /* AJProgressView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AJProgressView.swift; sourceTree = "<group>"; };
 		9460F756203EB20800AB3280 /* PersonModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PersonModel.swift; sourceTree = "<group>"; };
 		9464CAC5203B1B7D0071E9B7 /* Persons.xcdatamodel */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcdatamodel; path = Persons.xcdatamodel; sourceTree = "<group>"; };
+		94765CAE2046AC290035C598 /* SocialNetworks.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SocialNetworks.swift; sourceTree = "<group>"; };
+		94765CB22046BA410035C598 /* ImageViewController_Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController_Parser.swift; sourceTree = "<group>"; };
+		94765CB72046BB690035C598 /* FacebookDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookDelegate.swift; sourceTree = "<group>"; };
+		94765CB92046BBB40035C598 /* TableViewDelegateDatasourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegateDatasourse.swift; sourceTree = "<group>"; };
+		94765CBB2046BC040035C598 /* DrawOnBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawOnBanner.swift; sourceTree = "<group>"; };
+		94765CBF2046BE7C0035C598 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		94ABFAF7202B2C3B00951FF5 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		94B2592A203AD04300ECEFEE /* CheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViewController.swift; sourceTree = "<group>"; };
 		94B2592C203AD05800ECEFEE /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
@@ -75,7 +87,7 @@
 		02611D871EEA5317009714B8 = {
 			isa = PBXGroup;
 			children = (
-				02611D921EEA5317009714B8 /* VisionDetection */,
+				02611D921EEA5317009714B8 /* FACES */,
 				02611D911EEA5317009714B8 /* Products */,
 				94DDAA5A20347F5200460137 /* Frameworks */,
 				E44D2D85BF604BEE2757D5B1 /* Pods */,
@@ -90,30 +102,24 @@
 			name = Products;
 			sourceTree = "<group>";
 		};
-		02611D921EEA5317009714B8 /* VisionDetection */ = {
+		02611D921EEA5317009714B8 /* FACES */ = {
 			isa = PBXGroup;
 			children = (
-				942F49EB203C68FC0020ACF1 /* Person+CoreDataClass.swift */,
-				942F49EA203C68FC0020ACF1 /* Person+CoreDataProperties.swift */,
 				02611D931EEA5317009714B8 /* AppDelegate.swift */,
-				94CF06C22035809500F8E0E4 /* MicrosoftFaceApi */,
-				9417AE16202AF1F5008C11E2 /* DetectionFace_Online */,
-				94ABFAF7202B2C3B00951FF5 /* ImageViewController.swift */,
-				94B2592A203AD04300ECEFEE /* CheckViewController.swift */,
-				94B2592C203AD05800ECEFEE /* ResultViewController.swift */,
-				9460F756203EB20800AB3280 /* PersonModel.swift */,
-				943C95AC204461B3004342C8 /* AJProgressView.swift */,
 				02611D971EEA5317009714B8 /* Main.storyboard */,
-				02611D9A1EEA5317009714B8 /* Assets.xcassets */,
-				02611D9C1EEA5317009714B8 /* LaunchScreen.storyboard */,
-				02611D9F1EEA5317009714B8 /* Info.plist */,
-				94DD1A922035BEAC00705DA6 /* Extentions.swift */,
-				9464CAC4203B1B7D0071E9B7 /* Persons.xcdatamodeld */,
+				9417AE16202AF1F5008C11E2 /* 1_DetectionFace_Online */,
+				94765CB42046BA940035C598 /* 2_ApproveImage */,
+				94765CB52046BAE70035C598 /* 3_PositiveOrNegative */,
+				94765CB62046BB350035C598 /* 4_ResultBunner */,
+				94765CB12046B9B70035C598 /* CoreDataModel */,
+				94CF06C22035809500F8E0E4 /* MicrosoftFaceApi */,
+				94765CBD2046BC3B0035C598 /* Others */,
+				94765CBE2046BCA20035C598 /* SupportFiles */,
 			);
-			path = VisionDetection;
+			path = FACES;
 			sourceTree = "<group>";
 		};
-		9417AE16202AF1F5008C11E2 /* DetectionFace_Online */ = {
+		9417AE16202AF1F5008C11E2 /* 1_DetectionFace_Online */ = {
 			isa = PBXGroup;
 			children = (
 				02611D951EEA5317009714B8 /* ViewController.swift */,
@@ -123,7 +129,67 @@
 				94DDAA5820343DD100460137 /* ImagePicker.swift */,
 				02611DA51EEA5683009714B8 /* PreviewView.swift */,
 			);
-			path = DetectionFace_Online;
+			path = 1_DetectionFace_Online;
+			sourceTree = "<group>";
+		};
+		94765CB12046B9B70035C598 /* CoreDataModel */ = {
+			isa = PBXGroup;
+			children = (
+				942F49EB203C68FC0020ACF1 /* Person+CoreDataClass.swift */,
+				942F49EA203C68FC0020ACF1 /* Person+CoreDataProperties.swift */,
+			);
+			path = CoreDataModel;
+			sourceTree = "<group>";
+		};
+		94765CB42046BA940035C598 /* 2_ApproveImage */ = {
+			isa = PBXGroup;
+			children = (
+				94ABFAF7202B2C3B00951FF5 /* ImageViewController.swift */,
+				94765CB22046BA410035C598 /* ImageViewController_Parser.swift */,
+			);
+			path = 2_ApproveImage;
+			sourceTree = "<group>";
+		};
+		94765CB52046BAE70035C598 /* 3_PositiveOrNegative */ = {
+			isa = PBXGroup;
+			children = (
+				94B2592A203AD04300ECEFEE /* CheckViewController.swift */,
+			);
+			path = 3_PositiveOrNegative;
+			sourceTree = "<group>";
+		};
+		94765CB62046BB350035C598 /* 4_ResultBunner */ = {
+			isa = PBXGroup;
+			children = (
+				94B2592C203AD05800ECEFEE /* ResultViewController.swift */,
+				94765CB92046BBB40035C598 /* TableViewDelegateDatasourse.swift */,
+				94765CB72046BB690035C598 /* FacebookDelegate.swift */,
+				94765CBB2046BC040035C598 /* DrawOnBanner.swift */,
+			);
+			path = 4_ResultBunner;
+			sourceTree = "<group>";
+		};
+		94765CBD2046BC3B0035C598 /* Others */ = {
+			isa = PBXGroup;
+			children = (
+				94765CAE2046AC290035C598 /* SocialNetworks.swift */,
+				9460F756203EB20800AB3280 /* PersonModel.swift */,
+				943C95AC204461B3004342C8 /* AJProgressView.swift */,
+				94DD1A922035BEAC00705DA6 /* Extentions.swift */,
+			);
+			path = Others;
+			sourceTree = "<group>";
+		};
+		94765CBE2046BCA20035C598 /* SupportFiles */ = {
+			isa = PBXGroup;
+			children = (
+				94765CBF2046BE7C0035C598 /* Default-568h@2x.png */,
+				02611D9A1EEA5317009714B8 /* Assets.xcassets */,
+				02611D9C1EEA5317009714B8 /* LaunchScreen.storyboard */,
+				02611D9F1EEA5317009714B8 /* Info.plist */,
+				9464CAC4203B1B7D0071E9B7 /* Persons.xcdatamodeld */,
+			);
+			path = SupportFiles;
 			sourceTree = "<group>";
 		};
 		94CF06C22035809500F8E0E4 /* MicrosoftFaceApi */ = {
@@ -221,6 +287,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				02611D9E1EEA5317009714B8 /* LaunchScreen.storyboard in Resources */,
+				94765CC02046BE7C0035C598 /* Default-568h@2x.png in Resources */,
 				02611D9B1EEA5317009714B8 /* Assets.xcassets in Resources */,
 				02611D991EEA5317009714B8 /* Main.storyboard in Resources */,
 			);
@@ -312,19 +379,24 @@
 				02611D961EEA5317009714B8 /* ViewController.swift in Sources */,
 				9417AE11202AF010008C11E2 /* VideoDataOutput.swift in Sources */,
 				94CF06C6203594ED00F8E0E4 /* FaceApi.swift in Sources */,
+				94765CBC2046BC040035C598 /* DrawOnBanner.swift in Sources */,
 				942F49EC203C68FD0020ACF1 /* Person+CoreDataProperties.swift in Sources */,
 				94B2592D203AD05800ECEFEE /* ResultViewController.swift in Sources */,
 				9464CAC6203B1B7D0071E9B7 /* Persons.xcdatamodeld in Sources */,
 				9417AE0F202AEF84008C11E2 /* Observers.swift in Sources */,
 				94DDAA5920343DD100460137 /* ImagePicker.swift in Sources */,
+				94765CB32046BA410035C598 /* ImageViewController_Parser.swift in Sources */,
 				02611D941EEA5317009714B8 /* AppDelegate.swift in Sources */,
 				94DD1A932035BEAC00705DA6 /* Extentions.swift in Sources */,
+				94765CAF2046AC290035C598 /* SocialNetworks.swift in Sources */,
+				94765CB82046BB690035C598 /* FacebookDelegate.swift in Sources */,
 				9417AE13202AF046008C11E2 /* Orientation.swift in Sources */,
 				942F49ED203C68FD0020ACF1 /* Person+CoreDataClass.swift in Sources */,
 				94ABFAF8202B2C3B00951FF5 /* ImageViewController.swift in Sources */,
 				9460F757203EB20800AB3280 /* PersonModel.swift in Sources */,
 				02611DA61EEA5683009714B8 /* PreviewView.swift in Sources */,
 				94B2592B203AD04300ECEFEE /* CheckViewController.swift in Sources */,
+				94765CBA2046BBB40035C598 /* TableViewDelegateDatasourse.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -465,7 +537,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AV23R78L97;
-				INFOPLIST_FILE = VisionDetection/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FACES/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vladimirus.FacesDetection;
 				PRODUCT_NAME = "$(TARGET_NAME)";
@@ -480,7 +552,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				DEVELOPMENT_TEAM = AV23R78L97;
-				INFOPLIST_FILE = VisionDetection/Info.plist;
+				INFOPLIST_FILE = "$(SRCROOT)/FACES/SupportFiles/Info.plist";
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = com.vladimirus.FacesDetection;
 				PRODUCT_NAME = "$(TARGET_NAME)";

@@ -15,9 +15,7 @@ import UIKit
 
 class FaceAPI: NSObject {
     
-    
-    
-    
+
     /// Detect faces
     static func detectFaces(facesPhoto: UIImage, completion: @escaping (Data?, Int?, Error?) -> Void) {
         
