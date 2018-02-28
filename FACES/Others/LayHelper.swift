@@ -10,9 +10,8 @@ import UIKit
 
 class LayHelper {
     
-    var bottomHeight: CGFloat = 0
-    var bottomBarHeight: CGFloat = 85
     var topHeight: CGFloat = 41
+    var bottomBarHeight: CGFloat = 85
     
     static let shared = LayHelper()
     private init() {}

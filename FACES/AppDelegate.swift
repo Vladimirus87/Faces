@@ -71,7 +71,6 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         if UIDevice().userInterfaceIdiom == .phone {
             if UIScreen.main.nativeBounds.height == 2436 {
-                LayHelper.shared.bottomHeight = 34
                 LayHelper.shared.bottomBarHeight = 105
                 LayHelper.shared.topHeight = 71
             }

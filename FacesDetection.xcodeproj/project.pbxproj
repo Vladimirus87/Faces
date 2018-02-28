@@ -176,6 +176,7 @@
 			children = (
 				94765CAE2046AC290035C598 /* SocialNetworks.swift */,
 				9460F756203EB20800AB3280 /* PersonModel.swift */,
+				94765CC12046D53A0035C598 /* LayHelper.swift */,
 				943C95AC204461B3004342C8 /* AJProgressView.swift */,
 				94DD1A922035BEAC00705DA6 /* Extentions.swift */,
 			);
@@ -185,7 +186,6 @@
 		94765CBE2046BCA20035C598 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
-				94765CC12046D53A0035C598 /* LayHelper.swift */,
 				94765CBF2046BE7C0035C598 /* Default-568h@2x.png */,
 				02611D9A1EEA5317009714B8 /* Assets.xcassets */,
 				02611D9C1EEA5317009714B8 /* LaunchScreen.storyboard */,

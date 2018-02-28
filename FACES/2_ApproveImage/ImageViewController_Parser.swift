@@ -172,4 +172,17 @@ extension ImageViewController {
         })
     }
     
+    
+    
+    func noAnyFacesAlert() {
+        let alert = UIAlertController(title: "Упс...", message: "Не обнаружено лиц, попробуйте еще раз", preferredStyle: .alert)
+        let ok = UIAlertAction(title: "Ok", style: .default, handler: { _ in
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        })
+        alert.addAction(ok)
+        self.present(alert, animated: true, completion: {
+            self.progressView.hide()
+        })
+    }
+    
 }

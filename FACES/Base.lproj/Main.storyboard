@@ -715,7 +715,7 @@
         <image name="shootRed" width="67" height="67"/>
         <image name="shootWhite" width="67" height="67"/>
         <image name="smallLogo" width="43" height="28"/>
-        <image name="smile" width="652" height="869"/>
+        <image name="smile" width="1024" height="1024"/>
         <image name="twitt" width="51" height="51"/>
         <image name="vk" width="51" height="51"/>
     </resources>

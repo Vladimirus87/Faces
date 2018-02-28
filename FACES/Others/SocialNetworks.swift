@@ -67,7 +67,16 @@ class SocialNetworks {
             if (result == .done) {
                 print("Successfully composed Tweet")
             } else {
-                print("Cancelled composing")
+                let alert = UIAlertController(title: nil, message: "instagram not installed", preferredStyle: .alert)
+                let install = UIAlertAction(title: "Установить", style: .default) { _ in
+                    UIApplication.shared.open(URL(string: "https://itunes.apple.com/in/app/instagram/id389801252?m")!)
+                }
+                
+                let cancel = UIAlertAction(title: "Отмена", style: .default, handler: nil)
+                alert.addAction(install)
+                alert.addAction(cancel)
+                
+                vc.present(alert, animated: true, completion: nil)
             }
         }
     }

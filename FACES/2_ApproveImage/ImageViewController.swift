@@ -10,6 +10,15 @@ import UIKit
 import FaceCropper
 import CoreData
 
+extension Data {
+    func sizeString(units: ByteCountFormatter.Units = [.useAll], countStyle: ByteCountFormatter.CountStyle = .file) -> String {
+        let bcf = ByteCountFormatter()
+        bcf.allowedUnits = units
+        bcf.countStyle = .file
+        
+        return bcf.string(fromByteCount: Int64(count))
+    }}
+
 
 struct Face {
     let faceId: String
@@ -88,8 +97,12 @@ class ImageViewController: UIViewController {
             if let statusCode = response {
                 if statusCode != 200 {
                     self.parseError(data: data)
+                } else if data?.count == 2 {
+                    self.noAnyFacesAlert()
                 } else {
                     self.faceDetectSuccessAndFind(data: data)
+                    
+                    
                 }
             }
         }

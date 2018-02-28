@@ -40,7 +40,6 @@ class FaceAPI: NSObject {
             
             if let data = data, let resp = (response as? HTTPURLResponse)?.statusCode {
                 completion(data, resp, nil)
-                print(data)
             }
         }
         task.resume()
