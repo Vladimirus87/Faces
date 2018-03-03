@@ -446,7 +446,6 @@ class ViewController: UIViewController {
             $0.position == position
             }.first
 
-        
         return dev
     }
 

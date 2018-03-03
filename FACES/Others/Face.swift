@@ -9,6 +9,7 @@
 import Foundation
 
 struct Face {
+    
     let faceId: String
     let height: Int
     let width: Int
