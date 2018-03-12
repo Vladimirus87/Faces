@@ -35,6 +35,7 @@ class ViewController: UIViewController {
     @IBOutlet weak var topBarHeight: NSLayoutConstraint!
     @IBOutlet weak var bottomBarHeight: NSLayoutConstraint!
     
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         
@@ -47,7 +48,6 @@ class ViewController: UIViewController {
         // Set up Vision Request
         faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handleFaces) // Default
         setupVision()
-        
         
         /*
          Check video authorization status. Video access is required and audio
@@ -311,7 +311,7 @@ class ViewController: UIViewController {
             case top0ColLeft = 1
             case top0ColRight = 2
             case bottom0ColRight = 3
-            case bottom0ColLeft = 4
+            case bottom0ColLeft = 4//
             case left0ColTop = 5
             case right0ColTop = 6
             case right0ColBottom = 7
@@ -320,12 +320,12 @@ class ViewController: UIViewController {
         var exifOrientation: DeviceOrientation
         
         switch UIDevice.current.orientation {
-        case .portraitUpsideDown:
-            exifOrientation = .left0ColBottom
+//        case .portraitUpsideDown:
+//            exifOrientation = .left0ColBottom
         case .landscapeLeft:
-            exifOrientation = devicePosition == .front ? .bottom0ColRight : .top0ColLeft
+            exifOrientation = devicePosition == .front ? .bottom0ColLeft : .top0ColLeft//bottom0ColRight
         case .landscapeRight:
-            exifOrientation = devicePosition == .front ? .top0ColLeft : .bottom0ColRight
+            exifOrientation = devicePosition == .front ? .top0ColRight : .bottom0ColRight//top0ColLeft
         default:
             exifOrientation = devicePosition == .front ? .left0ColTop : .right0ColTop
             //exifOrientation = .right0ColTop
@@ -461,6 +461,7 @@ class ViewController: UIViewController {
     }
     
     func handleFaces(request: VNRequest, error: Error?) {
+        
         DispatchQueue.main.async {
             //perform all the UI updates on the main queue
             guard let results = request.results as? [VNFaceObservation] else { return }
@@ -488,13 +489,38 @@ class ViewController: UIViewController {
     }
     
 
-    
+    func howManyDegrees() -> CGFloat {
+        
+        if self.devicePosition == .front {
+            switch UIDevice.current.orientation {
+                
+            case .landscapeLeft:
+                return 90
+            case .landscapeRight:
+                return 270
+            default:
+                return 0
+            }
+        } else {
+            switch UIDevice.current.orientation {
+                
+            case .landscapeLeft:
+                return 270
+            case .landscapeRight:
+                return 90
+            default:
+                return 0
+            }
+        }
+    }
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toImageVC" {
             let destVC = segue.destination as! ImageViewController
-            destVC.image = self.image
+            
+            let img = image!.fixedOrientation().imageRotatedByDegrees(degrees: howManyDegrees())
+            destVC.image = img
             destVC.completion = { [weak self] image in
                 self?.image = image
             }

@@ -12,7 +12,7 @@ extension ResultViewController {
     
     func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.black
-        let textFont = UIFont.systemFont(ofSize: 40)
+        let textFont = UIFont.systemFont(ofSize: 20)
         
         let scale = UIScreen.main.scale
         UIGraphicsBeginImageContextWithOptions(image.size, false, scale)

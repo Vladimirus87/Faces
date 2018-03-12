@@ -39,7 +39,7 @@ class ResultViewController: UIViewController, UIDocumentInteractionControllerDel
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        self.imageForShare = textToImage(drawText: getString(arr: dataArray), inImage: UIImage(named: isPositive ? "positive" : "negative")!, atPoint: CGPoint(x: 50, y: 250))
+        self.imageForShare = textToImage(drawText: getString(arr: dataArray), inImage: UIImage(named: isPositive ? "positive" : "negative")!, atPoint: CGPoint(x: 50, y: 130))
     }
     
     
@@ -79,7 +79,7 @@ class ResultViewController: UIViewController, UIDocumentInteractionControllerDel
     
     @IBAction func sharePressed(_ sender: UIButton) {
         
-        let imageToShare = [textToImage(drawText: getString(arr: dataArray), inImage: UIImage(named: isPositive ? "positive" : "negative")!, atPoint: CGPoint(x: 50, y: 250))]
+        let imageToShare = [textToImage(drawText: getString(arr: dataArray), inImage: UIImage(named: isPositive ? "positive" : "negative")!, atPoint: CGPoint(x: 50, y: 130))]
         let activityViewController = UIActivityViewController(activityItems: imageToShare, applicationActivities: nil)
         
         activityViewController.popoverPresentationController?.sourceView = self.view /// !!! so that iPads won't crash

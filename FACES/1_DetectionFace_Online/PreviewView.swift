@@ -36,7 +36,6 @@ class PreviewView: UIView {
         get {
             return videoPreviewLayer.session
         }
-        
         set {
             videoPreviewLayer.session = newValue
         }
@@ -74,7 +73,7 @@ class PreviewView: UIView {
         mask.frame = rect
         mask.cornerRadius = 10
         mask.opacity = 0.75
-        mask.borderColor = UIColor.white.cgColor
+        mask.borderColor = UIColor.red.cgColor
         mask.borderWidth = 1.0
         
         maskLayer.append(mask)

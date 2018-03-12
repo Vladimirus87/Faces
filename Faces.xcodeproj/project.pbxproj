@@ -40,7 +40,7 @@
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
-		02611D901EEA5317009714B8 /* FacesDetection.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = FacesDetection.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		02611D901EEA5317009714B8 /* Faces.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Faces.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		02611D931EEA5317009714B8 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		02611D951EEA5317009714B8 /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
 		02611D981EEA5317009714B8 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
@@ -101,7 +101,7 @@
 		02611D911EEA5317009714B8 /* Products */ = {
 			isa = PBXGroup;
 			children = (
-				02611D901EEA5317009714B8 /* FacesDetection.app */,
+				02611D901EEA5317009714B8 /* Faces.app */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -227,9 +227,9 @@
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
-		02611D8F1EEA5317009714B8 /* FacesDetection */ = {
+		02611D8F1EEA5317009714B8 /* Faces */ = {
 			isa = PBXNativeTarget;
-			buildConfigurationList = 02611DA21EEA5317009714B8 /* Build configuration list for PBXNativeTarget "FacesDetection" */;
+			buildConfigurationList = 02611DA21EEA5317009714B8 /* Build configuration list for PBXNativeTarget "Faces" */;
 			buildPhases = (
 				DC8A1420AE0FDC50AE01E338 /* [CP] Check Pods Manifest.lock */,
 				02611D8C1EEA5317009714B8 /* Sources */,
@@ -242,9 +242,9 @@
 			);
 			dependencies = (
 			);
-			name = FacesDetection;
+			name = Faces;
 			productName = VisionDetection;
-			productReference = 02611D901EEA5317009714B8 /* FacesDetection.app */;
+			productReference = 02611D901EEA5317009714B8 /* Faces.app */;
 			productType = "com.apple.product-type.application";
 		};
 /* End PBXNativeTarget section */
@@ -262,7 +262,7 @@
 					};
 				};
 			};
-			buildConfigurationList = 02611D8B1EEA5317009714B8 /* Build configuration list for PBXProject "FacesDetection" */;
+			buildConfigurationList = 02611D8B1EEA5317009714B8 /* Build configuration list for PBXProject "Faces" */;
 			compatibilityVersion = "Xcode 8.0";
 			developmentRegion = en;
 			hasScannedForEncodings = 0;
@@ -282,7 +282,7 @@
 			projectDirPath = "";
 			projectRoot = "";
 			targets = (
-				02611D8F1EEA5317009714B8 /* FacesDetection */,
+				02611D8F1EEA5317009714B8 /* Faces */,
 			);
 		};
 /* End PBXProject section */
@@ -572,7 +572,7 @@
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
-		02611D8B1EEA5317009714B8 /* Build configuration list for PBXProject "FacesDetection" */ = {
+		02611D8B1EEA5317009714B8 /* Build configuration list for PBXProject "Faces" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02611DA01EEA5317009714B8 /* Debug */,
@@ -581,7 +581,7 @@
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
 		};
-		02611DA21EEA5317009714B8 /* Build configuration list for PBXNativeTarget "FacesDetection" */ = {
+		02611DA21EEA5317009714B8 /* Build configuration list for PBXNativeTarget "Faces" */ = {
 			isa = XCConfigurationList;
 			buildConfigurations = (
 				02611DA31EEA5317009714B8 /* Debug */,
