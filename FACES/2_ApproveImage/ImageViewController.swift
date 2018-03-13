@@ -17,6 +17,7 @@ class ImageViewController: UIViewController {
     var completion: ((UIImage?)->())?
     var imagesFromFaces: [UIImage]?
     var faceIdBestResult : String?
+    var negative_Positive: [String: [String]]?
     var progressView: AJProgressView!
     
     @IBOutlet weak var mainImage: UIImageView!
@@ -59,6 +60,7 @@ class ImageViewController: UIViewController {
             let destVC = segue.destination as? CheckViewController {
             destVC.faceId = faceIdBestResult
             destVC.imageSent = mainImage.image
+            destVC.negative_Positive = self.negative_Positive
         }
     }
 
@@ -83,9 +85,7 @@ class ImageViewController: UIViewController {
                 } else if data?.count == 2 {
                     self.noAnyFacesAlert()
                 } else {
-                    self.faceDetectSuccessAndFind(data: data)
-                    
-                    
+                    self.faceDetectSuccessAndFind(data: data) 
                 }
             }
         }
@@ -140,30 +140,30 @@ class ImageViewController: UIViewController {
     
     
     /// in future will delete
-    func testForApiAndData() {
-        
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let contex = appDelegate.persistentContainer.viewContext
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-        
-        do {
-            let result = try contex.fetch(request)
-            for i in result as! [Person] {
-                print(" Core Data - \(i.id ?? "nothing")")
-            }
-        } catch {
-            print("Failed")
-        }
-        
-        FaceAPI.getList(UserDefaults.standard.string(forKey: "FileListName")!) { (a, _, _) in
-            if let ss = a {
-                for i in ss {
-                    
-                    print("Microsoft - \(i)")
-                }
-            }
-        }
-    }
+//    func testForApiAndData() {
+//        
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let contex = appDelegate.persistentContainer.viewContext
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+//        
+//        do {
+//            let result = try contex.fetch(request)
+//            for i in result as! [Person] {
+//                print(" Core Data - \(i.id ?? "nothing")")
+//            }
+//        } catch {
+//            print("Failed")
+//        }
+//        
+//        FaceAPI.getList(UserDefaults.standard.string(forKey: "FileListName")!) { (a, _, _) in
+//            if let ss = a {
+//                for i in ss {
+//                    
+//                    print("Microsoft - \(i)")
+//                }
+//            }
+//        }
+//    }
 }
 
 

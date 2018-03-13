@@ -17,7 +17,7 @@
         <!--View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="FacesDetection" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Faces" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -26,7 +26,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DJU-kI-TMg" customClass="PreviewView" customModule="FacesDetection" customModuleProvider="target">
+                            <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DJU-kI-TMg" customClass="PreviewView" customModule="Faces" customModuleProvider="target">
                                 <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="DXb-yw-fNA">
@@ -233,7 +233,7 @@
         <!--Image View Controller-->
         <scene sceneID="BC5-K4-6Oy">
             <objects>
-                <viewController id="Afb-zO-12M" customClass="ImageViewController" customModule="FacesDetection" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="Afb-zO-12M" customClass="ImageViewController" customModule="Faces" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="fPv-FF-2dl"/>
                         <viewControllerLayoutGuide type="bottom" id="vz9-PB-F9g"/>
@@ -372,7 +372,7 @@
         <!--Check View Controller-->
         <scene sceneID="Amd-FN-6z6">
             <objects>
-                <viewController id="zqS-JI-cY3" customClass="CheckViewController" customModule="FacesDetection" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="zqS-JI-cY3" customClass="CheckViewController" customModule="Faces" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="3tj-7W-eNy"/>
                         <viewControllerLayoutGuide type="bottom" id="pfh-kM-fH2"/>
@@ -509,7 +509,7 @@
         <!--Result View Controller-->
         <scene sceneID="X1W-Ry-3Qp">
             <objects>
-                <viewController storyboardIdentifier="resultVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OVQ-k1-K9i" customClass="ResultViewController" customModule="FacesDetection" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController storyboardIdentifier="resultVC" useStoryboardIdentifierAsRestorationIdentifier="YES" id="OVQ-k1-K9i" customClass="ResultViewController" customModule="Faces" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="6Ac-yH-urD"/>
                         <viewControllerLayoutGuide type="bottom" id="gOr-Dy-RKi"/>

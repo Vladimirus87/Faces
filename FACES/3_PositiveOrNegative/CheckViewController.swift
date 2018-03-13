@@ -7,14 +7,15 @@
 //
 
 import UIKit
-import CoreData
+//import CoreData
 
 class CheckViewController: UIViewController {
 
     
     var faceId: String?
     var imageSent : UIImage?
-    var data = [Person]()
+    //var data = [Person]()
+    var negative_Positive: [String: [String]]?
     
     
     @IBOutlet weak var image: UIImageView!
@@ -29,21 +30,21 @@ class CheckViewController: UIViewController {
         bottomBarHeight.constant = LayHelper.shared.bottomBarHeight
         image.image = imageSent ?? UIImage(named: "smile")
         
-        let appDelegate = UIApplication.shared.delegate as! AppDelegate
-        let contex = appDelegate.persistentContainer.viewContext
-        
-        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
-        request.predicate = NSPredicate(format: "id == %@", faceId ?? "")
-        
-        do {
-            let result = try contex.fetch(request)
-            
-            for data in result as! [Person] {
-                self.data.append(data)
-            }
-        } catch {
-            print(error.localizedDescription)
-        }
+//        let appDelegate = UIApplication.shared.delegate as! AppDelegate
+//        let contex = appDelegate.persistentContainer.viewContext
+//
+//        let request = NSFetchRequest<NSFetchRequestResult>(entityName: "Person")
+//        request.predicate = NSPredicate(format: "id == %@", faceId ?? "")
+//
+//        do {
+//            let result = try contex.fetch(request)
+//
+//            for data in result as! [Person] {
+//                self.data.append(data)
+//            }
+//        } catch {
+//            print(error.localizedDescription)
+//        }
     }
     
     
@@ -69,12 +70,14 @@ class CheckViewController: UIViewController {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let controller = storyboard.instantiateViewController(withIdentifier: "resultVC") as? ResultViewController else { return }
         
-        controller.titleText = withPositive ? "ПОЗИТИВНЫЕ КАЧЕСТВА" : "НЕГАТИВНЫЕ КАЧЕСТВА"
+        controller.titleText = withPositive  ? "ПОЗИТИВНЫЕ КАЧЕСТВА" : "НЕГАТИВНЫЕ КАЧЕСТВА"
+        controller.isPositive = withPositive ? true : false
+        controller.dataArray = withPositive ? negative_Positive?["good"] ?? [""] : negative_Positive?["bad"] ?? [""]
         
-        if let first = data.first {
-            controller.dataArray  = withPositive ? first.positive ?? [""] : first.negative ?? [""]
-            controller.isPositive = withPositive ? true : false
-        }
+//        if let first = data.first {
+//            controller.dataArray  = withPositive ? first.positive ?? [""] : first.negative ?? [""]
+//            controller.isPositive = withPositive ? true : false
+//        }
         self.present(controller, animated: true, completion: nil)
     }
     
