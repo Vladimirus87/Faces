@@ -141,7 +141,7 @@ extension ImageViewController {
                         guard let key = temp["persistedFaceId"] as? String,
                             let value = temp["confidence"] as? Double else { return }
                         dict[key] = value
-                        print("\(key) --> \(value)")
+                        //print("\(key) --> \(value)")
                     }
                 }
                 
