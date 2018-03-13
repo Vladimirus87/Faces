@@ -518,12 +518,12 @@ class ViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == "toImageVC" {
             let destVC = segue.destination as! ImageViewController
-            
-            let img = image!.fixedOrientation().imageRotatedByDegrees(degrees: howManyDegrees())
-            destVC.image = img
-            destVC.completion = { [weak self] image in
-                self?.image = image
+                let img = self.image!.fixedOrientation().imageRotatedByDegrees(degrees: self.howManyDegrees())
+                destVC.image = img
+                destVC.completion = { [weak self] image in
+                    self?.image = image
             }
+            
         }
     }
     

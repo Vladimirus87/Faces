@@ -281,9 +281,7 @@ class FaceAPI: NSObject {
 //        
 //        task.resume()
 //    }
-//    
-//    
-    
+
     
     
     
@@ -299,45 +297,6 @@ class FaceAPI: NSObject {
         Alamofire.request(request).responseJSON { (response) in
             completion(response.data, response.response, response.error)
         }
-        
-        
-        
-//
-//        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-//
-//            if let error = error {
-//
-//                completion(nil, nil, error)
-//
-//            }
-//
-//            do {
-//
-//                guard let dat = data else { return }
-//
-//                print(dat)
-//
-//                let json = try JSONSerialization.jsonObject(with: dat, options:.allowFragments)
-//
-//                if let object = json as? Any {
-//                        print(object)
-////                    if let persistedFaces = object["persistedFaces"] as? [JSONDictionary] {
-////
-////                        let array: [String] = persistedFaces.flatMap { (str) in return str["persistedFaceId"] as? String }
-////
-////                        completion(array, nil, nil)
-////                    }
-//                }
-//
-//
-//                completion(nil, json as? JSONDictionary, nil)
-//
-//            } catch {
-//                print("Лажа")
-//            }
-//
-//        }
-//        task.resume()
     }
     
     

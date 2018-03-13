@@ -152,7 +152,6 @@ extension ImageViewController {
                         //self.faceIdBestResult = maxSimilar.0
                         //self.performSegue(withIdentifier: "toDetection", sender: self)
                         
-                        
                         FaceAPI.getPositive_Negative(id: maxSimilar.0, completion: { (data, response, error) in
                             
                             if data != nil {
@@ -172,7 +171,6 @@ extension ImageViewController {
         } catch {
             print(error.localizedDescription)
         }
-        
     }
     
     
