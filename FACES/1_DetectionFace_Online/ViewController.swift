@@ -43,7 +43,7 @@ class ViewController: UIViewController {
         bottomBarHeight.constant = LayHelper.shared.bottomBarHeight
         // Set up the video preview view.
         previewView.session = session
-//        previewView.delegate = self
+        previewView.delegate = self
         
         // Set up Vision Request
         faceDetectionRequest = VNDetectFaceRectanglesRequest(completionHandler: self.handleFaces) // Default
@@ -346,7 +346,6 @@ class ViewController: UIViewController {
     
     @IBAction func switchCameras(_ sender: UIButton) {
         switchCamera()
-
     }
     
     
@@ -369,10 +368,7 @@ class ViewController: UIViewController {
     }
     
     
-
-    
-    
-  
+ 
     
     @IBAction func flashLightOnOff(_ sender: UIButton) {
         
@@ -525,6 +521,9 @@ class ViewController: UIViewController {
 //            }
 //        }
         
+        
+        
+        
         if segue.identifier == "toImageVC" {
             let destVC = segue.destination as! ImageViewController
             let fixOrientation = fixedOrientation(im: self.image!)
@@ -567,6 +566,9 @@ class ViewController: UIViewController {
         
         return newImage
     }
+    
+    
+    
     
     
     
@@ -638,14 +640,15 @@ class ViewController: UIViewController {
 
 
 
-//extension ViewController: ChangesWithDistanceToHead {
-//
-//
-//    func changeColor(toColor: UIColor) {
-//        shoot.backgroundColor = toColor
-//    }
-//
-//}
+extension ViewController: ChangesWithDistanceToHead {
+
+
+    func changeImage(to: UIImage) {
+        shoot.imageView?.image = to//backgroundColor = toColor
+        print(to)
+    }
+
+}
 
 
 

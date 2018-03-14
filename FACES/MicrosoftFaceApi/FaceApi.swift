@@ -293,7 +293,6 @@ class FaceAPI: NSObject {
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"
         
-        
         Alamofire.request(request).responseJSON { (response) in
             completion(response.data, response.response, response.error)
         }
