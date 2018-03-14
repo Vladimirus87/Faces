@@ -16,6 +16,8 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
         let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
 
         self.image = chosenImage
+        self.galler = true
+        
         print(chosenImage.size)
         
         dismiss(animated:true, completion: {

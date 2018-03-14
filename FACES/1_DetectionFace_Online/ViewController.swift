@@ -510,6 +510,8 @@ class ViewController: UIViewController {
         }
     }
     
+    var galler = false
+    
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
 //        if segue.identifier == "toImageVC" {
@@ -527,6 +529,7 @@ class ViewController: UIViewController {
         if segue.identifier == "toImageVC" {
             let destVC = segue.destination as! ImageViewController
             let fixOrientation = fixedOrientation(im: self.image!)
+            
             var endImage : UIImage? {
                 didSet {
                     destVC.image = endImage
@@ -535,9 +538,14 @@ class ViewController: UIViewController {
                     }
                 }
             }
-            DispatchQueue.main.sync {
-                endImage = self.imageRotatedByDegrees(im: fixOrientation, degrees: self.howManyDegrees())
+            if galler {
+                endImage = self.image
+            } else {
+                DispatchQueue.main.sync {
+                    endImage = self.imageRotatedByDegrees(im: fixOrientation, degrees: self.howManyDegrees())
+                }
             }
+            
         }
     }
     
@@ -644,7 +652,7 @@ extension ViewController: ChangesWithDistanceToHead {
 
 
     func changeImage(to: UIImage) {
-        shoot.imageView?.image = to//backgroundColor = toColor
+        shoot.imageView?.image = to
         print(to)
     }
 
