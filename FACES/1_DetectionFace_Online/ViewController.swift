@@ -445,9 +445,7 @@ class ViewController: UIViewController {
         return dev
     }
 
-    
-    
-   
+       
     
     //Vision
     private var isManyFaces = false
@@ -465,24 +463,25 @@ class ViewController: UIViewController {
             for face in results {
                 self.previewView.drawFaceboundingBox(face: face)
                 
-                
-                if results.count > 1 {
-                    
-                    if self.isManyFaces == false {
-                        self.showHideWarning(willShow: true, withText: "НЕ БОЛЕЕ ОДНОГО ЛИЦА")
-                        self.isManyFaces = true
-                    }
-                
-                } else {
-                    
-                    if self.isManyFaces {
-                        self.showHideWarning(willShow: false, withText: nil)
-                        self.isManyFaces = false
-                    }
-                }
+                ///если больше одного лица можно вызвать Alert
+//                if results.count > 1 {
+//
+//                    if self.isManyFaces == false {
+//                        self.showHideWarning(willShow: true, withText: "НЕ БОЛЕЕ ОДНОГО ЛИЦА")
+//                        self.isManyFaces = true
+//                    }
+//
+//                } else {
+//
+//                    if self.isManyFaces {
+//                        self.showHideWarning(willShow: false, withText: nil)
+//                        self.isManyFaces = false
+//                    }
+//                }
             }
         }
     }
+    
     
 
     func howManyDegrees() -> CGFloat {
@@ -523,9 +522,7 @@ class ViewController: UIViewController {
 //            }
 //        }
         
-        
-        
-        
+       
         if segue.identifier == "toImageVC" {
             let destVC = segue.destination as! ImageViewController
             let fixOrientation = fixedOrientation(im: self.image!)
@@ -545,7 +542,6 @@ class ViewController: UIViewController {
                     endImage = self.imageRotatedByDegrees(im: fixOrientation, degrees: self.howManyDegrees())
                 }
             }
-            
         }
     }
     

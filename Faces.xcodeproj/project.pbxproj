@@ -25,13 +25,13 @@
 		94765CB32046BA410035C598 /* ImageViewController_Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CB22046BA410035C598 /* ImageViewController_Parser.swift */; };
 		94765CB82046BB690035C598 /* FacebookDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CB72046BB690035C598 /* FacebookDelegate.swift */; };
 		94765CBA2046BBB40035C598 /* TableViewDelegateDatasourse.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CB92046BBB40035C598 /* TableViewDelegateDatasourse.swift */; };
-		94765CBC2046BC040035C598 /* DrawOnBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CBB2046BC040035C598 /* DrawOnBanner.swift */; };
 		94765CC02046BE7C0035C598 /* Default-568h@2x.png in Resources */ = {isa = PBXBuildFile; fileRef = 94765CBF2046BE7C0035C598 /* Default-568h@2x.png */; };
 		94765CC22046D53A0035C598 /* LayHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CC12046D53A0035C598 /* LayHelper.swift */; };
 		94765CC4204702900035C598 /* Face.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94765CC3204702900035C598 /* Face.swift */; };
 		94ABFAF8202B2C3B00951FF5 /* ImageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94ABFAF7202B2C3B00951FF5 /* ImageViewController.swift */; };
 		94B2592B203AD04300ECEFEE /* CheckViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2592A203AD04300ECEFEE /* CheckViewController.swift */; };
 		94B2592D203AD05800ECEFEE /* ResultViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B2592C203AD05800ECEFEE /* ResultViewController.swift */; };
+		94B35BE9205BC4E800963B59 /* DrawOnBanner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94B35BE8205BC4E800963B59 /* DrawOnBanner.swift */; };
 		94CF06C4203580D000F8E0E4 /* AppConstans.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CF06C3203580D000F8E0E4 /* AppConstans.swift */; };
 		94CF06C6203594ED00F8E0E4 /* FaceApi.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94CF06C5203594ED00F8E0E4 /* FaceApi.swift */; };
 		94DD1A932035BEAC00705DA6 /* Extentions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 94DD1A922035BEAC00705DA6 /* Extentions.swift */; };
@@ -65,13 +65,13 @@
 		94765CB22046BA410035C598 /* ImageViewController_Parser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController_Parser.swift; sourceTree = "<group>"; };
 		94765CB72046BB690035C598 /* FacebookDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FacebookDelegate.swift; sourceTree = "<group>"; };
 		94765CB92046BBB40035C598 /* TableViewDelegateDatasourse.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewDelegateDatasourse.swift; sourceTree = "<group>"; };
-		94765CBB2046BC040035C598 /* DrawOnBanner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DrawOnBanner.swift; sourceTree = "<group>"; };
 		94765CBF2046BE7C0035C598 /* Default-568h@2x.png */ = {isa = PBXFileReference; lastKnownFileType = image.png; path = "Default-568h@2x.png"; sourceTree = "<group>"; };
 		94765CC12046D53A0035C598 /* LayHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LayHelper.swift; sourceTree = "<group>"; };
 		94765CC3204702900035C598 /* Face.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Face.swift; sourceTree = "<group>"; };
 		94ABFAF7202B2C3B00951FF5 /* ImageViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageViewController.swift; sourceTree = "<group>"; };
 		94B2592A203AD04300ECEFEE /* CheckViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CheckViewController.swift; sourceTree = "<group>"; };
 		94B2592C203AD05800ECEFEE /* ResultViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultViewController.swift; sourceTree = "<group>"; };
+		94B35BE8205BC4E800963B59 /* DrawOnBanner.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = DrawOnBanner.swift; sourceTree = "<group>"; };
 		94CF06C3203580D000F8E0E4 /* AppConstans.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppConstans.swift; sourceTree = "<group>"; };
 		94CF06C5203594ED00F8E0E4 /* FaceApi.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FaceApi.swift; sourceTree = "<group>"; };
 		94DD1A922035BEAC00705DA6 /* Extentions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Extentions.swift; sourceTree = "<group>"; };
@@ -114,13 +114,14 @@
 		02611D921EEA5317009714B8 /* FACES */ = {
 			isa = PBXGroup;
 			children = (
+				94B35BE8205BC4E800963B59 /* DrawOnBanner.swift */,
 				02611D931EEA5317009714B8 /* AppDelegate.swift */,
 				02611D971EEA5317009714B8 /* Main.storyboard */,
 				9417AE16202AF1F5008C11E2 /* 1_DetectionFace_Online */,
 				94765CB42046BA940035C598 /* 2_ApproveImage */,
 				94765CB52046BAE70035C598 /* 3_PositiveOrNegative */,
 				94765CB62046BB350035C598 /* 4_ResultBunner */,
-				94765CB12046B9B70035C598 /* CoreDataModel */,
+				94765CB12046B9B70035C598 /* CoreData */,
 				94CF06C22035809500F8E0E4 /* MicrosoftFaceApi */,
 				94765CBD2046BC3B0035C598 /* Others */,
 				94765CBE2046BCA20035C598 /* SupportFiles */,
@@ -141,13 +142,13 @@
 			path = 1_DetectionFace_Online;
 			sourceTree = "<group>";
 		};
-		94765CB12046B9B70035C598 /* CoreDataModel */ = {
+		94765CB12046B9B70035C598 /* CoreData */ = {
 			isa = PBXGroup;
 			children = (
 				942F49EB203C68FC0020ACF1 /* Person+CoreDataClass.swift */,
 				942F49EA203C68FC0020ACF1 /* Person+CoreDataProperties.swift */,
 			);
-			path = CoreDataModel;
+			path = CoreData;
 			sourceTree = "<group>";
 		};
 		94765CB42046BA940035C598 /* 2_ApproveImage */ = {
@@ -173,7 +174,6 @@
 				94B2592C203AD05800ECEFEE /* ResultViewController.swift */,
 				94765CB92046BBB40035C598 /* TableViewDelegateDatasourse.swift */,
 				94765CB72046BB690035C598 /* FacebookDelegate.swift */,
-				94765CBB2046BC040035C598 /* DrawOnBanner.swift */,
 			);
 			path = 4_ResultBunner;
 			sourceTree = "<group>";
@@ -394,9 +394,9 @@
 				94CF06C4203580D000F8E0E4 /* AppConstans.swift in Sources */,
 				943C95AD204461B4004342C8 /* AJProgressView.swift in Sources */,
 				02611D961EEA5317009714B8 /* ViewController.swift in Sources */,
+				94B35BE9205BC4E800963B59 /* DrawOnBanner.swift in Sources */,
 				9417AE11202AF010008C11E2 /* VideoDataOutput.swift in Sources */,
 				94CF06C6203594ED00F8E0E4 /* FaceApi.swift in Sources */,
-				94765CBC2046BC040035C598 /* DrawOnBanner.swift in Sources */,
 				942F49EC203C68FD0020ACF1 /* Person+CoreDataProperties.swift in Sources */,
 				94B2592D203AD05800ECEFEE /* ResultViewController.swift in Sources */,
 				9464CAC6203B1B7D0071E9B7 /* Persons.xcdatamodeld in Sources */,

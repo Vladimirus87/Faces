@@ -16,6 +16,7 @@ class CheckViewController: UIViewController {
     var imageSent : UIImage?
     //var data = [Person]()
     var negative_Positive: [String: [String]]?
+    var oneFace = false
     
     
     @IBOutlet weak var image: UIImageView!
@@ -62,7 +63,14 @@ class CheckViewController: UIViewController {
     
     
     @IBAction func goToRoot(_ sender: UIButton) {
-        self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        
+        if oneFace {
+            self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
+        } else {
+            self.dismiss(animated: true, completion: nil)
+        }
+        
+        
     }
     
     
@@ -78,6 +86,7 @@ class CheckViewController: UIViewController {
 //            controller.dataArray  = withPositive ? first.positive ?? [""] : first.negative ?? [""]
 //            controller.isPositive = withPositive ? true : false
 //        }
+        
         self.present(controller, animated: true, completion: nil)
     }
     

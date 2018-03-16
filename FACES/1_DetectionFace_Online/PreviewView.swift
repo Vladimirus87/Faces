@@ -21,7 +21,39 @@ class PreviewView: UIView {
     var delegate: ChangesWithDistanceToHead?
     private var maskLayer = [CAShapeLayer]()
     
-    var facebounds: CGRect?
+    
+    var facebounds: CGRect? //{
+        
+//        didSet {
+//
+//            if let new = facebounds {
+//
+//                if lastRects.count > 0 {
+//                    print("new.origin.x", new.origin.x)
+//                    print("lastRects.last!.origin.x", lastRects.last!.origin.x)
+//                    if new.origin.x > lastRects.last!.origin.x + 10 || new.origin.x < lastRects.last!.origin.x + 10,
+//                        new.origin.y > lastRects.last!.origin.y + 10 || new.origin.y < lastRects.last!.origin.y + 10 {
+//
+//                        lastRects.append(new)
+//                    }
+//                }
+//            }
+//        }
+//    }
+    
+    
+    
+//    var lastRects = [CGRect]() {
+//        didSet {
+//
+//            print(lastRects.last)
+//            
+//            if lastRects.count > 10 {
+//                lastRects.remove(at: 0)
+//            }
+//        }
+//    }
+    
     
     
     // MARK: AV capture properties
@@ -41,14 +73,7 @@ class PreviewView: UIView {
         }
     }
     
-    
-//    var color: UIColor = .white {
-//        willSet (newValue) {
-//            if newValue != color {
-//                delegate?.changeColor(toColor: newValue)
-//            }
-//        }
-//    }
+
     
     var imageForButton: UIImage = UIImage(named: "shootWhite")! {
         willSet (newValue) {
@@ -92,7 +117,6 @@ class PreviewView: UIView {
         facebounds = face.boundingBox.applying(translate).applying(transform)
         
         _ = createLayer(in: facebounds!)
-        
         
         if ((facebounds?.width)! < sizeOfFace && (facebounds?.width)! > (sizeOfFace - 100)) && (facebounds?.midY)! > ((UIScreen.main.bounds.height / 2) - permiceForPhoto) && (facebounds?.midY)! < ((UIScreen.main.bounds.height / 2) + permiceForPhoto) {
             
