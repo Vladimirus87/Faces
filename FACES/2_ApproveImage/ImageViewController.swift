@@ -18,13 +18,8 @@ import Vision
 class ImageViewController: UIViewController {
 
     var image: UIImage? = nil
-    lazy var croppedImage = UIImage() // {
-//        didSet {
-//            if croppedImage != nil {
-//
-//            }
-//        }
-//    }
+    lazy var croppedImage = UIImage()
+    
     var tappedView : UIView? {
         
         willSet {
@@ -33,12 +28,16 @@ class ImageViewController: UIViewController {
             } else {
                 newValue?.backgroundColor = .red
             }
-        }
-        didSet {
+        } didSet {
             if oldValue?.backgroundColor == .green {
                 oldValue?.backgroundColor = .red
             } else {
                 oldValue?.backgroundColor = .green
+                if doneIsActive == false {
+                    done.isUserInteractionEnabled = true
+                    done.alpha = 1
+                    doneIsActive = true
+                }
             }
         }
     }
@@ -50,6 +49,7 @@ class ImageViewController: UIViewController {
     var negative_Positive: [String: [String]]?
     var progressView: AJProgressView!
     var oneFace = false
+    var doneIsActive = false
     
     var rects = [UIView]() {
         didSet {
@@ -58,7 +58,14 @@ class ImageViewController: UIViewController {
                 oneFace = true
             } else {
                 tappedView = nil
+            
+                if doneIsActive == true {
+                    done.isUserInteractionEnabled = false
+                    done.alpha = 0.5
+                    doneIsActive = false
+                }
                 oneFace = false
+                
             }
         }
     }
@@ -66,13 +73,15 @@ class ImageViewController: UIViewController {
     
     
     
+    @IBOutlet weak var done: UIButton!
     @IBOutlet weak var mainImage: UIImageView!{
         didSet {
             mainImage.isUserInteractionEnabled = false
         }
     }
     
-    
+//    done.isUserInteractionEnabled = false
+//    done.alpha = 0.5
     
     
     @IBOutlet weak var topBarHeight: NSLayoutConstraint!
@@ -87,8 +96,16 @@ class ImageViewController: UIViewController {
         mainImage.image = image ?? UIImage(named: "smile")
         progressView = AJProgressView()
         
+        
         drowSqares(nil)
     }
+    
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(animated)
+        
+       
+    }
+    
     
     
     

@@ -360,6 +360,7 @@
                     </view>
                     <connections>
                         <outlet property="bottomBarHeight" destination="ftV-33-joW" id="QXH-VI-hhW"/>
+                        <outlet property="done" destination="qYe-OO-3g4" id="hbv-PK-RJH"/>
                         <outlet property="mainImage" destination="fZ1-Wv-g3V" id="QBf-th-1UO"/>
                         <outlet property="topBarHeight" destination="D03-N3-lpk" id="0XK-Lv-xKf"/>
                         <segue destination="zqS-JI-cY3" kind="presentation" identifier="toDetection" id="b7d-sp-oDH"/>

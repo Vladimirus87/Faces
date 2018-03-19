@@ -29,8 +29,11 @@ class FaceAPI: NSObject {
         request.addValue("application/octet-stream", forHTTPHeaderField: "Content-Type")
         
         request.addValue(ApplicationConstants.subscriptionKey, forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
+        // need to show count of bite
+        let pngRepresentation = UIImageJPEGRepresentation(facesPhoto, 0.9)//UIImagePNGRepresentation(facesPhoto)
+       
+        print("__________________",pngRepresentation?.sizeString(), "__________________")
         
-        let pngRepresentation = UIImageJPEGRepresentation(facesPhoto, 0.2)//UIImagePNGRepresentation(facesPhoto)
         
         let task = URLSession.shared.uploadTask(with: request, from: pngRepresentation) { (data, response, error) in
             
