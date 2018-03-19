@@ -26,6 +26,8 @@ extension ViewController {
         NotificationCenter.default.removeObserver(self)
     }
     
+    
+    
     @objc func sessionRuntimeError(_ notification: Notification) {
         guard let errorValue = notification.userInfo?[AVCaptureSessionErrorKey] as? NSError else { return }
         

@@ -13,15 +13,12 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
  
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
         
-        let chosenImage = info[UIImagePickerControllerOriginalImage] as! UIImage
+        guard let chosenImage = info[UIImagePickerControllerOriginalImage] as? UIImage else {return}
 
         self.image = chosenImage
         self.galler = true
-        
-        print(chosenImage.size)
-        
+                
         dismiss(animated:true, completion: {
-            
             self.performSegue(withIdentifier: "toImageVC", sender: self)
         })
     }

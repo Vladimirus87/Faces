@@ -378,15 +378,16 @@ class ViewController: UIViewController {
                 else {return}
             
             if device.hasTorch {
+                
                 do {
                     try device.lockForConfiguration()
-                    
                     device.torchMode = device.torchMode == .off ? .on : .off
-                    
                     device.unlockForConfiguration()
+                    
                 } catch {
                     print("Torch could not be used")
                 }
+                
             } else {
                 print("Torch is not available")
             }
@@ -509,47 +510,33 @@ class ViewController: UIViewController {
         }
     }
     
-    var galler = false
+    var isGalleryImage = false
     
     
-    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-//        if segue.identifier == "toImageVC" {
-//            let destVC = segue.destination as! ImageViewController
-//                let img = imageRotatedByDegrees(im: fixedOrientation(im: self.image!), degrees: self.howManyDegrees())
-//                destVC.image = img
-//                destVC.completion = { [weak self] image in
-//                    self?.image = image
-//            }
-//        }
-        
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {        
        
         if segue.identifier == "toImageVC" {
             let destVC = segue.destination as! ImageViewController
-            let fixOrientation = fixedOrientation(im: self.image!)
             
             var endImage : UIImage? {
                 didSet {
                     destVC.image = endImage
-                    destVC.completion = { [weak self] image in
-                        self?.image = image
-                    }
+//                    destVC.completion = { [weak self] image in
+//                        self?.image = image
+//                    }
                 }
             }
-            if galler {
-                endImage = self.image
+            
+            if isGalleryImage {
+                endImage = self.image!
             } else {
                 DispatchQueue.main.sync {
+                    let fixOrientation = fixedOrientation(im: self.image!)
                     endImage = self.imageRotatedByDegrees(im: fixOrientation, degrees: self.howManyDegrees())
                 }
             }
         }
     }
-    
-    
-    
-    
-    
-    
     
     
     
@@ -570,8 +557,6 @@ class ViewController: UIViewController {
         
         return newImage
     }
-    
-    
     
     
     
@@ -635,9 +620,7 @@ class ViewController: UIViewController {
         
         return UIImage(cgImage: cgImage)
     }
-    
-    
-    
+
 }
 
 

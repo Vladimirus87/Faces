@@ -15,7 +15,6 @@ import Vision
 extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     
-    
     // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate
     func captureOutput(_ output: AVCaptureOutput, didOutput sampleBuffer: CMSampleBuffer, from connection: AVCaptureConnection) {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer),
@@ -50,14 +49,13 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             if let _facebounds = previewView.facebounds {
                 self.newFacebounds = _facebounds
                 
-                DispatchQueue.main.async {
-                    //let rotatedImg = outputImage.rotate(radians: .pi)
-                    self.image = outputImage 
-                }
+                //DispatchQueue.main.async {
+                    self.image = outputImage
+                //}
+                    self.takePhoto = false
+                    self.performSegue(withIdentifier: "toImageVC", sender: self)
                 
-                takePhoto = false
                 
-                self.performSegue(withIdentifier: "toImageVC", sender: self)
                 
             } else {
                 
