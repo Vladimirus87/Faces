@@ -301,7 +301,7 @@
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallLogo" translatesAutoresizingMaskIntoConstraints="NO" id="56L-rQ-WlP">
-                                        <rect key="frame" x="177.33333333333334" y="5" width="60" height="30"/>
+                                        <rect key="frame" x="177.66666666666666" y="5" width="60" height="30"/>
                                         <constraints>
                                             <constraint firstAttribute="height" constant="30" id="ecb-1n-THr"/>
                                             <constraint firstAttribute="width" constant="60" id="uGf-uI-NEa"/>
@@ -435,7 +435,7 @@
                                         <color key="backgroundColor" white="0.33333333333333331" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallLogo" translatesAutoresizingMaskIntoConstraints="NO" id="Wn2-RV-iio">
-                                        <rect key="frame" x="177.33333333333334" y="5.6666666666666679" width="60" height="30.000000000000004"/>
+                                        <rect key="frame" x="177.66666666666666" y="5.6666666666666679" width="60" height="30.000000000000004"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="jYS-GX-fiI"/>
                                             <constraint firstAttribute="height" constant="30" id="tcY-sm-Tgw"/>
@@ -527,7 +527,7 @@
                                         <color key="backgroundColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                     </view>
                                     <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="smallLogo" translatesAutoresizingMaskIntoConstraints="NO" id="g4G-Vp-90w">
-                                        <rect key="frame" x="177.33333333333334" y="5.6666666666666679" width="60" height="30.000000000000004"/>
+                                        <rect key="frame" x="177.66666666666666" y="5.6666666666666679" width="60" height="30.000000000000004"/>
                                         <constraints>
                                             <constraint firstAttribute="width" constant="60" id="WJ1-wF-PNB"/>
                                             <constraint firstAttribute="height" constant="30" id="bWn-Ei-vHg"/>

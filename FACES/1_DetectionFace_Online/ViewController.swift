@@ -93,7 +93,6 @@ class ViewController: UIViewController {
         sessionQueue.async { [unowned self] in
             self.configureSession()
         }
-        
     }
     
     override func viewWillAppear(_ animated: Bool) {
@@ -111,9 +110,9 @@ class ViewController: UIViewController {
                 case .notAuthorized:
                     DispatchQueue.main.async { [unowned self] in
                         let message = NSLocalizedString("AVCamBarcode doesn't have permission to use the camera, please change privacy settings", comment: "Alert message when the user has denied access to the camera")
-                        let    alertController = UIAlertController(title: "AppleFaceDetection", message: message, preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"), style: .cancel, handler: nil))
-                        alertController.addAction(UIAlertAction(title: NSLocalizedString("Settings", comment: "Alert button to open Settings"), style: .`default`, handler: { action in
+                        let alertController = UIAlertController(title: "AppleFaceDetection", message: message, preferredStyle: .alert)
+                        alertController.addAction(UIAlertAction(title: "Ok", style: .cancel, handler: nil))
+                        alertController.addAction(UIAlertAction(title: "Settings", style: .default, handler: { action in
                             UIApplication.shared.open(URL(string: UIApplicationOpenSettingsURLString)!, options: [:], completionHandler: nil)
                         }))
                         
@@ -122,10 +121,9 @@ class ViewController: UIViewController {
                     
                 case .configurationFailed:
                     DispatchQueue.main.async { [unowned self] in
-                        let message = NSLocalizedString("Unable to capture media", comment: "Alert message when something goes wrong during capture session configuration")
+                        let message = "Unable to capture media ration"
                         let alertController = UIAlertController(title: "AppleFaceDetection", message: message, preferredStyle: .alert)
-                        alertController.addAction(UIAlertAction(title: NSLocalizedString("OK", comment: "Alert OK button"), style: .cancel, handler: nil))
-                        
+                        alertController.addAction(UIAlertAction(title: "OK", style: .cancel, handler: nil))
                         self.present(alertController, animated: true, completion: nil)
                         
                     }
@@ -156,9 +154,7 @@ class ViewController: UIViewController {
         
         if let videoPreviewLayerConnection = previewView.videoPreviewLayer.connection {
             let deviceOrientation = UIDevice.current.orientation
-            guard let newVideoOrientation = deviceOrientation.videoOrientation, deviceOrientation.isPortrait || deviceOrientation.isLandscape else {
-                return
-            }
+            guard let newVideoOrientation = deviceOrientation.videoOrientation, deviceOrientation.isPortrait || deviceOrientation.isLandscape else { return }
             
             videoPreviewLayerConnection.videoOrientation = newVideoOrientation
             
@@ -247,6 +243,8 @@ class ViewController: UIViewController {
                         }
                     }
                     self.previewView.videoPreviewLayer.connection!.videoOrientation = initialVideoOrientation
+                    //here1
+                    self.previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
                 }
             } else {
                 print("Could not add video device input to the session")
@@ -311,7 +309,7 @@ class ViewController: UIViewController {
             case top0ColLeft = 1
             case top0ColRight = 2
             case bottom0ColRight = 3
-            case bottom0ColLeft = 4//
+            case bottom0ColLeft = 4
             case left0ColTop = 5
             case right0ColTop = 6
             case right0ColBottom = 7
@@ -320,15 +318,12 @@ class ViewController: UIViewController {
         var exifOrientation: DeviceOrientation
         
         switch UIDevice.current.orientation {
-//        case .portraitUpsideDown:
-//            exifOrientation = .left0ColBottom
+
         case .landscapeLeft:
-            exifOrientation = devicePosition == .front ? .bottom0ColLeft : .top0ColLeft//bottom0ColRight
-        case .landscapeRight:
-            exifOrientation = devicePosition == .front ? .top0ColRight : .bottom0ColRight//top0ColLeft
+            exifOrientation = devicePosition == .front ? .bottom0ColLeft : .top0ColLeft
+            exifOrientation = devicePosition == .front ? .top0ColRight : .bottom0ColRight
         default:
             exifOrientation = devicePosition == .front ? .left0ColTop : .right0ColTop
-            //exifOrientation = .right0ColTop
         }
         
         return exifOrientation.rawValue

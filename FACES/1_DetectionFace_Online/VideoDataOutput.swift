@@ -42,9 +42,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         
         if takePhoto {
         
-            guard let outputImage = getImageFromSampleBuffer(sampleBuffer: sampleBuffer) else { return }
-            print(outputImage.size)
-            
+            guard let outputImage = getImageFromSampleBuffer(sampleBuffer: sampleBuffer) else { return }            
             
             if let _facebounds = previewView.facebounds {
                 self.newFacebounds = _facebounds
@@ -55,13 +53,11 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                     self.takePhoto = false
                     self.performSegue(withIdentifier: "toImageVC", sender: self)
                 
-                
-                
             } else {
                 
                 DispatchQueue.main.async {
                     self.takePhoto = false
-                    self.showHideWarning(willShow: true, withText: "В КАДРЕ НЕТ ЛИЦ")
+                    self.showHideWarning(willShow: true, withText: NSLocalizedString("no persons", comment: ""))//"В КАДРЕ НЕТ ЛИЦ")
                     
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                         self.showHideWarning(willShow: false, withText: nil)

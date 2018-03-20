@@ -292,7 +292,7 @@ class FaceAPI: NSObject {
     ///Get Positive/Negative
     static func getPositive_Negative(id: String, completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
         
-        let url = "http://streams.x.kiev.ua/api_ru.php?id=\(id)"
+        let url = ApplicationConstants.mixoftApiUrl + id
         var request = URLRequest(url: URL(string: url)!)
         request.httpMethod = "GET"
         

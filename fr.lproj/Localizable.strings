@@ -1,0 +1,17 @@
+/* 
+  Localizable.strings
+  Faces
+
+  Created by Владимир Моисеев on 20.03.18.
+  Copyright © 2018 Willjay. All rights reserved.
+*/
+
+
+"no persons" = "ЖамурЛамур";
+
+"positive" = "ПОЗИТИВНЫЕ КАЧЕСТВА";
+"negative" = "НЕГАТИВНЫЕ КАЧЕСТВА";
+
+///URLs
+"mixoftApiUrl" = "http://streams.x.kiev.ua/api_fr.php?id=";
+
