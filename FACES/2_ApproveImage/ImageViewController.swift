@@ -97,7 +97,10 @@ class ImageViewController: UIViewController {
         super.viewDidAppear(animated)
         
         print(#function)
-        drowSqares()
+        
+//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
+            self.drowSqares()
+//        }
     }
     
     
@@ -108,21 +111,12 @@ class ImageViewController: UIViewController {
         let scaledFrame = self.imageFrameAspectFit(imageView: mainImage)
         
         let request = VNDetectFaceRectanglesRequest { (req, err) in
-            
-            
-            
-            
-            
+
             if let err = err {
                 print("Failed to detect faces:", err)
                 return
             }
-            
-            
-            
-            
-
-            
+   
             
             req.results?.forEach ({ (res) in
                 print("(((((((( + )))))))")
@@ -134,7 +128,7 @@ class ImageViewController: UIViewController {
                     
                     let x = scaledFrame.origin.x + (scaledFrame.width * faceObservation.boundingBox.origin.x)
                     
-                    let y = (scaledFrame.height * (1 -  faceObservation.boundingBox.origin.y) - height) + scaledFrame.origin.y //
+                    let y = (scaledFrame.height * (1 -  faceObservation.boundingBox.origin.y) - height) + scaledFrame.origin.y
 
                     
                     let redView = UIView()
