@@ -117,6 +117,7 @@ class ImageViewController: UIViewController {
                 return
             }
    
+            print(req.results?.count)
             
             req.results?.forEach ({ (res) in
                 print("(((((((( + )))))))")
