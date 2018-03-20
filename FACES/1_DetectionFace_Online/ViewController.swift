@@ -244,7 +244,7 @@ class ViewController: UIViewController {
                     }
                     self.previewView.videoPreviewLayer.connection!.videoOrientation = initialVideoOrientation
                     //here1
-                    self.previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
+                    //self.previewView.videoPreviewLayer.videoGravity = AVLayerVideoGravity.resizeAspectFill
                 }
             } else {
                 print("Could not add video device input to the session")
@@ -319,9 +319,8 @@ class ViewController: UIViewController {
         
         switch UIDevice.current.orientation {
 
-        case .landscapeLeft:
-            exifOrientation = devicePosition == .front ? .bottom0ColLeft : .top0ColLeft
-            exifOrientation = devicePosition == .front ? .top0ColRight : .bottom0ColRight
+        case .landscapeLeft: exifOrientation = devicePosition == .front ? .bottom0ColLeft : .top0ColLeft
+        case .landscapeRight: exifOrientation = devicePosition == .front ? .top0ColRight : .bottom0ColRight
         default:
             exifOrientation = devicePosition == .front ? .left0ColTop : .right0ColTop
         }

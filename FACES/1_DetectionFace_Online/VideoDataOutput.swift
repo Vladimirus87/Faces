@@ -21,8 +21,8 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             let exifOrientation = CGImagePropertyOrientation(rawValue: exifOrientationFromDeviceOrientation()) else { return }
         
         
-        //print(self.exifOrientation?.rawValue)
-        //self.exifOrientation = exifOrientation
+//        print(self.exifOrientation?.rawValue)
+//        self.exifOrientation = exifOrientation
         
         var requestOptions: [VNImageOption : Any] = [:]
         
@@ -46,6 +46,8 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             
             if let _facebounds = previewView.facebounds {
                 self.newFacebounds = _facebounds
+                
+                
                 
                 //DispatchQueue.main.async {
                     self.image = outputImage

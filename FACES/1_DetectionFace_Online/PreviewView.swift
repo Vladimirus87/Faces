@@ -96,6 +96,7 @@ class PreviewView: UIView {
         
         let mask = CAShapeLayer()
         mask.frame = rect
+        print(mask.frame)
         mask.cornerRadius = 10
         mask.opacity = 0.75
         mask.borderColor = UIColor.red.cgColor

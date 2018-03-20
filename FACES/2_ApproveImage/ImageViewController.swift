@@ -101,6 +101,8 @@ class ImageViewController: UIViewController {
     
     
     
+    
+    
 
     func convertImageOrientation(orientation: UIImageOrientation) -> CGImagePropertyOrientation  {
         let cgiOrientations : [ CGImagePropertyOrientation ] = [
@@ -243,6 +245,9 @@ class ImageViewController: UIViewController {
         
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
+        
+        
+        
         for subview in view.subviews {
             for squareRect in rects {
                 if squareRect.frame == subview.frame {
@@ -257,6 +262,7 @@ class ImageViewController: UIViewController {
             self.drowSqares()
             
             print("************\(self.imageSizeAspectFit(imgview: self.mainImage))************")
+            
         }
     }
     

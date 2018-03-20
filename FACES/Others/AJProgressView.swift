@@ -50,6 +50,7 @@ class AJProgressView: UIView {
     //MARK: - Private Properties
     //MARK: -
 
+    
     // Pass your image here which will be used for progressView
     public var imgLogo: UIImage = UIImage(named: "smallLogo")!
    
@@ -230,20 +231,20 @@ class AJProgressView: UIView {
     public func show() {
         
         self.setupAJProgressView()
-        UIView.animate(withDuration: 0.3, animations: {() -> Void in
-            self.alpha = 1.0
-            self.startAnimating()
+        UIView.animate(withDuration: 0.3, animations: { [weak self] () -> Void in
+            self?.alpha = 1.0
+            self?.startAnimating()
             
         }, completion: {(finished: Bool) -> Void in })
     }
     
     public func hide() {
         
-        UIView.animate(withDuration: 0.3, animations: {() -> Void in
-            self.alpha = 0.0
-        }, completion: {(finished: Bool) -> Void in
-            self.stopAnimating()
-            self.removeFromSuperview()
+        UIView.animate(withDuration: 0.3, animations: { [weak self] () -> Void in
+            self?.alpha = 0.0
+        }, completion: { [weak self] (finished: Bool) -> Void in
+            self?.stopAnimating()
+            self?.removeFromSuperview()
         })
     }
 }
