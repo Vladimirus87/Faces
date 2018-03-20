@@ -36,7 +36,6 @@ extension ResultViewController {
     func getString(arr: [String]) -> String {
         
         let str = arr.map { (string) in return  "\n \u{2022}" + " " + string }.joined(separator: "")
-        
         return str
     }
 }

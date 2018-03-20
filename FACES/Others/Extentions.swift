@@ -7,6 +7,7 @@
 //
 
 import UIKit
+import Vision
 
 
 extension UIImage {
@@ -176,6 +177,46 @@ extension UIImage {
         
         return newImage
     }
+}
+
+
+
+
+extension UIImage {
+    var ciImage: CIImage? {
+        guard let data = UIImagePNGRepresentation(self) else { return nil }
+        return CIImage(data: data)
+    }
+    
+    // Face Detection with CIDetector
+    var faces: [UIImage] {
+        guard let ciImage = ciImage else { return [] }
+        return (CIDetector(ofType: CIDetectorTypeFace, context: nil, options: [CIDetectorAccuracy: CIDetectorAccuracyHigh])?
+            .features(in: ciImage) as? [CIFaceFeature])?
+            .map {
+                let ciimage = ciImage.cropped(to: $0.bounds)
+                return UIImage(ciImage: ciimage)
+            }  ?? []
+    }
+    
+    // Face Detection with Vision Framework
+    var faces_Vision: [UIImage] {
+        guard let ciImage = ciImage else { return [] }
+        
+        let faceDetectionRequest = VNDetectFaceRectanglesRequest()
+        try! VNImageRequestHandler(ciImage: ciImage).perform([faceDetectionRequest])
+        
+        guard let results = faceDetectionRequest.results as? [VNFaceObservation] else { return [] }
+        
+        return results.map {
+            let translate = CGAffineTransform.identity.scaledBy(x: size.width, y: size.height)
+            let bounds = $0.boundingBox.applying(translate)
+            let ciimage = ciImage.cropped(to: bounds)
+            return UIImage(ciImage: ciimage)
+        }
+    }
+    
+    
 }
 
 

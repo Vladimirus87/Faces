@@ -524,6 +524,7 @@ class ViewController: UIViewController {
             
             if isGalleryImage {
                 endImage = self.image!
+                isGalleryImage = false
             } else {
                 DispatchQueue.main.sync {
                     let fixOrientation = fixedOrientation(im: self.image!)

@@ -43,7 +43,6 @@ class ImageViewController: UIViewController {
     
     
     var completion: ((UIImage?)->())?
-    //var imagesFromFaces: [UIImage]?
     var faceIdBestResult : String?
     var negative_Positive: [String: [String]]?
     var progressView: AJProgressView!
@@ -96,66 +95,73 @@ class ImageViewController: UIViewController {
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
-        print(#function)
-        
-//        DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
             self.drowSqares()
-//        }
     }
     
+    
+    
+    
+
+    func convertImageOrientation(orientation: UIImageOrientation) -> CGImagePropertyOrientation  {
+        let cgiOrientations : [ CGImagePropertyOrientation ] = [
+            .up, .down, .left, .right, .upMirrored, .downMirrored, .leftMirrored, .rightMirrored
+        ]
+
+        return cgiOrientations[orientation.rawValue]
+    }
     
     
     
     func drowSqares() {
 
         let scaledFrame = self.imageFrameAspectFit(imageView: mainImage)
-        
+        print(scaledFrame)
+
         let request = VNDetectFaceRectanglesRequest { (req, err) in
 
             if let err = err {
                 print("Failed to detect faces:", err)
                 return
             }
-   
-            print(req.results?.count)
-            
+
             req.results?.forEach ({ (res) in
                 print("(((((((( + )))))))")
-                
+
                 DispatchQueue.main.async {
                     guard let faceObservation = res as? VNFaceObservation else { return }
-                    
+
                     let height = scaledFrame.height * faceObservation.boundingBox.height
-                    
+
                     let x = scaledFrame.origin.x + (scaledFrame.width * faceObservation.boundingBox.origin.x)
-                    
+
                     let y = (scaledFrame.height * (1 -  faceObservation.boundingBox.origin.y) - height) + scaledFrame.origin.y
 
-                    
+
                     let redView = UIView()
                     redView.backgroundColor = .red
                     redView.alpha = 0.4
-                    
+
                     let rect = CGRect(x: x, y: y, width: height, height: height)
                     redView.frame = rect
-                    
+
                     self.view.addSubview(redView)
-                    
+
                     let gesture = UITapGestureRecognizer(target: self, action: #selector(self.saaa(_:)))
                     redView.addGestureRecognizer(gesture)
                     self.rects.append(redView)
-                    
+
                     print("bbb", faceObservation.boundingBox)
                 }
             })
         }
 
         
-        
+        guard let orientation = self.mainImage.image?.imageOrientation else {return}
+        let convertedOrientation = convertImageOrientation(orientation: orientation)
         guard let cgImage = image?.cgImage else { return }
 
         DispatchQueue.global(qos: .background).async {
-            let handler = VNImageRequestHandler(cgImage: cgImage, options: [:])
+            let handler = VNImageRequestHandler(cgImage: cgImage, orientation: convertedOrientation, options: [:])//(cgImage: cgImage, options: [:])
             do {
                 try handler.perform([request])
             } catch let reqErr {

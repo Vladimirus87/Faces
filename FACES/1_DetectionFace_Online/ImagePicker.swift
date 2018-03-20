@@ -19,11 +19,8 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
         self.isGalleryImage = true
                 
         dismiss(animated:true, completion: {
-            
-            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1, execute: {
-                self.performSegue(withIdentifier: "toImageVC", sender: self)
-            })
-            
+
+            self.performSegue(withIdentifier: "toImageVC", sender: self)
         })
     }
     
