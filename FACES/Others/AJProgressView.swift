@@ -9,43 +9,14 @@
 import UIKit
 
 class AJProgressView: UIView {
-    
-    //MARK: - DeviceType and ScreenSize
-    //MARK: -
 
-//    struct ScreenSize  {
-//        static let Width         = UIScreen.main.bounds.size.width
-//        static let Height        = UIScreen.main.bounds.size.height
-//        static let Max_Length    = max(ScreenSize.Width, ScreenSize.Height)
-//        static let Min_Length    = min(ScreenSize.Width, ScreenSize.Height)
-//    }
-
-//    struct DeviceType {
-//        static let iPhone4  = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length < 568.0
-//        static let iPhone5_5s  = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 568.0
-//        static let iPhone6_6s_7 = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 667.0
-//        static let iPhone6P_6sP_7P = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 736.0
-//        static let iPhoneX = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 812.0
-//        static let iPad = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.Max_Length == 1024.0
-//    }
     
     //MARK: - Private Properties
     //MARK: -
   
     private var objProgressView = UIView()
     private var shapeLayer = CAShapeLayer()
-//    private var widthProgressView : CGFloat {
-//
-//        var width = CGFloat()
-//        if DeviceType.iPhone4 || DeviceType.iPhone5_5s{
-//            width = ScreenSize.Min_Length*0.2
-//        }else if DeviceType.iPhone6_6s_7 || DeviceType.iPhone6P_6sP_7P || DeviceType.iPhoneX{
-//            width = ScreenSize.Min_Length*0.25
-//        }else if DeviceType.iPad{
-//            width = ScreenSize.Min_Length*0.15
-//        }
-//        return width
-//    }
+
     
     //MARK: - Private Properties
     //MARK: -
@@ -82,7 +53,6 @@ class AJProgressView: UIView {
         
         if (appDelegate.window?.subviews.contains(objProgressView))! {
             appDelegate.window?.bringSubview(toFront:objProgressView)
-            print("already there")
         }else{
             appDelegate.window?.addSubview(objProgressView)
             appDelegate.window?.bringSubview(toFront: objProgressView)
@@ -92,10 +62,9 @@ class AJProgressView: UIView {
         objProgressView.layer.zPosition = 1
 
         self.backgroundColor = bgColor
-        //self.frame = tempFrame ?? UIScreen.main.bounds
 
         let innerView = UIView()
-        innerView.frame = tempFrame ?? CGRect.zero//CGRect(x: (ScreenSize.Width - widthProgressView)/2, y: (ScreenSize.Height - widthProgressView)/2, width: widthProgressView, height: widthProgressView)
+        innerView.frame = tempFrame ?? CGRect.zero
         innerView.backgroundColor = UIColor.clear
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = firstColor?.cgColor

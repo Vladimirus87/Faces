@@ -19,9 +19,7 @@ class ViewController: UIViewController {
     var takePhoto = false
     var image: UIImage? = nil
     var exifOrientation: CGImagePropertyOrientation?
-    var newFacebounds = CGRect.zero {
-        didSet { print("newFacebounds - \(newFacebounds)") }
-    }
+    var newFacebounds = CGRect.zero
     
     
     
@@ -173,23 +171,16 @@ class ViewController: UIViewController {
     }
     
     var imagePicker = UIImagePickerController()
-    
     var devicePosition: AVCaptureDevice.Position = .back
-    
     var flashMode = AVCaptureDevice.FlashMode.off
-    
     let session = AVCaptureSession()
     var isSessionRunning = false
-    
-    let sessionQueue = DispatchQueue(label: "session queue", attributes: [], target: nil) // Communicate with the session and other session objects on this queue.
-    
+    var isGalleryImage = false
+    let sessionQueue = DispatchQueue(label: "session queue", attributes: [], target: nil)
     var setupResult: SessionSetupResult = .success
-    
     var videoDeviceInput:   AVCaptureDeviceInput!
-    
     var videoDataOutput:    AVCaptureVideoDataOutput!
     var videoDataOutputQueue = DispatchQueue(label: "VideoDataOutputQueue")
-    
     
     
     var requests = [VNRequest]()
@@ -332,9 +323,7 @@ class ViewController: UIViewController {
     
     
     @IBAction func Shoot(_ sender: UIButton) {
-        
         takePhoto = true
-
     }
     
     
@@ -350,7 +339,6 @@ class ViewController: UIViewController {
         self.removeObservers()
         
         if UIImagePickerController.isSourceTypeAvailable(.savedPhotosAlbum){
-            print("Button capture")
             
             imagePicker.delegate = self
             imagePicker.sourceType = .savedPhotosAlbum;
@@ -410,14 +398,12 @@ class ViewController: UIViewController {
     func showHideWarning(willShow: Bool, withText: String?) {
         
         if willShow {
-            
             self.warningView.isHidden = false
             self.manyFacesWarning.text = withText ?? ""
             self.shoot.isEnabled = false
             self.shoot.alpha = 0.5
             
         } else {
-            
             self.warningView.isHidden = true
             self.shoot.isEnabled = true
             self.shoot.alpha = 1
@@ -452,27 +438,10 @@ class ViewController: UIViewController {
     func handleFaces(request: VNRequest, error: Error?) {
         
         DispatchQueue.main.async {
-            //perform all the UI updates on the main queue
             guard let results = request.results as? [VNFaceObservation] else { return }
             self.previewView.removeMask()
             for face in results {
                 self.previewView.drawFaceboundingBox(face: face)
-                
-                ///если больше одного лица можно вызвать Alert
-//                if results.count > 1 {
-//
-//                    if self.isManyFaces == false {
-//                        self.showHideWarning(willShow: true, withText: "НЕ БОЛЕЕ ОДНОГО ЛИЦА")
-//                        self.isManyFaces = true
-//                    }
-//
-//                } else {
-//
-//                    if self.isManyFaces {
-//                        self.showHideWarning(willShow: false, withText: nil)
-//                        self.isManyFaces = false
-//                    }
-//                }
             }
         }
     }
@@ -504,7 +473,7 @@ class ViewController: UIViewController {
         }
     }
     
-    var isGalleryImage = false
+    
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {        
@@ -515,9 +484,6 @@ class ViewController: UIViewController {
             var endImage : UIImage? {
                 didSet {
                     destVC.image = endImage
-//                    destVC.completion = { [weak self] image in
-//                        self?.image = image
-//                    }
                 }
             }
             
@@ -615,7 +581,6 @@ class ViewController: UIViewController {
         
         return UIImage(cgImage: cgImage)
     }
-
 }
 
 
@@ -623,11 +588,9 @@ class ViewController: UIViewController {
 
 
 extension ViewController: ChangesWithDistanceToHead {
-
-
+    
     func changeImage(to: UIImage) {
         shoot.imageView?.image = to
-        print(to)
     }
 
 }

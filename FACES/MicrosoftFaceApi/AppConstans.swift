@@ -7,11 +7,6 @@
 //
 
 
-//old constants
-//    "48de3b2fb4514f14a2aaa5129e313f80"
-//    "https://westcentralus.api.cognitive.microsoft.com/face/v1.0"
-
-
 import Foundation
 
 struct ApplicationConstants {

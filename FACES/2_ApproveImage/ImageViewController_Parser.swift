@@ -11,9 +11,9 @@ import UIKit
 
 extension ImageViewController {
     
+    
     //scan many faces
     func parseManyFacesDetectSuccess(data: Data?) -> [Face]?  {
-        
         
         do {
             let json = try JSONSerialization.jsonObject(with: data!, options:.allowFragments)
@@ -42,7 +42,6 @@ extension ImageViewController {
         } catch {
             print(error.localizedDescription)
         }
-        
         return nil
     }
     
@@ -61,7 +60,7 @@ extension ImageViewController {
                     
                     guard let faceId = object[0]["faceId"] as? String else { return }
                     
-                    FaceAPI.findSimilar(faceId: faceId, faceListId: "777"/*UserDefaults.standard.string(forKey: "FileListName")!*/, completion: { (data, response, error) in
+                    FaceAPI.findSimilar(faceId: faceId, faceListId: "777", completion: { (data, response, error) in
                         
                         if error != nil {
                             self.errorAlert()
@@ -100,22 +99,6 @@ extension ImageViewController {
                     dict = dictionary
                 }
                 
-                
-                
-                    
-//                    guard let faceId = face["faceId"] as? String else { return nil }
-//                    
-//                    if let faceRectangle = face["faceRectangle"] as? [String : Int]? {
-//                        
-//                        guard let height = faceRectangle?["height"],
-//                            let left = faceRectangle?["left"],
-//                            let top = faceRectangle?["top"],
-//                            let width = faceRectangle?["width"] else { return nil }
-//                        
-//                        let jsFace = Face(faceId: faceId, height: height, width: width, top: top, left: left)
-//                        faces.append(jsFace)
-//                    }
-                
                 return dict
             }
             
@@ -141,21 +124,14 @@ extension ImageViewController {
                         guard let key = temp["persistedFaceId"] as? String,
                             let value = temp["confidence"] as? Double else { return }
                         dict[key] = value
-                        //print("\(key) --> \(value)")
                     }
                 }
                 
                 
                 DispatchQueue.main.async {
-                //DispatchQueue.global(qos: .userInitiated).async {
                     if let maxSimilar = dict.sortedByValue.last {
-                        //self.faceIdBestResult = maxSimilar.0
-                        //self.performSegue(withIdentifier: "toDetection", sender: self)
-                        
                         FaceAPI.getPositive_Negative(id: maxSimilar.0, completion: { (data, response, error) in
-                            
                             if data != nil {
-                                
                                 self.progress.hide()
                                 self.negative_Positive = self.parseMixoft(data: data)
                                 self.performSegue(withIdentifier: "toDetection", sender: self)

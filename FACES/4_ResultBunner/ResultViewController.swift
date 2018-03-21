@@ -31,7 +31,6 @@ class ResultViewController: UIViewController, UIDocumentInteractionControllerDel
         bottomBarHeight.constant = LayHelper.shared.bottomBarHeight
         tableView.delegate = self
         tableView.dataSource = self
-        
         titleOfResult.text = titleText ?? ""
     }
     

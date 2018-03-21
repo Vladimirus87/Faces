@@ -22,39 +22,7 @@ class PreviewView: UIView {
     private var maskLayer = [CAShapeLayer]()
     
     
-    var facebounds: CGRect? //{
-        
-//        didSet {
-//
-//            if let new = facebounds {
-//
-//                if lastRects.count > 0 {
-//                    print("new.origin.x", new.origin.x)
-//                    print("lastRects.last!.origin.x", lastRects.last!.origin.x)
-//                    if new.origin.x > lastRects.last!.origin.x + 10 || new.origin.x < lastRects.last!.origin.x + 10,
-//                        new.origin.y > lastRects.last!.origin.y + 10 || new.origin.y < lastRects.last!.origin.y + 10 {
-//
-//                        lastRects.append(new)
-//                    }
-//                }
-//            }
-//        }
-//    }
-    
-    
-    
-//    var lastRects = [CGRect]() {
-//        didSet {
-//
-//            print(lastRects.last)
-//            
-//            if lastRects.count > 10 {
-//                lastRects.remove(at: 0)
-//            }
-//        }
-//    }
-    
-    
+    var facebounds: CGRect?
     
     // MARK: AV capture properties
     var videoPreviewLayer: AVCaptureVideoPreviewLayer {
@@ -113,9 +81,7 @@ class PreviewView: UIView {
         let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -frame.height)
         let translate = CGAffineTransform.identity.scaledBy(x: frame.width, y: frame.height)
         
-        // The coordinates are normalized to the dimensions of the processed image, with the origin at the image's lower-left corner.
         facebounds = face.boundingBox.applying(translate).applying(transform)
-        
         _ = createLayer(in: facebounds!)
         
         if ((facebounds?.width)! < sizeOfFace && (facebounds?.width)! > (sizeOfFace - 100)) && (facebounds?.midY)! > ((UIScreen.main.bounds.height / 2) - permiceForPhoto) && (facebounds?.midY)! < ((UIScreen.main.bounds.height / 2) + permiceForPhoto) {

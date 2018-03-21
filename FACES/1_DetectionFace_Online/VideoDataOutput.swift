@@ -20,10 +20,6 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
         guard let pixelBuffer = CMSampleBufferGetImageBuffer(sampleBuffer),
             let exifOrientation = CGImagePropertyOrientation(rawValue: exifOrientationFromDeviceOrientation()) else { return }
         
-        
-//        print(self.exifOrientation?.rawValue)
-//        self.exifOrientation = exifOrientation
-        
         var requestOptions: [VNImageOption : Any] = [:]
         
         if let cameraIntrinsicData = CMGetAttachment(sampleBuffer, kCMSampleBufferAttachmentKey_CameraIntrinsicMatrix, nil) {
@@ -47,11 +43,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
             if let _facebounds = previewView.facebounds {
                 self.newFacebounds = _facebounds
                 
-                
-                
-                //DispatchQueue.main.async {
                     self.image = outputImage
-                //}
                     self.takePhoto = false
                     self.performSegue(withIdentifier: "toImageVC", sender: self)
                 
@@ -59,7 +51,7 @@ extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
                 
                 DispatchQueue.main.async {
                     self.takePhoto = false
-                    self.showHideWarning(willShow: true, withText: NSLocalizedString("no persons", comment: ""))//"В КАДРЕ НЕТ ЛИЦ")
+                    self.showHideWarning(willShow: true, withText: NSLocalizedString("no persons", comment: ""))
                     
                     DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 1) {
                         self.showHideWarning(willShow: false, withText: nil)

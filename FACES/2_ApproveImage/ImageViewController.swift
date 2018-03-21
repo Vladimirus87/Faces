@@ -7,7 +7,7 @@
 //
 
 import UIKit
-//import FaceCropper
+
 import CoreData
 import Vision
 
@@ -18,6 +18,21 @@ import Vision
 class ImageViewController: UIViewController {
 
     var image: UIImage? = nil
+    var completion: ((UIImage?)->())?
+    var faceIdBestResult : String?
+    var negative_Positive: [String: [String]]?
+    var oneFace = false
+    var doneIsActive = false
+    
+
+    @IBOutlet weak var topBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var bottomBarHeight: NSLayoutConstraint!
+    @IBOutlet weak var done: UIButton!
+    @IBOutlet weak var mainImage: UIImageView!{
+        didSet {
+            mainImage.isUserInteractionEnabled = false
+        }
+    }
     
     var tappedView : UIView? {
         
@@ -41,19 +56,6 @@ class ImageViewController: UIViewController {
         }
     }
     
-    
-    var completion: ((UIImage?)->())?
-    var faceIdBestResult : String?
-    var negative_Positive: [String: [String]]?
-    var progress: AJProgressView!{
-        didSet{
-            progress.tempFrame = CGRect(x: view.frame.size.width / 2 - 50, y: view.frame.size.height / 2 - 50, width: 100, height: 100)
-        }
-    }
-    
-    var oneFace = false
-    var doneIsActive = false
-    
     var rects = [UIView]() {
         didSet {
             if rects.count == 1 {
@@ -61,7 +63,7 @@ class ImageViewController: UIViewController {
                 oneFace = true
             } else {
                 tappedView = nil
-            
+                
                 if doneIsActive == true {
                     done.isUserInteractionEnabled = false
                     done.alpha = 0.5
@@ -73,13 +75,10 @@ class ImageViewController: UIViewController {
     }
     
     
-
-    @IBOutlet weak var topBarHeight: NSLayoutConstraint!
-    @IBOutlet weak var bottomBarHeight: NSLayoutConstraint!
-    @IBOutlet weak var done: UIButton!
-    @IBOutlet weak var mainImage: UIImageView!{
-        didSet {
-            mainImage.isUserInteractionEnabled = false
+    
+    var progress: AJProgressView!{
+        didSet{
+            progress.tempFrame = CGRect(x: view.frame.size.width / 2 - 50, y: view.frame.size.height / 2 - 50, width: 100, height: 100)
         }
     }
     
@@ -91,97 +90,23 @@ class ImageViewController: UIViewController {
         bottomBarHeight.constant = LayHelper.shared.bottomBarHeight
         mainImage.image = image ?? UIImage(named: "smile")
         progress = AJProgressView(frame: view.frame)
-        
-//      drowSqares(nil)
     }
+    
     
     
     override func viewDidAppear(_ animated: Bool) {
         super.viewDidAppear(animated)
         
+        DispatchQueue.main.async {
             self.drowSqares()
-    }
-    
-    
-    
-    
-    
-    
-
-    func convertImageOrientation(orientation: UIImageOrientation) -> CGImagePropertyOrientation  {
-        let cgiOrientations : [ CGImagePropertyOrientation ] = [
-            .up, .down, .left, .right, .upMirrored, .downMirrored, .leftMirrored, .rightMirrored
-        ]
-
-        return cgiOrientations[orientation.rawValue]
-    }
-    
-    
-    
-    func drowSqares() {
-
-        let scaledFrame = self.imageFrameAspectFit(imageView: mainImage)
-        print(scaledFrame)
-
-        let request = VNDetectFaceRectanglesRequest { (req, err) in
-
-            if let err = err {
-                print("Failed to detect faces:", err)
-                return
-            }
-
-            req.results?.forEach ({ (res) in
-                print("(((((((( + )))))))")
-
-                DispatchQueue.main.async {
-                    guard let faceObservation = res as? VNFaceObservation else { return }
-
-                    let height = scaledFrame.height * faceObservation.boundingBox.height
-
-                    let x = scaledFrame.origin.x + (scaledFrame.width * faceObservation.boundingBox.origin.x)
-
-                    let y = (scaledFrame.height * (1 -  faceObservation.boundingBox.origin.y) - height) + scaledFrame.origin.y
-
-
-                    let redView = UIView()
-                    redView.backgroundColor = .red
-                    redView.alpha = 0.4
-
-                    let rect = CGRect(x: x, y: y, width: height, height: height)
-                    redView.frame = rect
-
-                    self.view.addSubview(redView)
-
-                    let gesture = UITapGestureRecognizer(target: self, action: #selector(self.saaa(_:)))
-                    redView.addGestureRecognizer(gesture)
-                    self.rects.append(redView)
-
-                    print("bbb", faceObservation.boundingBox)
-                }
-            })
-        }
-
-        
-        guard let orientation = self.mainImage.image?.imageOrientation else {return}
-        let convertedOrientation = convertImageOrientation(orientation: orientation)
-        guard let cgImage = image?.cgImage else { return }
-
-        DispatchQueue.global(qos: .background).async {
-            let handler = VNImageRequestHandler(cgImage: cgImage, orientation: convertedOrientation, options: [:])//(cgImage: cgImage, options: [:])
-            do {
-                try handler.perform([request])
-            } catch let reqErr {
-                print("Failed to perform request:", reqErr)
-            }
         }
     }
     
     
     
-    @objc func saaa(_ tap: UITapGestureRecognizer) {
-        
-        tappedView = tap.view!
-    }
+   
+    
+    
     
     
     
@@ -203,54 +128,10 @@ class ImageViewController: UIViewController {
     }
     
     
-    /// Возвращает ревльный размер картинки
-    func imageSizeAspectFit(imgview: UIImageView) -> CGSize {
-        var newwidth: CGFloat
-        var newheight: CGFloat
-        let image: UIImage = imgview.image!
-        
-        if image.size.height >= image.size.width {
-            newheight = imgview.frame.size.height;
-            newwidth = (image.size.width / image.size.height) * newheight
-            
-            if newwidth > imgview.frame.size.width {
-                let diff: CGFloat = imgview.frame.size.width - newwidth
-                newheight = newheight + diff / newheight * newheight
-                newwidth = imgview.frame.size.width
-            }
-        
-        } else {
-            
-            newwidth = imgview.frame.size.width
-            newheight = (image.size.height / image.size.width) * newwidth
-            
-            if newheight > imgview.frame.size.height {
-                let diff: CGFloat = imgview.frame.size.height - newheight
-                newwidth = newwidth + diff / newwidth * newwidth
-                newheight = imgview.frame.size.height
-            }
-        }
-
-        return CGSize(width: newwidth, height: newheight)
-    }
-    
-    
-    ///Возвращает ревльный фрейм картинки
-    func imageFrameAspectFit(imageView: UIImageView) -> CGRect {
-        
-        let size = imageSizeAspectFit(imgview: imageView)
-        let point = CGPoint(x: (UIScreen.main.bounds.width - size.width) / 2, y: (UIScreen.main.bounds.height - size.height) / 2)
-        
-        return CGRect(origin: point, size: size)
-    }
-    
     
   
         
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
-        
-        //progressView.viewG?.frame = CGRect(x: size.width / 2 - 50, y: size.height / 2 - 50, width: 100, height: 100)
-//        progress.updateConstraints()
         
         for subview in view.subviews {
             for squareRect in rects {
@@ -264,9 +145,6 @@ class ImageViewController: UIViewController {
             self.rects = []
             self.tappedView = nil
             self.drowSqares()
-            
-            print("************\(self.imageSizeAspectFit(imgview: self.mainImage))************")
-            
         }
     }
     
@@ -289,14 +167,13 @@ class ImageViewController: UIViewController {
     
     
     @IBAction func Detect(_ sender: UIButton) {
-        //progress = AJProgressView()
+
         progress.show()
+        
         guard let cropped = getImage(from: mainImage, in: tappedView?.frame ?? mainImage.frame).1 else {
             progress.hide()
             return
         }
-        
-        
         
         FaceAPI.detectFaces(facesPhoto: UIImage(cgImage: cropped)) { (data, response, error)  in
             

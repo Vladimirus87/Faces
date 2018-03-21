@@ -43,56 +43,11 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
         
         
         TWTRTwitter.sharedInstance().start(withConsumerKey:"sKRPTlhnCc1nFhrfcxHhW3Szn", consumerSecret:"86rsCUUfm7m8Xnjdm8SfnFnduPDLLVcB1z44cTYN3P310MoCxQ")
-        
-//        if isNewLevel {
-//            isNewLevel = false
-//
-//            let pswdChars = Array("abcdefghijklmnopqrstuvwxyz")
-//            let rndPswd = String((0..<8).map{ _ in pswdChars[Int(arc4random_uniform(UInt32(pswdChars.count)))]})
-//            UserDefaults.standard.set(rndPswd, forKey: "FileListName")
-//            print("rndPswd - *\(rndPswd)*")
-//            FaceAPI.createFaceList(withName: rndPswd) { (a) in
-//                print(a ?? "no JSONDictionary")
-//            }
-//
-//            DispatchQueue.main.asyncAfter(deadline: DispatchTime.now() + 2) {
-//                self.saveToAll(arrPersons: myTempData, fileList: rndPswd)
-//            }
-//        }
 
         return true
     }
     
-    
-    
-//    func saveToAll(arrPersons: [PersonModel], fileList: String) {
-//
-//
-//        for per in arrPersons {
-//
-//            FaceAPI.addFaceToFaceList(image: per.image, toFileList: fileList) { (id) in
-//
-//                if let idForData = id {
-//                    DispatchQueue.main.async {
-//                        print("image - \(per.image.description)")
-//
-//                        let pers = Person()
-//                        pers.id = idForData
-//                        pers.positive = per.positive
-//                        pers.negative = per.negative
-//
-//                        do {
-//                            try self.persistentContainer.viewContext.save()
-//                            print("saved")
-//                        } catch {
-//                            print("error")
-//                        }
-//                    }
-//                }
-//            }
-//        }
-//    
-//    }
+
     
     
     
