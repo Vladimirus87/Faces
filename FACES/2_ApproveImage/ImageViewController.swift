@@ -45,7 +45,12 @@ class ImageViewController: UIViewController {
     var completion: ((UIImage?)->())?
     var faceIdBestResult : String?
     var negative_Positive: [String: [String]]?
-    var progressView: AJProgressView!
+    var progress: AJProgressView!{
+        didSet{
+            progress.tempFrame = CGRect(x: view.frame.size.width / 2 - 50, y: view.frame.size.height / 2 - 50, width: 100, height: 100)
+        }
+    }
+    
     var oneFace = false
     var doneIsActive = false
     
@@ -63,7 +68,6 @@ class ImageViewController: UIViewController {
                     doneIsActive = false
                 }
                 oneFace = false
-                
             }
         }
     }
@@ -86,9 +90,9 @@ class ImageViewController: UIViewController {
         topBarHeight.constant = LayHelper.shared.topHeight
         bottomBarHeight.constant = LayHelper.shared.bottomBarHeight
         mainImage.image = image ?? UIImage(named: "smile")
-        progressView = AJProgressView()
+        progress = AJProgressView(frame: view.frame)
         
-//        drowSqares(nil)
+//      drowSqares(nil)
     }
     
     
@@ -245,8 +249,8 @@ class ImageViewController: UIViewController {
         
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
-        
-        
+        //progressView.viewG?.frame = CGRect(x: size.width / 2 - 50, y: size.height / 2 - 50, width: 100, height: 100)
+//        progress.updateConstraints()
         
         for subview in view.subviews {
             for squareRect in rects {
@@ -285,11 +289,10 @@ class ImageViewController: UIViewController {
     
     
     @IBAction func Detect(_ sender: UIButton) {
-        
-        progressView.show()
-        
+        //progress = AJProgressView()
+        progress.show()
         guard let cropped = getImage(from: mainImage, in: tappedView?.frame ?? mainImage.frame).1 else {
-            progressView.hide()
+            progress.hide()
             return
         }
         
@@ -322,9 +325,7 @@ class ImageViewController: UIViewController {
         completion?(nil)
         self.dismiss(animated: true, completion: nil)
     }
-    
-
-    
+ 
 }
 
 

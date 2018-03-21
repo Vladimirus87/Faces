@@ -13,46 +13,46 @@ class AJProgressView: UIView {
     //MARK: - DeviceType and ScreenSize
     //MARK: -
 
-    struct ScreenSize  {
-        static let Width         = UIScreen.main.bounds.size.width
-        static let Height        = UIScreen.main.bounds.size.height
-        static let Max_Length    = max(ScreenSize.Width, ScreenSize.Height)
-        static let Min_Length    = min(ScreenSize.Width, ScreenSize.Height)
-    }
+//    struct ScreenSize  {
+//        static let Width         = UIScreen.main.bounds.size.width
+//        static let Height        = UIScreen.main.bounds.size.height
+//        static let Max_Length    = max(ScreenSize.Width, ScreenSize.Height)
+//        static let Min_Length    = min(ScreenSize.Width, ScreenSize.Height)
+//    }
 
-    struct DeviceType {
-        static let iPhone4  = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length < 568.0
-        static let iPhone5_5s  = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 568.0
-        static let iPhone6_6s_7 = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 667.0
-        static let iPhone6P_6sP_7P = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 736.0
-        static let iPhoneX = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 812.0
-        static let iPad = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.Max_Length == 1024.0
-    }
+//    struct DeviceType {
+//        static let iPhone4  = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length < 568.0
+//        static let iPhone5_5s  = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 568.0
+//        static let iPhone6_6s_7 = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 667.0
+//        static let iPhone6P_6sP_7P = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 736.0
+//        static let iPhoneX = UIDevice.current.userInterfaceIdiom == .phone && ScreenSize.Max_Length == 812.0
+//        static let iPad = UIDevice.current.userInterfaceIdiom == .pad && ScreenSize.Max_Length == 1024.0
+//    }
     
     //MARK: - Private Properties
     //MARK: -
   
     private var objProgressView = UIView()
     private var shapeLayer = CAShapeLayer()
-    private var widthProgressView : CGFloat {
-        
-        var width = CGFloat()
-        if DeviceType.iPhone4 || DeviceType.iPhone5_5s{
-            width = ScreenSize.Min_Length*0.2
-        }else if DeviceType.iPhone6_6s_7 || DeviceType.iPhone6P_6sP_7P || DeviceType.iPhoneX{
-            width = ScreenSize.Min_Length*0.25
-        }else if DeviceType.iPad{
-            width = ScreenSize.Min_Length*0.15
-        }
-        return width
-    }
+//    private var widthProgressView : CGFloat {
+//
+//        var width = CGFloat()
+//        if DeviceType.iPhone4 || DeviceType.iPhone5_5s{
+//            width = ScreenSize.Min_Length*0.2
+//        }else if DeviceType.iPhone6_6s_7 || DeviceType.iPhone6P_6sP_7P || DeviceType.iPhoneX{
+//            width = ScreenSize.Min_Length*0.25
+//        }else if DeviceType.iPad{
+//            width = ScreenSize.Min_Length*0.15
+//        }
+//        return width
+//    }
     
     //MARK: - Private Properties
     //MARK: -
 
-    
+    public var tempFrame: CGRect?
     // Pass your image here which will be used for progressView
-    public var imgLogo: UIImage = UIImage(named: "smallLogo")!
+    public var imgLogo: UIImage = UIImage(named:"smallLogo")!
    
     // Pass your color here which will be used as layer color
     public var firstColor: UIColor? = #colorLiteral(red: 0.7123540044, green: 0.1004048362, blue: 0.1138514802, alpha: 1)
@@ -88,14 +88,14 @@ class AJProgressView: UIView {
             appDelegate.window?.bringSubview(toFront: objProgressView)
         }
         objProgressView.backgroundColor = bgColor
-        objProgressView.frame = UIScreen.main.bounds
+        objProgressView.frame = tempFrame ?? UIScreen.main.bounds
         objProgressView.layer.zPosition = 1
 
         self.backgroundColor = bgColor
-        self.frame = UIScreen.main.bounds
+        //self.frame = tempFrame ?? UIScreen.main.bounds
 
         let innerView = UIView()
-        innerView.frame = CGRect(x: (ScreenSize.Width - widthProgressView)/2, y: (ScreenSize.Height - widthProgressView)/2, width: widthProgressView, height: widthProgressView)
+        innerView.frame = tempFrame ?? CGRect.zero//CGRect(x: (ScreenSize.Width - widthProgressView)/2, y: (ScreenSize.Height - widthProgressView)/2, width: widthProgressView, height: widthProgressView)
         innerView.backgroundColor = UIColor.clear
         shapeLayer.fillColor = UIColor.clear.cgColor
         shapeLayer.strokeColor = firstColor?.cgColor
@@ -116,7 +116,7 @@ class AJProgressView: UIView {
         imgViewLogo.contentMode = .scaleAspectFit
         imgViewLogo.backgroundColor = UIColor.clear
         imgViewLogo.clipsToBounds = true
-        imgViewLogo.frame = CGRect(x: 0, y: 0, width: widthProgressView * 0.6, height: widthProgressView * 0.6)
+        imgViewLogo.frame = CGRect(x: 0, y: 0, width: 50, height: 50)
         self.addSubview(imgViewLogo)
         
         imgViewLogo.center = innerView.center
@@ -231,20 +231,20 @@ class AJProgressView: UIView {
     public func show() {
         
         self.setupAJProgressView()
-        UIView.animate(withDuration: 0.3, animations: { [weak self] () -> Void in
-            self?.alpha = 1.0
-            self?.startAnimating()
+        UIView.animate(withDuration: 0.3, animations: {() -> Void in
+            self.alpha = 1.0
+            self.startAnimating()
             
         }, completion: {(finished: Bool) -> Void in })
     }
     
     public func hide() {
         
-        UIView.animate(withDuration: 0.3, animations: { [weak self] () -> Void in
-            self?.alpha = 0.0
-        }, completion: { [weak self] (finished: Bool) -> Void in
-            self?.stopAnimating()
-            self?.removeFromSuperview()
+        UIView.animate(withDuration: 0.3, animations: {() -> Void in
+            self.alpha = 0.0
+        }, completion: {(finished: Bool) -> Void in
+            self.stopAnimating()
+            self.removeFromSuperview()
         })
     }
 }

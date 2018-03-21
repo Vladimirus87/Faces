@@ -152,13 +152,13 @@ extension ImageViewController {
                         //self.faceIdBestResult = maxSimilar.0
                         //self.performSegue(withIdentifier: "toDetection", sender: self)
                         
-                        FaceAPI.getPositive_Negative(id: maxSimilar.0, completion: {  [weak self] (data, response, error) in
+                        FaceAPI.getPositive_Negative(id: maxSimilar.0, completion: { (data, response, error) in
                             
                             if data != nil {
                                 
-                                self?.progressView.hide()
-                                self?.negative_Positive = self?.parseMixoft(data: data)
-                                self?.performSegue(withIdentifier: "toDetection", sender: self)
+                                self.progress.hide()
+                                self.negative_Positive = self.parseMixoft(data: data)
+                                self.performSegue(withIdentifier: "toDetection", sender: self)
                             } else {
                                 print("Возникли проблемы с получением Позитивных/Негативных качеств")
                             }
@@ -191,7 +191,7 @@ extension ImageViewController {
                         })
                         alert.addAction(ok)
                         self.present(alert, animated: true, completion: {
-                            self.progressView.hide()
+                            self.progress.hide()
                         })
                         
                     } else if let key = dict["statusCode"], let value = dict["message"] {
@@ -200,9 +200,9 @@ extension ImageViewController {
                             self.view.window?.rootViewController?.dismiss(animated: true, completion: nil)
                         })
                         alert.addAction(ok)
-                        self.progressView.hide()
+                        self.progress.hide()
                         self.present(alert, animated: true, completion: {
-                            self.progressView.hide()
+                            self.progress.hide()
                         })
                     }
                 }
@@ -223,7 +223,7 @@ extension ImageViewController {
         })
         alert.addAction(ok)
         self.present(alert, animated: true, completion: {
-            self.progressView.hide()
+            self.progress.hide()
         })
     }
     
@@ -236,7 +236,7 @@ extension ImageViewController {
         })
         alert.addAction(ok)
         self.present(alert, animated: true, completion: { 
-            self.progressView.hide()
+            self.progress.hide()
         })
     }
     
