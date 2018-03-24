@@ -17,7 +17,7 @@ import Alamofire
 class FaceAPI: NSObject {
     
 
-    /// Detect faces
+    // detect faces
     static func detectFaces(facesPhoto: UIImage, completion: @escaping (Data?, Int?, Error?) -> Void) {
         
         let url = "\(ApplicationConstants.location)/detect?returnFaceId=true&returnFaceLandmarks=false"
@@ -27,24 +27,18 @@ class FaceAPI: NSObject {
         request.addValue(ApplicationConstants.subscriptionKey, forHTTPHeaderField: "Ocp-Apim-Subscription-Key")
         
         let pngRepresentation = UIImageJPEGRepresentation(facesPhoto, 0.9)
-        let task = URLSession.shared.uploadTask(with: request, from: pngRepresentation) { (data, response, error) in
-            
-            if let error = error {
-                completion(nil, nil, error)
-                
-            }
-            
-            if let data = data, let resp = (response as? HTTPURLResponse)?.statusCode {
-                completion(data, resp, nil)
-            }
+        request.httpBody = pngRepresentation
+        
+        
+        Alamofire.request(request).responseJSON { (response) in
+            completion(response.data, response.response?.statusCode, response.error)
         }
-        task.resume()
     }
     
     
     
     
-    /// Find Similar
+    // find Similar
     static func findSimilar(faceId: String, faceListId: String, completion: @escaping (Data?, Int?, Error?) -> Void) {
         
         let url = "\(ApplicationConstants.location)/findsimilars"
@@ -61,28 +55,18 @@ class FaceAPI: NSObject {
             "mode" : "matchFace"
             ] as [String : AnyObject]
         
-        let jsonData = try! JSONSerialization.data(withJSONObject: upload, options: .prettyPrinted)
+        let jsonData = try? JSONSerialization.data(withJSONObject: upload, options: .prettyPrinted)
         request.httpBody = jsonData
         
-        let task = URLSession.shared.dataTask(with: request) { (data, response, error) in
-            
-            if let error = error {
-                completion(nil, nil, error)
-            }
-            
-            if let data = data, let resp = (response as? HTTPURLResponse)?.statusCode {
-                completion(data, resp, nil)
-            }
+        Alamofire.request(request).responseJSON { (response) in
+            completion(response.data, response.response?.statusCode, response.error)
         }
-        task.resume()
     }
     
 
     
-    
-    
-    
-    ///Get Positive/Negative
+        
+    //get Positive/Negative from MixoftAPI
     static func getPositive_Negative(id: String, completion: @escaping (Data?, HTTPURLResponse?, Error?) -> Void) {
         
         let url = ApplicationConstants.mixoftApiUrl + id

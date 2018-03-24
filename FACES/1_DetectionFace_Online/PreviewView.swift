@@ -11,7 +11,7 @@ import Vision
 import AVFoundation
 
 protocol ChangesWithDistanceToHead {
-    func changeImage(to: UIImage)
+    func changeImage(toImage: UIImage)
 }
 
 
@@ -42,11 +42,11 @@ class PreviewView: UIView {
     }
     
 
-    
+    // Shoot button image
     var imageForButton: UIImage = UIImage(named: "shootWhite")! {
         willSet (newValue) {
             if newValue != imageForButton {
-                delegate?.changeImage(to: newValue)
+                delegate?.changeImage(toImage: newValue)
             }
         }
     }
@@ -75,7 +75,7 @@ class PreviewView: UIView {
     }
     
     
-    
+    // drawing squares
     func drawFaceboundingBox(face : VNFaceObservation) {
         
         let transform = CGAffineTransform(scaleX: 1, y: -1).translatedBy(x: 0, y: -frame.height)
@@ -84,6 +84,7 @@ class PreviewView: UIView {
         facebounds = face.boundingBox.applying(translate).applying(transform)
         _ = createLayer(in: facebounds!)
         
+        //change the color of the Shoot button through the delegate
         if ((facebounds?.width)! < sizeOfFace && (facebounds?.width)! > (sizeOfFace - 100)) && (facebounds?.midY)! > ((UIScreen.main.bounds.height / 2) - permiceForPhoto) && (facebounds?.midY)! < ((UIScreen.main.bounds.height / 2) + permiceForPhoto) {
             
             imageForButton = UIImage(named: "shootRed")!

@@ -7,12 +7,7 @@
 //
 
 import UIKit
-
-import CoreData
 import Vision
-
-
-
 
 
 class ImageViewController: UIViewController {
@@ -37,16 +32,16 @@ class ImageViewController: UIViewController {
     var tappedView : UIView? {
         
         willSet {
-            if newValue?.backgroundColor == .red {
-                newValue?.backgroundColor = .green
+            if newValue?.layer.borderColor == UIColor.red.cgColor {
+                newValue?.layer.borderColor = UIColor.green.cgColor
             } else {
-                newValue?.backgroundColor = .red
+                newValue?.layer.borderColor = UIColor.red.cgColor
             }
         } didSet {
-            if oldValue?.backgroundColor == .green {
-                oldValue?.backgroundColor = .red
+            if oldValue?.layer.borderColor == UIColor.green.cgColor  {
+                oldValue?.layer.borderColor = UIColor.red.cgColor
             } else {
-                oldValue?.backgroundColor = .green
+                oldValue?.layer.borderColor = UIColor.green.cgColor 
                 if doneIsActive == false {
                     done.isUserInteractionEnabled = true
                     done.alpha = 1
@@ -55,6 +50,7 @@ class ImageViewController: UIViewController {
             }
         }
     }
+    
     
     var rects = [UIView]() {
         didSet {
@@ -106,10 +102,7 @@ class ImageViewController: UIViewController {
     
    
     
-    
-    
-    
-    
+    //cutting a face from an image
     func getImage(from contextView: UIView, in cropFrame: CGRect) -> (UIImage?, CGImage?) {
         
         UIGraphicsBeginImageContext(CGSize(width: contextView.frame.size.width,
@@ -130,7 +123,7 @@ class ImageViewController: UIViewController {
     
     
   
-        
+    //redrawing squares on faces, after rotating
     override func viewWillTransition(to size: CGSize, with coordinator: UIViewControllerTransitionCoordinator) {
         
         for subview in view.subviews {
@@ -166,7 +159,7 @@ class ImageViewController: UIViewController {
     
     
     
-    @IBAction func Detect(_ sender: UIButton) {
+    @IBAction func detect(_ sender: UIButton) {
 
         progress.show()
         
@@ -197,7 +190,7 @@ class ImageViewController: UIViewController {
 
     
     
-    @IBAction func CancelPressed(_ sender: UIButton) {
+    @IBAction func cancelPressed(_ sender: UIButton) {
         
         completion?(nil)
         self.dismiss(animated: true, completion: nil)

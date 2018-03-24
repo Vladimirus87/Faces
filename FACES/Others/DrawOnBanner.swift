@@ -9,7 +9,8 @@
 import UIKit
 
 extension ResultViewController {
-    
+   
+    //Drawing text on a banner with the Faces logo
     func textToImage(drawText text: String, inImage image: UIImage, atPoint point: CGPoint) -> UIImage {
         let textColor = UIColor.black
         let textFont = UIFont.systemFont(ofSize: 20)
@@ -32,7 +33,7 @@ extension ResultViewController {
         return newImage!
     }
     
-    
+    //transformation into text, which will look correct on the banner
     func getString(arr: [String]) -> String {
         
         let str = arr.map { (string) in return  "\n \u{2022}" + " " + string }.joined(separator: "")

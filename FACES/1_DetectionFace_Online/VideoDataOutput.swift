@@ -12,7 +12,7 @@ import Vision
 
 
 
-extension ViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
+extension CameraViewController: AVCaptureVideoDataOutputSampleBufferDelegate {
     
     
     // MARK: - AVCaptureVideoDataOutputSampleBufferDelegate

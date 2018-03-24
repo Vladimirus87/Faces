@@ -5,15 +5,12 @@
 //  Created by Arpit Jain on 22/09/17.
 //  Copyright © 2017 Arpit Jain. All rights reserved.
 //
+/// Animation while waiting (with logo inside)
 
 import UIKit
 
 class AJProgressView: UIView {
 
-    
-    //MARK: - Private Properties
-    //MARK: -
-  
     private var objProgressView = UIView()
     private var shapeLayer = CAShapeLayer()
 

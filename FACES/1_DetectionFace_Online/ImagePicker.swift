@@ -8,7 +8,7 @@
 
 import UIKit
 
-extension ViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
+extension CameraViewController: UINavigationControllerDelegate, UIImagePickerControllerDelegate {
     
  
     func imagePickerController(_ picker: UIImagePickerController, didFinishPickingMediaWithInfo info: [String : Any]) {
@@ -19,7 +19,6 @@ extension ViewController: UINavigationControllerDelegate, UIImagePickerControlle
         self.isGalleryImage = true
                 
         dismiss(animated:true, completion: {
-
             self.performSegue(withIdentifier: "toImageVC", sender: self)
         })
     }

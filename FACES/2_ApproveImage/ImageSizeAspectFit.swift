@@ -4,7 +4,8 @@
 //
 //  Created by Владимир Моисеев on 21.03.18.
 //  Copyright © 2018 Willjay. All rights reserved.
-//
+
+/// Methods for obtaining real image size if contentMode == .aspectFit
 
 import UIKit
 

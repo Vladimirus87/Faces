@@ -12,7 +12,7 @@ import FBSDKShareKit
 
 extension ResultViewController : FBSDKSharingDelegate {
     
-    
+    // if fasebook is not installed
     func sharer(_ sharer: FBSDKSharing!, didFailWithError error: Error!) {
         
         let alert = UIAlertController(title: nil, message: "fasebook not installed", preferredStyle: .alert)

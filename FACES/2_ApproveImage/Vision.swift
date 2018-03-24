@@ -23,7 +23,7 @@ extension ImageViewController {
     
     
     
-    
+    //Identifying faces in the image and drawing frames on them
     public func drowSqares() {
         
         let scaledFrame = self.imageFrameAspectFit(imageView: mainImage)
@@ -47,8 +47,10 @@ extension ImageViewController {
                     
                     
                     let redView = UIView()
-                    redView.backgroundColor = .red
-                    redView.alpha = 0.4
+                    redView.backgroundColor = .clear
+                    redView.layer.borderColor = UIColor.red.cgColor
+                    redView.layer.cornerRadius = 10
+                    redView.layer.borderWidth = 1.0
                     
                     let rect = CGRect(x: x, y: y, width: height, height: height)
                     redView.frame = rect
@@ -61,6 +63,7 @@ extension ImageViewController {
                 }
             })
         }
+
         
         guard let orientation = self.mainImage.image?.imageOrientation else { return }
         let convertedOrientation = convertImageOrientation(orientation: orientation)
@@ -77,7 +80,7 @@ extension ImageViewController {
     }
     
     
-    
+    //the method works by pressing the face
     @objc func saaa(_ tap: UITapGestureRecognizer) {
         
         tappedView = tap.view!

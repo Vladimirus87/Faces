@@ -10,9 +10,10 @@
 import Foundation
 
 struct ApplicationConstants {
-    
+    //keys to Microsoft FaceAPI
     static let location = "https://northeurope.api.cognitive.microsoft.com/face/v1.0"
     static let subscriptionKey = "e54dfdcd23a048d18bc3d1910c266cfa"
+    //keys to MixoftAPI(made by Julia)
     static let mixoftApiUrl = NSLocalizedString("mixoftApiUrl", comment: "")
 }
 

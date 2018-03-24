@@ -10,7 +10,7 @@ import UIKit
 import AVFoundation
 
 
-extension ViewController {
+extension CameraViewController {
     
     func addObservers() {
 

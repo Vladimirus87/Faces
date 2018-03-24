@@ -38,10 +38,10 @@ class CheckViewController: UIViewController {
 
     
     
-    
     @IBAction func negativeFeatures(_ sender: UIButton) {
         goToResultVC(withPositive: false)
     }
+    
     
     
     @IBAction func goToRoot(_ sender: UIButton) {
@@ -55,7 +55,7 @@ class CheckViewController: UIViewController {
         
     }
     
-    
+
     func goToResultVC(withPositive: Bool) {
         let storyboard = UIStoryboard(name: "Main", bundle: nil)
         guard let controller = storyboard.instantiateViewController(withIdentifier: "resultVC") as? ResultViewController else { return }

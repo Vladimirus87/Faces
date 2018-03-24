@@ -14,10 +14,10 @@
         </array>
     </customFonts>
     <scenes>
-        <!--View Controller-->
+        <!--Camera View Controller-->
         <scene sceneID="tne-QT-ifu">
             <objects>
-                <viewController id="BYZ-38-t0r" customClass="ViewController" customModule="Faces" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="BYZ-38-t0r" customClass="CameraViewController" customModule="Faces" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="y3c-jy-aDJ"/>
                         <viewControllerLayoutGuide type="bottom" id="wfy-db-euE"/>
@@ -263,7 +263,7 @@
                                                         <color key="tintColor" red="1" green="1" blue="1" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                         <state key="normal" image="check"/>
                                                         <connections>
-                                                            <action selector="Detect:" destination="Afb-zO-12M" eventType="touchUpInside" id="tLI-jd-8sh"/>
+                                                            <action selector="detect:" destination="Afb-zO-12M" eventType="touchUpInside" id="ADw-8i-wy8"/>
                                                         </connections>
                                                     </button>
                                                 </subviews>
@@ -316,7 +316,7 @@
                                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kMY-sn-kif">
                                                 <rect key="frame" x="0.0" y="0.0" width="46" height="31"/>
                                                 <connections>
-                                                    <action selector="CancelPressed:" destination="Afb-zO-12M" eventType="touchUpInside" id="bRD-kI-04a"/>
+                                                    <action selector="cancelPressed:" destination="Afb-zO-12M" eventType="touchUpInside" id="8Sb-Kg-zM2"/>
                                                 </connections>
                                             </button>
                                         </subviews>
